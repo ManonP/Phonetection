@@ -1,17 +1,76 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- GENERAL ================================================================================-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:actionBarStyle">@style/action_bar_style</item>
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- ACTION BAR =============================================================================-->
+    <style name="action_bar_style" parent="@style/Theme.AppCompat.Light">
+        <item name="android:background">@color/primary</item>
+        <item name="background">@color/primary</item>
+    </style>
+
+    <!-- BOUTONS ================================================================================-->
+    <!-- Bouton de dialogue -->
+    <style name="dialog_button">
+        <item name="android:textColor">@drawable/custom_dialog_button</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@color/primary_light_text</item>
+        <item name="android:textSize">@dimen/dial_button_text_size</item>
+    </style>
+
+    <!-- Bouton radio -->
+    <style name="radio_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dialog_radio_button_text_size</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
+    </style>
+
+    <!-- Bouton de saisie du code pin -->
+    <style name="pin_button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/primary_light_text</item>
+        <item name="android:textColor">@color/primary_dark_text</item>
+        <item name="android:textSize">@dimen/dial_button_text_size</item>
+    </style>
+
+    <!-- DIALOGUE ===============================================================================-->
+    <!--Separateur entre titre et description | controleur | et boutons de validation-->
+    <style name="dialog_separator">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/separator_height</item>
+        <item name="android:background">@color/secondary_dark_text</item>
+        <item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
+        <item name="android:layout_marginTop">@dimen/activity_vertical_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <!--Description de la dialogue-->
+    <style name="dialog_description">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/secondary_dark_text</item>
+        <item name="android:textSize">@dimen/dialog_description_text_size</item>
+        <item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
+        <item name="android:layout_marginTop">@dimen/activity_vertical_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+    </style>
 
 </resources>

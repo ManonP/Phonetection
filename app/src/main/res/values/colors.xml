@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <!--Palette de couleurs en réspectant les guidelines android-->
+    <!--Couleurs de l'application-->
+    <color name="primary">#3F51B5</color>
+    <color name="primary_dark">#303F9F</color>
+    <color name="accent">#2962FF</color>
+
+    <!--Couleurs de text sombre-->
+    <color name="primary_dark_text">#DD000000</color>
+    <color name="secondary_dark_text">#8A000000</color>
+    <color name="hint_disable_dark">#61000000</color>
+
+    <!--Couleurs de texte lumineux-->
+    <color name="primary_light_text">#FFFFFF</color>
+    <color name="secondary_light_text">#B2FFFFFF</color>
+    <color name="hint_disable_light">#4CFFFFFF</color>
 </resources>
