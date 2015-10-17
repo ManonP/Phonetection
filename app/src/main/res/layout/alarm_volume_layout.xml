@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        style="@style/dialog_separator"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:gravity="center_vertical">
+
+        <ImageView
+            style="@style/icon_accent"
+            android:src="@drawable/ic_volume_down_white_24dp"/>
+
+        <SeekBar
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/alarm_volume_seek_bar"
+            android:indeterminate="false" />
+
+        <ImageView
+            style="@style/icon_accent"
+            android:src="@drawable/ic_volume_up_white_24dp"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/dialog_separator"></View>
+
+</LinearLayout>

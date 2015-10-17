@@ -48,6 +48,19 @@
         <item name="android:textSize">@dimen/dial_button_text_size</item>
     </style>
 
+    <!-- ICONS ==================================================================================-->
+    <style name="icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:tint">@color/primary</item>
+    </style>
+
+    <style name="icon_accent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:tint">@color/accent</item>
+    </style>
+
     <!-- DIALOGUE ===============================================================================-->
     <!--Separateur entre titre et description | controleur | et boutons de validation-->
     <style name="dialog_separator">
