@@ -16,4 +16,7 @@
     <color name="primary_light_text">#FFFFFF</color>
     <color name="secondary_light_text">#B2FFFFFF</color>
     <color name="hint_disable_light">#4CFFFFFF</color>
+
+    <!--Couleurs cards-->
+    <color name="cards">#9FA8DA</color>
 </resources>
