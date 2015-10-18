@@ -106,7 +106,7 @@
     <string name="pref_security_level_high">High</string>
     <string name="pref_security_level_default">Low</string>
     <string name="pref_alarm_volume_max">100</string>
-    <string name="pref_alarm_volume_default">50</string>
+    <string name="pref_alarm_volume_default">100</string>
 
     <!-- DIALOGUES ==============================================================================-->
     <!--Noms des dialogues-->

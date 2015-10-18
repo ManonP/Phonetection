@@ -3,10 +3,32 @@
     <PreferenceCategory
         android:title="@string/alarm_and_grace_time_section">
         <preference.AlarmVolumePreference
-            android:title="@string/alarm_volume_setting"
+            android:id="@+id/pref_alarm_volume"
             android:key="@string/pref_key_alarm_volume"
-            android:icon="@drawable/ic_volume_up_white_24dp"
-            android:tint="@color/primary">
+            android:title="@string/alarm_volume_setting"
+            android:icon="@drawable/ic_volume_up_indigo_24px"
+            android:dialogTitle="@string/alarm_volume_setting"
+            android:dialogIcon="@drawable/ic_volume_up_indigo_36px">
         </preference.AlarmVolumePreference>
+        <SwitchPreference
+            android:id="@+id/pref_light_alarm"
+            android:key="@string/pref_key_light_alarm"
+            android:title="@string/light_alarm_setting"
+            android:summary="@string/light_alarm_setting_description"
+            android:icon="@drawable/ic_wb_iridescent_indigo_24px"
+            android:defaultValue="true">
+        </SwitchPreference>
+        <preference.GraceTimePreference
+            android:id="@+id/pref_grace_time"
+            android:key="@string/pref_key_grace_time"
+            android:title="@string/grace_time_setting"
+            android:icon="@drawable/ic_query_builder_indigo_24px"
+            android:dialogTitle="@string/grace_time_setting"
+            android:dialogIcon="@drawable/ic_query_builder_indigo_36px">
+        </preference.GraceTimePreference>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/security_section">
+
     </PreferenceCategory>
 </PreferenceScreen>

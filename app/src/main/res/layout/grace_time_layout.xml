@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+        <TextView
+            style="@style/dialog_description"
+            android:id="@+id/grace_time_description"
+            android:text="@string/grace_time_setting_description" />
+
+
+    </LinearLayout>
+
+    <View
+        style="@style/dialog_separator"></View>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+        <RadioButton
+            style="@style/radio_button"
+            android:text="@string/grace_time_5_seconds"
+            android:id="@+id/grace_time_5_seconds"/>
+
+        <RadioButton
+            style="@style/radio_button"
+            android:text="@string/grace_time_10_seconds"
+            android:id="@+id/grace_time_10_seconds" />
+
+        <RadioButton
+            style="@style/radio_button"
+            android:text="@string/grace_time_15_seconds"
+            android:id="@+id/grace_time_15_seconds"/>
+
+        <RadioButton
+            style="@style/radio_button"
+            android:text="@string/grace_time_30_seconds"
+            android:id="@+id/grace_time_30_seconds"/>
+    </RadioGroup>
+
+    <View
+        style="@style/dialog_separator"></View>
+
+</LinearLayout>

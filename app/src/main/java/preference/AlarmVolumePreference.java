@@ -87,7 +87,5 @@ public class AlarmVolumePreference extends DialogPreference implements
     private void setAlarmVolumeSeekBar(Integer preferenceValue){
         alarmeVolumeSeekBar.setProgress(preferenceValue);
     }
-
-
 }
 
