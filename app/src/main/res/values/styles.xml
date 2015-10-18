@@ -24,8 +24,7 @@
         <item name="android:textColor">@drawable/custom_dialog_button</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:background">@color/primary_light_text</item>
-        <item name="android:textSize">@dimen/dial_button_text_size</item>
+        <item name="android:background">@color/transparent</item>
     </style>
 
     <!-- Bouton radio -->
@@ -43,7 +42,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@color/primary_light_text</item>
+        <item name="android:background">@color/transparent</item>
         <item name="android:textColor">@color/primary_dark_text</item>
         <item name="android:textSize">@dimen/dial_button_text_size</item>
     </style>
@@ -53,7 +52,7 @@
     <style name="dialog_separator">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/separator_height</item>
-        <item name="android:background">@color/secondary_dark_text</item>
+        <item name="android:background">@color/hint_disable_dark</item>
         <item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
         <item name="android:layout_marginTop">@dimen/activity_vertical_margin</item>
         <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>

@@ -20,7 +20,7 @@
     </LinearLayout>
 
     <View
-        style="@style/dialog_separator"></View>
+        style="@style/dialog_separator"/>
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -52,6 +52,6 @@
     </RadioGroup>
 
     <View
-        style="@style/dialog_separator"></View>
+        style="@style/dialog_separator"/>
 
 </LinearLayout>

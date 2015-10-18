@@ -57,7 +57,7 @@
     <string name="light_alarm_setting">Light alarm</string>
     <string name="grace_time_setting">Grace time</string>
     <string name="security_level_setting">Security level</string>
-    <string name="pin_setting">Pin</string>
+    <string name="pin_setting">Change Pin</string>
     <string name="pattern_setting">Pattern</string>
     <string name="image_setting">Image</string>
 

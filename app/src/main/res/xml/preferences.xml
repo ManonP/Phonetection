@@ -29,6 +29,13 @@
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/security_section">
-
+        <preference.PinPreference
+            android:id="@+id/pref_pin"
+            android:key="@string/pref_key_pin"
+            android:title="@string/pin_setting"
+            android:icon="@drawable/ic_dialpad_indigo_24px"
+            android:dialogTitle="@string/pin_setting"
+            android:dialogIcon="@drawable/ic_dialpad_indigo_36px">
+        </preference.PinPreference>
     </PreferenceCategory>
 </PreferenceScreen>

@@ -16,4 +16,7 @@
     <color name="primary_light_text">#FFFFFF</color>
     <color name="secondary_light_text">#B2FFFFFF</color>
     <color name="hint_disable_light">#4CFFFFFF</color>
+
+    <!--Transaprence-->
+    <color name="transparent">#00FFFFFF</color>
 </resources>
