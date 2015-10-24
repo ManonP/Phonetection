@@ -6,9 +6,7 @@
             android:id="@+id/pref_alarm_volume"
             android:key="@string/pref_key_alarm_volume"
             android:title="@string/alarm_volume_setting"
-            android:icon="@drawable/ic_volume_up_indigo_24px"
-            android:dialogTitle="@string/alarm_volume_setting"
-            android:dialogIcon="@drawable/ic_volume_up_indigo_36px">
+            android:icon="@drawable/ic_volume_up_indigo_24px">
         </preference.AlarmVolumePreference>
         <SwitchPreference
             android:id="@+id/pref_light_alarm"
@@ -22,20 +20,28 @@
             android:id="@+id/pref_grace_time"
             android:key="@string/pref_key_grace_time"
             android:title="@string/grace_time_setting"
-            android:icon="@drawable/ic_query_builder_indigo_24px"
-            android:dialogTitle="@string/grace_time_setting"
-            android:dialogIcon="@drawable/ic_query_builder_indigo_36px">
+            android:icon="@drawable/ic_query_builder_indigo_24px">
         </preference.GraceTimePreference>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/security_section">
+        <preference.SecurityLevelPreference
+            android:id="@+id/pref_security_level"
+            android:key="@string/pref_key_security_level"
+            android:title="@string/security_level_setting"
+            android:icon="@drawable/ic_security_indigo_24px">
+        </preference.SecurityLevelPreference>
         <preference.PinPreference
             android:id="@+id/pref_pin"
             android:key="@string/pref_key_pin"
             android:title="@string/pin_setting"
-            android:icon="@drawable/ic_dialpad_indigo_24px"
-            android:dialogTitle="@string/pin_setting"
-            android:dialogIcon="@drawable/ic_dialpad_indigo_36px">
+            android:icon="@drawable/ic_dialpad_indigo_24px">
         </preference.PinPreference>
+        <preference.PatternPreference
+            android:id="@+id/pref_pattern"
+            android:key="@string/pref_key_pattern"
+            android:title="@string/pattern_setting"
+            android:icon="@drawable/ic_apps_indigo_24px">
+        </preference.PatternPreference>
     </PreferenceCategory>
 </PreferenceScreen>

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.DialogPreference;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RadioButton;
@@ -29,7 +30,7 @@ public class GraceTimePreference extends DialogPreference implements View.OnClic
 
         setDialogLayoutResource(R.layout.grace_time_layout);
         setNegativeButtonText(android.R.string.cancel);
-        setDialogIcon(R.drawable.ic_query_builder_indigo_24px);
+        setDialogIcon(R.drawable.ic_query_builder_indigo_36px);
         setDialogTitle(R.string.grace_time_setting);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -42,7 +43,7 @@ public class GraceTimePreference extends DialogPreference implements View.OnClic
     }
 
     @Override
-    protected void onBindDialogView(View view) {
+    protected void onBindDialogView(@NonNull View view) {
         seconds5RadioButton = (RadioButton) view.findViewById(R.id.grace_time_5_seconds);
         seconds10RadioButton = (RadioButton) view.findViewById(R.id.grace_time_10_seconds);
         seconds15RadioButton = (RadioButton) view.findViewById(R.id.grace_time_15_seconds);

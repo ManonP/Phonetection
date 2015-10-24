@@ -58,8 +58,8 @@
     <string name="grace_time_setting">Grace time</string>
     <string name="security_level_setting">Security level</string>
     <string name="pin_setting">Change Pin</string>
-    <string name="pattern_setting">Pattern</string>
-    <string name="image_setting">Image</string>
+    <string name="pattern_setting">Change Pattern</string>
+    <string name="image_setting">Change Image</string>
 
     <!--Description des paramètres-->
     <string name="light_alarm_setting_description">To get a more deterrent effect</string>
@@ -118,12 +118,12 @@
     <string name="draw_pattern_dialog">Draw your pattern</string>
     <string name="select_image_dialog">Select your image</string>
     <string name="different_pin_dialog">Wrong PIN</string>
-
+    <string name="different_pattern_dialog">Wrong pattern</string>
     <!--Messages des dialogues-->
     <string name="dissuasive_dialog_message">
 
     </string>
     <string name="different_pin_dialog_message">You enter two different PIN</string>
-
+    <string name="different_pattern_dialog_message">You draw two different patterns</string>
 
 </resources>

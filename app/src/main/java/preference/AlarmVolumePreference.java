@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.DialogPreference;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.SeekBar;
@@ -27,6 +28,7 @@ public class AlarmVolumePreference extends DialogPreference implements
         setDialogLayoutResource(R.layout.alarm_volume_layout);
         setNegativeButtonText(android.R.string.cancel);
         setDialogTitle(R.string.alarm_volume_setting);
+        setDialogIcon(R.drawable.ic_volume_up_indigo_36px);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         initialValue = sharedPreferences.getInt(
@@ -36,7 +38,7 @@ public class AlarmVolumePreference extends DialogPreference implements
     }
 
     @Override
-    protected void onBindDialogView(View view) {
+    protected void onBindDialogView(@NonNull View view) {
         alarmeVolumeSeekBar = (SeekBar) view.findViewById(R.id.alarm_volume_seek_bar);
 
         alarmeVolumeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

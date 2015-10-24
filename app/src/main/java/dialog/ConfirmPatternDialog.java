@@ -9,16 +9,20 @@ import android.widget.Button;
 
 import com.ihm15.project.phonetection.R;
 
+import java.util.List;
 
-public class ConfirmPinDialog extends AbstractPinDialog {
+import haibison.android.lockpattern.widget.LockPatternView;
 
-    private String newPin;
+public class ConfirmPatternDialog extends AbstractPatternDialog {
 
-    public ConfirmPinDialog(Context context, String newPin){
-        super(context, context.getString(R.string.new_pin_confirm),
+
+    String newPattern;
+
+    public ConfirmPatternDialog(Context context, String newPattern){
+        super(context, context.getString(R.string.new_pattern_confirm),
                 context.getString(R.string.clear_button),
                 context.getString(R.string.confirm_button));
-        this.newPin = newPin;
+        this.newPattern = newPattern;
     }
 
     @Override
@@ -27,16 +31,16 @@ public class ConfirmPinDialog extends AbstractPinDialog {
             case IDLE:
                 //INTERDIT
                 break;
-            case UPDATING_PIN:
+            case UPDATING_PATTERN:
                 //INTERDIT
                 break;
-            case PIN_COMPLETE:
+            case PATTERN_COMPLETE:
                 this.dismiss();
-                if (!pin.equals(newPin)){
+                if (!pattern.equals(newPattern)){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setCancelable(false);
-                    builder.setTitle(R.string.different_pin_dialog);
-                    builder.setMessage(R.string.different_pin_dialog_message);
+                    builder.setTitle(R.string.different_pattern_dialog);
+                    builder.setMessage(R.string.different_pattern_dialog_message);
                     builder.setPositiveButton(R.string.ok_button, new OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -49,9 +53,9 @@ public class ConfirmPinDialog extends AbstractPinDialog {
                     button.setTextColor(getContext().getResources().getColor(R.color.accent));
                 } else {
                     SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-                    sp.edit().putInt(
-                            getContext().getString(R.string.pref_key_pin),
-                            Integer.parseInt(pin));
+                    sp.edit().putString(
+                            getContext().getString(R.string.pref_key_pattern),
+                            pattern);
                     sp.edit().commit();
                 }
         }

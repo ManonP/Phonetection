@@ -235,16 +235,6 @@ public abstract class AbstractPinDialog extends Dialog implements View.OnClickLi
         }
     }
 
-    private void deleteLastPinNumber(){
-        pin = pin.substring(0,pin.length()-1);
-        pinTextView.setText(pin);
-    }
-
-    private void addPinNumber(String pinNumber){
-        pin += pinNumber;
-        pinTextView.setText(pin);
-    }
-
     //Presentation
     private void disableClearButton(){
         clearButton.setEnabled(false);
@@ -286,5 +276,15 @@ public abstract class AbstractPinDialog extends Dialog implements View.OnClickLi
         pad7Button.setEnabled(true);
         pad8Button.setEnabled(true);
         pad9Button.setEnabled(true);
+    }
+
+    private void deleteLastPinNumber(){
+        pin = pin.substring(0,pin.length()-1);
+        pinTextView.setText(pin);
+    }
+
+    private void addPinNumber(String pinNumber){
+        pin += pinNumber;
+        pinTextView.setText(pin);
     }
 }
