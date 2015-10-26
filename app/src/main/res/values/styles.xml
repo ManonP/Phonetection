@@ -102,4 +102,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
+
+    <!-- LOCK PATTERN VIEW ======================================================================-->
+    <style name="lock_pattern_view" parent="Alp_42447968.Theme.Light">
+        <item name="android:color">@color/accent</item>
+    </style>
 </resources>

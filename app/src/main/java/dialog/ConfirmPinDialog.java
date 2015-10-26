@@ -38,12 +38,12 @@ public class ConfirmPinDialog extends AbstractPinDialog {
             case IDLE:
                 //FORBIDDEN
                 Log.println(Log.ERROR, "",
-                        "positive button clicked error : state == IDLE -> FORBIDDEN");
+                        "Positive button clicked error: state == IDLE -> FORBIDDEN");
                 break;
             case UPDATING_PIN:
                 //FORBIDDEN
                 Log.println(Log.ERROR, "",
-                        "positive button clicked error : state == UPDATING_PIN -> FORBIDDEN");
+                        "Positive button clicked error: state == UPDATING_PIN -> FORBIDDEN");
                 break;
             case PIN_COMPLETE:
                 if(!pin.equals(newPin)){

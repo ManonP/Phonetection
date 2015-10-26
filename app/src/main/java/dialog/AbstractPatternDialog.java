@@ -2,31 +2,38 @@ package dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
-import android.view.View;
-import android.view.Window;
+import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.ihm15.project.phonetection.R;
 
-import java.util.Iterator;
 import java.util.List;
 
 import haibison.android.lockpattern.widget.LockPatternView;
 
-public abstract class AbstractPatternDialog extends Dialog
-        implements View.OnClickListener, LockPatternView.OnPatternListener{
+public abstract class AbstractPatternDialog extends DialogFragment
+        implements AlertDialog.OnClickListener, LockPatternView.OnPatternListener{
+
+    protected Context context;
     private String dialogTitleText;
-    private String clearButtonText;
-    private String validateButtonText;
+    private String positiveButtonText;
+    private String negativeButtonText;
+
+    protected AlertDialog.Builder builder;
+    protected AlertDialog al;
+
+    protected Button positiveButton;
+    protected Button negativeButton;
 
     private LockPatternView lockPatternView;
-    private Button clearButton;
-    private Button validateButton;
-    private Button cancelButton;
 
     protected enum States {
         IDLE,
@@ -39,55 +46,45 @@ public abstract class AbstractPatternDialog extends Dialog
     protected String pattern;
 
     public AbstractPatternDialog(Context context, String dialogTitleText,
-                                 String clearButtonText,
-                                 String validateButtonText) {
-        super(context);
+                                 String positiveButtonText, String negativeButtonText) {
+        this.context = context;
         this.dialogTitleText = dialogTitleText;
-        this.clearButtonText = clearButtonText;
-        this.validateButtonText = validateButtonText;
+        this.positiveButtonText = positiveButtonText;
+        this.negativeButtonText = negativeButtonText;
         pattern = null;
     }
 
+    @NonNull
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_LEFT_ICON);
-        setContentView(R.layout.pattern_layout);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        this.setTitle(dialogTitleText);
+        builder = new AlertDialog.Builder(context);
+        builder.setView(inflater.inflate(R.layout.pattern_layout, null));
+        builder.setIcon(R.drawable.ic_apps_indigo_36px);
+        builder.setTitle(dialogTitleText);
+        builder.setPositiveButton(positiveButtonText, this);
+        builder.setNegativeButton(negativeButtonText, this);
+        al = builder.create();
+        al.show();
 
-        Context context = new ContextThemeWrapper(getContext(), haibison.android.lockpattern.R.style.Alp_42447968_ThemeResources_Light);
-        lockPatternView = new LockPatternView(context);
+        positiveButton = al.getButton(AlertDialog.BUTTON_POSITIVE);
+        negativeButton = al.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        setDialogButtonTextColor();
+
+        Context c = new ContextThemeWrapper(getContext(), haibison.android.lockpattern.R.style.Alp_42447968_ThemeResources_Light);
+        lockPatternView = new LockPatternView(c);
         lockPatternView.setTactileFeedbackEnabled(true);
-        lockPatternView.setDrawingCacheBackgroundColor(getContext().getResources().getColor(R.color.accent));
-        LinearLayout ll = (LinearLayout) findViewById(R.id.pattern_container);
+        LinearLayout ll = (LinearLayout) al.findViewById(R.id.pattern_container);
         ll.addView(lockPatternView);
-        clearButton = (Button) findViewById(R.id.pattern_clear_button);
-        cancelButton = (Button) findViewById(R.id.pattern_cancel_button);
-        validateButton = (Button) findViewById(R.id.pattern_validate_button);
 
-        clearButton.setOnClickListener(this);
-        clearButton.setText(clearButtonText);
-        cancelButton.setOnClickListener(this);
-        validateButton.setOnClickListener(this);
-        validateButton.setText(validateButtonText);
         lockPatternView.setOnPatternListener(this);
         init();
-    }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.pattern_clear_button:
-                clearButtonClicked();
-                break;
-            case R.id.pattern_cancel_button:
-                cancelButtonClicked();
-                break;
-            case R.id.pattern_validate_button:
-                validateButtonClicked();
-                break;
-        }
+        al.hide();
+
+        return al;
     }
 
     @Override
@@ -108,49 +105,61 @@ public abstract class AbstractPatternDialog extends Dialog
         patternDetected(list);
     }
 
-    private void init(){
-        state = States.IDLE;
-        cellNb = 0;
-        pattern = "";
-
-        disableValidateButton();
-        disableClearButton();
-    }
-
-    protected abstract void validateButtonClicked();
-
-    private void cancelButtonClicked(){
-        switch (state){
-            case IDLE:
-                dismiss();
+    @Override
+    public void onClick(DialogInterface dialogInterface, int which) {
+        switch (which) {
+            case AlertDialog.BUTTON_POSITIVE:
+                positiveButtonClicked();
                 break;
-            case UPDATING_PATTERN:
-                dismiss();
-                break;
-            case PATTERN_COMPLETE:
-                dismiss();
+            case AlertDialog.BUTTON_NEGATIVE:
+                negativeButtonClicked();
                 break;
         }
     }
 
-    private void clearButtonClicked(){
-        switch (state){
+    //SEEHEIME-NOYAU FONCTIONNEL////////////////////////////////////////////////////////////////////
+    public static String patternToString(List<LockPatternView.Cell> list){
+        String stringPattern = "";
+        for (LockPatternView.Cell aList : list) stringPattern += (aList).getId();
+
+        return stringPattern;
+    }
+
+    //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////
+
+    protected void init(){
+        state = States.IDLE;
+        pattern = "";
+        cellNb = 0;
+
+        disablePositiveButton();
+        enableNeagtiveButton();
+    }
+
+    protected abstract void positiveButtonClicked();
+
+    protected void negativeButtonClicked(){
+        switch (state) {
             case IDLE:
-                //INTERDIT
+                state = States.IDLE;
+
+
+                disablePositiveButton();
+                enableNeagtiveButton();
+                dismiss();
                 break;
             case UPDATING_PATTERN:
                 state = States.IDLE;
 
-                erasePattern();
-                disableValidateButton();
-                disableClearButton();
+                disablePositiveButton();
+                enableNeagtiveButton();dismiss();
                 break;
             case PATTERN_COMPLETE:
                 state = States.IDLE;
 
-                erasePattern();
-                disableValidateButton();
-                disableClearButton();
+                disablePositiveButton();
+                enableNeagtiveButton();
+                dismiss();
                 break;
         }
     }
@@ -177,22 +186,22 @@ public abstract class AbstractPatternDialog extends Dialog
                 state = States.IDLE;
                 cellNb++;
 
-                disableClearButton();
-                disableValidateButton();
+                disablePositiveButton();
+                enableNeagtiveButton();
                 break;
             case UPDATING_PATTERN:
                 state = States.UPDATING_PATTERN;
                 cellNb++;
 
-                disableClearButton();
-                disableValidateButton();
+                disablePositiveButton();
+                enableNeagtiveButton();
                 break;
             case PATTERN_COMPLETE:
                 state = States.PATTERN_COMPLETE;
                 cellNb++;
 
-                disableClearButton();
-                disableValidateButton();
+                disablePositiveButton();
+                enableNeagtiveButton();
                 break;
         }
     }
@@ -200,8 +209,8 @@ public abstract class AbstractPatternDialog extends Dialog
     private void patternDetected(List<LockPatternView.Cell> detectedPattern){
         switch (state){
             case IDLE:
-                //IMPOSSIBLE
-                Log.println(Log.ERROR, "", "IMPOSSIBLE_PATTERN_DETECTED");
+                //FORBIDDEN
+                Log.println(Log.ERROR, "", "Pattern detected error: state == IDLE -> FORBIDDEN");
                 break;
             case UPDATING_PATTERN:
                 if (cellNb >= 4) {
@@ -210,50 +219,37 @@ public abstract class AbstractPatternDialog extends Dialog
 
                     pattern = patternToString(detectedPattern);
                     Log.println(Log.DEBUG, "", pattern);
-                    enableValidateButton();
-                    enableClearButton();
+                    enablePositiveButton();
+                    enableNeagtiveButton();
                 } else {
                     state = States.IDLE;
                     cellNb = 0;
 
                     lockPatternView.clearPattern();
 
-                    disableValidateButton();
-                    disableClearButton();
+                    disablePositiveButton();
+                    enableNeagtiveButton();
                 }
                 break;
             case PATTERN_COMPLETE:
-                //IMPOSSIBLE
-                Log.println(Log.ERROR, "", "IMPOSSIBLE_PATTERN_DETECTED");
+                //FORBIDDEN
+                Log.println(Log.ERROR, "", "Pattern detected error: state == PATTERN_COMPLETE -> FORBIDDEN");
                 break;
         }
     }
 
-    //Presentation
-    private void erasePattern(){
-        lockPatternView.clearPattern();
+    //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
+
+    protected void setDialogButtonTextColor (){
+        positiveButton.setTextColor(getContext().getResources().getColor(R.color.accent));
+        negativeButton.setTextColor(getContext().getResources().getColor(R.color.accent));
     }
 
-    private void disableClearButton(){
-        clearButton.setEnabled(false);
-    }
+    protected void enablePositiveButton(){ positiveButton.setEnabled(true); }
 
-    private void enableClearButton(){
-        clearButton.setEnabled(true);
-    }
+    protected void disablePositiveButton(){ positiveButton.setEnabled(false); }
 
-    private void disableValidateButton(){
-        validateButton.setEnabled(false);
-    }
+    protected void enableNeagtiveButton(){ negativeButton.setEnabled(true); }
 
-    private void enableValidateButton(){
-        validateButton.setEnabled(true);
-    }
-
-    public static String patternToString(List<LockPatternView.Cell> list){
-        String stringPattern = "";
-        for (LockPatternView.Cell aList : list) stringPattern += (aList).getId();
-
-        return stringPattern;
-    }
+    protected void disableNegativeButton(){ negativeButton.setEnabled(false); }
 }

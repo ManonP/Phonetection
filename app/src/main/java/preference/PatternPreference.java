@@ -2,6 +2,7 @@ package preference;
 
 import android.content.Context;
 import android.preference.Preference;
+import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.Window;
 
@@ -18,7 +19,6 @@ public class PatternPreference extends Preference {
     @Override
     protected void onClick() {
         ChangePatternDialog cpd = new ChangePatternDialog(getContext());
-        cpd.show();
-        cpd.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_apps_indigo_36px);
+        cpd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "choose_pattern");
     }
 }

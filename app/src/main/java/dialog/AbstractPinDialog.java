@@ -31,7 +31,7 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
 
 
     protected Context context;
-    private String dialogTitle;
+    private String dialogTitleText;
     private String positiveButtonText;
     private String negativeButtonText;
 
@@ -55,13 +55,14 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
     protected String pin;
 
 
-    public AbstractPinDialog(Context context, String dialogTitle, String positiveButtonText,
+    public AbstractPinDialog(Context context, String dialogTitleText, String positiveButtonText,
                              String negativeButtonText){
         this.context = context;
-        this.dialogTitle = dialogTitle;
+        this.dialogTitleText = dialogTitleText;
         this.positiveButtonText = positiveButtonText;
         this.negativeButtonText = negativeButtonText;
 
+        pin = null;
         pinButtons = new Button[10];
 
     }
@@ -74,7 +75,7 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
         builder = new AlertDialog.Builder(context);
         builder.setView(inflater.inflate(R.layout.pin_layout, null));
         builder.setIcon(R.drawable.ic_dialpad_indigo_36px);
-        builder.setTitle(dialogTitle);
+        builder.setTitle(dialogTitleText);
         builder.setPositiveButton(positiveButtonText, this);
         builder.setNegativeButton(negativeButtonText, this);
         al = builder.create();
@@ -246,7 +247,7 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
             case PIN_COMPLETE:
                 //FORBIDDEN
                 Log.println(Log.ERROR, "",
-                        "PIN pad clicked error : state == PIN_COMPLETE -> FORBIDDEN");
+                        "PIN pad clicked error: state == PIN_COMPLETE -> FORBIDDEN");
                 break;
         }
     }
@@ -256,7 +257,7 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
             case IDLE:
                 //FORBIDDEN
                 Log.println(Log.ERROR, "",
-                        "Clear button clicked error : state == IDLE -> FORBIDDEN");
+                        "Clear button clicked error: state == IDLE -> FORBIDDEN");
                 break;
             case UPDATING_PIN:
                 if (pin.length() > 1){

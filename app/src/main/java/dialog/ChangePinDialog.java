@@ -22,12 +22,12 @@ public class ChangePinDialog extends AbstractPinDialog {
             case IDLE:
                 //FORBIDDEN
                 Log.println(Log.ERROR, "",
-                        "positive button clicked error : state == IDLE -> FORBIDDEN");
+                        "Positive button clicked error: state == IDLE -> FORBIDDEN");
                 break;
             case UPDATING_PIN:
                 //FORBIDDEN
                 Log.println(Log.ERROR, "",
-                        "positive button clicked error : state == UPDATING_PIN -> FORBIDDEN");
+                        "Positive button clicked error: state == UPDATING_PIN -> FORBIDDEN");
                 break;
             case PIN_COMPLETE:
                 state = States.IDLE;
@@ -45,6 +45,6 @@ public class ChangePinDialog extends AbstractPinDialog {
 
     private void showConfirmPinDialog(){
         ConfirmPinDialog cpd = new ConfirmPinDialog(getContext(), pin);
-        cpd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "confirm_pin");
+        cpd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "change_pin");
     }
 }
