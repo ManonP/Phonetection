@@ -19,4 +19,7 @@
 
     <!--Transaprence-->
     <color name="transparent">#00FFFFFF</color>
+
+    <!--Boutons appuiés-->
+    <color name="button_pressed_focused">#15000000</color>
 </resources>

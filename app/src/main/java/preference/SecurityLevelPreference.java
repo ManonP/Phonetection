@@ -1,5 +1,6 @@
 package preference;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 
 import com.ihm15.project.phonetection.R;
@@ -47,6 +49,13 @@ public class SecurityLevelPreference extends DialogPreference implements View.On
         mediumRadioButton = (RadioButton) view.findViewById(R.id.security_level_medium);
         highRadioButton = (RadioButton) view.findViewById(R.id.security_level_high);
 
+
+
+        lowRadioButton.setHighlightColor(getContext().getResources().getColor(R.color.accent));
+        mediumRadioButton.setHighlightColor(getContext().getResources().getColor(R.color.accent));
+        highRadioButton.setHighlightColor(getContext().getResources().getColor(R.color.accent));
+
+
         lowRadioButton.setOnClickListener(this);
         mediumRadioButton.setOnClickListener(this);
         highRadioButton.setOnClickListener(this);
@@ -82,6 +91,11 @@ public class SecurityLevelPreference extends DialogPreference implements View.On
 
         setSecurityLevelSummary(initialValue);
         setCheckRadioButton(valueToSave);
+
+        Button b = ((AlertDialog)getDialog()).getButton(AlertDialog.BUTTON_POSITIVE);
+        b.setTextColor(getContext().getResources().getColor(R.color.accent));
+        b = ((AlertDialog)getDialog()).getButton(AlertDialog.BUTTON_NEGATIVE);
+        b.setTextColor(getContext().getResources().getColor(R.color.accent));
     }
 
 

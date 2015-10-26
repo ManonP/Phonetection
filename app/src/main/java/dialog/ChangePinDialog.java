@@ -1,32 +1,50 @@
 package dialog;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Window;
 
 import com.ihm15.project.phonetection.R;
 
 public class ChangePinDialog extends AbstractPinDialog {
 
-    public ChangePinDialog(Context context){
-        super(context, context.getString(R.string.new_pin_choice),
-                context.getString(R.string.clear_button),
-                context.getString(R.string.validate_button));
+    public ChangePinDialog(Context context) {
+        super(context, context.getString(R.string.new_pin_choice), context.getString(R.string.validate_button),
+                context.getString(R.string.cancel_button));
     }
 
+    //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////
+
     @Override
-    protected void validateButtonClicked() {
+    protected void positiveButtonClicked() {
         switch (state){
             case IDLE:
-                //INTERDIT
+                //FORBIDDEN
+                Log.println(Log.ERROR, "",
+                        "positive button clicked error : state == IDLE -> FORBIDDEN");
                 break;
             case UPDATING_PIN:
-                //INTERDIT
+                //FORBIDDEN
+                Log.println(Log.ERROR, "",
+                        "positive button clicked error : state == UPDATING_PIN -> FORBIDDEN");
                 break;
             case PIN_COMPLETE:
-                ConfirmPinDialog cpd = new ConfirmPinDialog(getContext(), pin);
-                this.dismiss();
-                cpd.show();
-                cpd.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_dialpad_indigo_36px);
+                state = States.IDLE;
+
+                disablePositiveButton();
+                enableNeagtiveButton();
+                enablePinPad();
+                disableClearButton();
+                dismiss();
+                showConfirmPinDialog();
         }
+    }
+
+    //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
+
+    private void showConfirmPinDialog(){
+        ConfirmPinDialog cpd = new ConfirmPinDialog(getContext(), pin);
+        cpd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "confirm_pin");
     }
 }

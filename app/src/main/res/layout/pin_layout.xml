@@ -98,8 +98,10 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <View
-                style="@style/pin_button"/>
+            <Button
+                style="@style/pin_clear_button"
+                android:text="@string/clear_button"
+                android:id="@+id/pin_clear_button"/>
 
             <Button
                 style="@style/pin_button"
@@ -115,45 +117,6 @@
 
     <View
         style="@style/dialog_separator"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="start">
-
-            <Button
-                style="@style/dialog_button"
-                android:id="@+id/pin_clear_button" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="end"
-            android:layout_weight="1">
-
-            <Button
-                style="@style/dialog_button"
-                android:text="@string/cancel_button"
-                android:id="@+id/pin_cancel_button"/>
-
-            <Button
-                style="@style/dialog_button"
-                android:id="@+id/pin_validate_button" />
-        </LinearLayout>
-    </LinearLayout>
 
 
 </LinearLayout>

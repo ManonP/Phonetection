@@ -18,13 +18,19 @@
         <item name="background">@color/primary</item>
     </style>
 
+    <!-- LAYOUTS ================================================================================-->
+    <style name="image_layout">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
     <!-- BOUTONS ================================================================================-->
     <!-- Bouton de dialogue -->
     <style name="dialog_button">
         <item name="android:textColor">@drawable/custom_dialog_button</item>
+        <item name="android:background">@drawable/custom_dialog_button_background</item>
+        <item name="android:layout_margin">@dimen/dialog_button_margin</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:background">@color/transparent</item>
     </style>
 
     <!-- Bouton radio -->
@@ -42,10 +48,20 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@color/transparent</item>
-        <item name="android:textColor">@color/primary_dark_text</item>
+        <item name="android:textColor">@drawable/custom_dialog_button</item>
+        <item name="android:background">@drawable/custom_dialog_button_background</item>
         <item name="android:textSize">@dimen/dial_button_text_size</item>
     </style>
+
+    <style name="pin_clear_button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@drawable/custom_dialog_button</item>
+        <item name="android:background">@drawable/custom_dialog_button_background</item>
+        <item name="android:textSize">@dimen/clear_button_text_size</item>
+    </style>
+
 
     <!-- DIALOGUE ===============================================================================-->
     <!--Separateur entre titre et description | controleur | et boutons de validation-->
@@ -73,10 +89,17 @@
     </style>
 
     <!-- SEEK BAR ===============================================================================-->
-    <style name="CustomSeekBar">
+    <style name="custom_seek_bar">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:indeterminate">false</item>
+    </style>
+
+    <!-- IMAGES =================================================================================-->
+    <style name="image">
+        <item name="android:layout_margin">@dimen/image_margin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
     </style>
 </resources>

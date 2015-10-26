@@ -57,6 +57,20 @@ public class ConfirmPatternDialog extends AbstractPatternDialog {
                             getContext().getString(R.string.pref_key_pattern),
                             pattern);
                     sp.edit().commit();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setCancelable(false);
+                    builder.setTitle(R.string.pattern_saved_dialog);
+                    builder.setMessage(R.string.pattern_saved_dialog_message);
+                    builder.setPositiveButton(R.string.ok_button, new OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    AlertDialog ad = builder.create();
+                    ad.show();
+                    Button button = ad.getButton(AlertDialog.BUTTON_POSITIVE);
+                    button.setTextColor(getContext().getResources().getColor(R.color.accent));
                 }
         }
     }

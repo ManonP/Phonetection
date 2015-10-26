@@ -59,6 +59,7 @@ public abstract class AbstractPatternDialog extends Dialog
         Context context = new ContextThemeWrapper(getContext(), haibison.android.lockpattern.R.style.Alp_42447968_ThemeResources_Light);
         lockPatternView = new LockPatternView(context);
         lockPatternView.setTactileFeedbackEnabled(true);
+        lockPatternView.setDrawingCacheBackgroundColor(getContext().getResources().getColor(R.color.accent));
         LinearLayout ll = (LinearLayout) findViewById(R.id.pattern_container);
         ll.addView(lockPatternView);
         clearButton = (Button) findViewById(R.id.pattern_clear_button);
