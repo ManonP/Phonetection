@@ -1,15 +1,11 @@
-package preference;
+package preferences;
 
 import android.content.Context;
 import android.preference.Preference;
+import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
-import android.view.Window;
 
-import com.ihm15.project.phonetection.R;
-
-import dialog.ChangeImageDialog;
-
-//import dialog.ChangeImageDialog;
+import dialogs.ChangeImageDialog;
 
 public class ImagePreference extends Preference {
     public ImagePreference(Context context, AttributeSet attrs) {
@@ -19,7 +15,6 @@ public class ImagePreference extends Preference {
     @Override
     protected void onClick() {
         ChangeImageDialog cid = new ChangeImageDialog(getContext());
-        cid.show();
-        cid.setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.ic_collections_indigo_36px);
+        cid.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "choose_image");
     }
 }

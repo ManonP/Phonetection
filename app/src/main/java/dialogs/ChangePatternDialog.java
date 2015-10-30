@@ -1,9 +1,8 @@
-package dialog;
+package dialogs;
 
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.Window;
 
 import com.ihm15.project.phonetection.R;
 
@@ -33,7 +32,7 @@ public class ChangePatternDialog extends AbstractPatternDialog {
                 state = States.IDLE;
 
                 disablePositiveButton();
-                enableNeagtiveButton();
+                enableNegativeButton();
                 dismiss();
                 showConfirmPatternDialog();
 
@@ -43,7 +42,7 @@ public class ChangePatternDialog extends AbstractPatternDialog {
     //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
 
     private void showConfirmPatternDialog(){
-        ConfirmPatternDialog cpd = new ConfirmPatternDialog(getContext(), pattern);
-        cpd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "change_pattern");
+        ConfirmPatternDialog cpd = new ConfirmPatternDialog(context, pattern);
+        cpd.show(((FragmentActivity) context).getSupportFragmentManager(), "change_pattern");
     }
 }

@@ -1,9 +1,8 @@
-package dialog;
+package dialogs;
 
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.Window;
 
 import com.ihm15.project.phonetection.R;
 
@@ -33,7 +32,7 @@ public class ChangePinDialog extends AbstractPinDialog {
                 state = States.IDLE;
 
                 disablePositiveButton();
-                enableNeagtiveButton();
+                enableNegativeButton();
                 enablePinPad();
                 disableClearButton();
                 dismiss();
@@ -44,7 +43,7 @@ public class ChangePinDialog extends AbstractPinDialog {
     //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
 
     private void showConfirmPinDialog(){
-        ConfirmPinDialog cpd = new ConfirmPinDialog(getContext(), pin);
-        cpd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "change_pin");
+        ConfirmPinDialog cpd = new ConfirmPinDialog(context, pin);
+        cpd.show(((FragmentActivity) context).getSupportFragmentManager(), "change_pin");
     }
 }

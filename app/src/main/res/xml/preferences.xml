@@ -2,52 +2,55 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
         android:title="@string/alarm_and_grace_time_section">
-        <preference.AlarmVolumePreference
+        <preferences.AlarmVolumePreference
             android:id="@+id/pref_alarm_volume"
             android:key="@string/pref_key_alarm_volume"
             android:title="@string/alarm_volume_setting"
             android:icon="@drawable/ic_volume_up_indigo_36px"
             android:dialogTitle="@string/alarm_volume_setting"
-            android:dialogIcon="@drawable/ic_volume_up_indigo_36px"/>
+            android:dialogIcon="@drawable/ic_volume_up_indigo_36px"
+            android:defaultValue="@integer/pref_alarm_volume_default" />
         <SwitchPreference
             android:id="@+id/pref_light_alarm"
             android:key="@string/pref_key_light_alarm"
             android:title="@string/light_alarm_setting"
             android:icon="@drawable/ic_wb_iridescent_indigo_36px"
             android:summary="@string/light_alarm_setting_description"
-            android:defaultValue="true"/>
-        <preference.GraceTimePreference
+            android:defaultValue="@bool/pref_light_alarm_default"/>
+        <preferences.GraceTimePreference
             android:id="@+id/pref_grace_time"
             android:key="@string/pref_key_grace_time"
             android:title="@string/grace_time_setting"
             android:icon="@drawable/ic_query_builder_indigo_36px"
             android:dialogTitle="@string/grace_time_setting"
-            android:dialogIcon="@drawable/ic_query_builder_indigo_36px"/>
+            android:dialogIcon="@drawable/ic_query_builder_indigo_36px"
+            android:defaultValue="@integer/pref_grace_time_default"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/security_section">
-        <preference.SecurityLevelPreference
+        <preferences.SecurityLevelPreference
             android:id="@+id/pref_security_level"
             android:key="@string/pref_key_security_level"
             android:title="@string/security_level_setting"
             android:icon="@drawable/ic_security_indigo_36px"
             android:dialogTitle="@string/security_level_setting"
-            android:dialogIcon="@drawable/ic_security_indigo_36px"/>
-        <preference.PinPreference
+            android:dialogIcon="@drawable/ic_security_indigo_36px"
+            android:defaultValue="@string/pref_security_level_default"/>
+        <preferences.PinPreference
             android:id="@+id/pref_pin"
             android:key="@string/pref_key_pin"
             android:title="@string/pin_setting"
             android:icon="@drawable/ic_dialpad_indigo_36px"
             android:dialogTitle="@string/pin_setting"
             android:dialogIcon="@drawable/ic_dialpad_indigo_36px"/>
-        <preference.PatternPreference
+        <preferences.PatternPreference
             android:id="@+id/pref_pattern"
             android:key="@string/pref_key_pattern"
             android:title="@string/pattern_setting"
             android:icon="@drawable/ic_apps_indigo_36px"
             android:dialogTitle="@string/pattern_setting"
             android:dialogIcon="@drawable/ic_apps_indigo_36px"/>
-        <preference.ImagePreference
+        <preferences.ImagePreference
             android:id="@+id/pref_image"
             android:key="pref_image"
             android:title="@string/image_setting"

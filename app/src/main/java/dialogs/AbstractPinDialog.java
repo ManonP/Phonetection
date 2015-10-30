@@ -1,4 +1,4 @@
-package dialog;
+package dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -70,6 +70,8 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Log.println(Log.DEBUG, "", "POTATOES");
+
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         builder = new AlertDialog.Builder(context);
@@ -77,12 +79,14 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
         builder.setIcon(R.drawable.ic_dialpad_indigo_36px);
         builder.setTitle(dialogTitleText);
         builder.setPositiveButton(positiveButtonText, this);
-        builder.setNegativeButton(negativeButtonText, this);
+        if (negativeButtonText != null)
+            builder.setNegativeButton(negativeButtonText, this);
         al = builder.create();
         al.show();
 
         positiveButton = al.getButton(AlertDialog.BUTTON_POSITIVE);
-        negativeButton = al.getButton(AlertDialog.BUTTON_NEGATIVE);
+        if (negativeButtonText != null)
+            negativeButton = al.getButton(AlertDialog.BUTTON_NEGATIVE);
 
         setDialogButtonTextColor();
 
@@ -161,17 +165,19 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
                 positiveButtonClicked();
                 break;
             case AlertDialog.BUTTON_NEGATIVE:
-                negativeButtonClicked();
+                if (negativeButtonText != null)
+                    negativeButtonClicked();
                 break;
         }
     }
 
-    //SEEHIEM-DIALOGUE//////////////////////////////////////////////////////////////////////////////
+    //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////
     protected void init(){
         state = States.IDLE;
         pin = "";
         disablePositiveButton();
-        enableNeagtiveButton();
+        if (negativeButtonText != null)
+            enableNegativeButton();
         enablePinPad();
         disableClearButton();
     }
@@ -185,7 +191,8 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
 
 
                 disablePositiveButton();
-                enableNeagtiveButton();
+                if (negativeButtonText != null)
+                    enableNegativeButton();
                 enablePinPad();
                 disableClearButton();
                 dismiss();
@@ -194,7 +201,8 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
                 state = States.IDLE;
 
                 disablePositiveButton();
-                enableNeagtiveButton();
+                if (negativeButtonText != null)
+                    enableNegativeButton();
                 enablePinPad();
                 disableClearButton();
                 dismiss();
@@ -203,7 +211,8 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
                 state = States.IDLE;
 
                 disablePositiveButton();
-                enableNeagtiveButton();
+                if (negativeButtonText != null)
+                    enableNegativeButton();
                 enablePinPad();
                 disableClearButton();
                 dismiss();
@@ -216,8 +225,8 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
             case IDLE:
                 state = States.UPDATING_PIN;
                 addPinNb(pinNb);
-
-                enableNeagtiveButton();
+                if (negativeButtonText != null)
+                    enableNegativeButton();
                 disablePositiveButton();
                 enableClearButton();
                 enablePinPad();
@@ -228,7 +237,8 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
                     state = States.UPDATING_PIN;
                     addPinNb(pinNb);
 
-                    enableNeagtiveButton();
+                    if (negativeButtonText != null)
+                        enableNegativeButton();
                     disablePositiveButton();
                     enableClearButton();
                     enablePinPad();
@@ -237,7 +247,8 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
                     state = States.PIN_COMPLETE;
                     addPinNb(pinNb);
 
-                    enableNeagtiveButton();
+                    if (negativeButtonText != null)
+                        enableNegativeButton();
                     enablePositiveButton();
                     enableClearButton();
                     disablePinPad();
@@ -264,7 +275,8 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
                     state = States.UPDATING_PIN;
                     removePinNb();
 
-                    enableNeagtiveButton();
+                    if (negativeButtonText != null)
+                        enableNegativeButton();
                     disablePositiveButton();
                     enableClearButton();
                     enablePinPad();
@@ -273,7 +285,8 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
                     state = States.IDLE;
                     removePinNb();
 
-                    enableNeagtiveButton();
+                    if (negativeButtonText != null)
+                        enableNegativeButton();
                     disablePositiveButton();
                     disableClearButton();
                     enablePinPad();
@@ -284,7 +297,8 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
                 state = States.UPDATING_PIN;
                 removePinNb();
 
-                enableNeagtiveButton();
+                if (negativeButtonText != null)
+                    enableNegativeButton();
                 disablePositiveButton();
                 enableClearButton();
                 enablePinPad();
@@ -303,17 +317,24 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
 
     //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
     protected void setDialogButtonTextColor (){
-        positiveButton.setTextColor(getContext().getResources().getColor(R.color.accent));
-        negativeButton.setTextColor(getContext().getResources().getColor(R.color.accent));
+        positiveButton.setTextColor(context.getResources().getColor(R.color.accent));
+        if (negativeButtonText != null)
+            negativeButton.setTextColor(context.getResources().getColor(R.color.accent));
     }
 
     protected void enablePositiveButton(){ positiveButton.setEnabled(true); }
 
     protected void disablePositiveButton(){ positiveButton.setEnabled(false); }
 
-    protected void enableNeagtiveButton(){ negativeButton.setEnabled(true); }
+    protected void enableNegativeButton(){
+        if (negativeButtonText != null)
+            negativeButton.setEnabled(true);
+    }
 
-    protected void disableNegativeButton(){ negativeButton.setEnabled(false); }
+    protected void disableNegativeButton(){
+        if (negativeButtonText != null)
+            negativeButton.setEnabled(false);
+    }
 
     protected void enablePinPad(){
         for(int i = 0; i < 10; i++){

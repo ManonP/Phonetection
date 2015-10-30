@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import managers.AlertManager;
+
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
@@ -33,6 +35,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            getFragmentManager().beginTransaction()
+                    .replace(android.R.id.content, new AlertManager())
+                    .commit();
             return true;
         }
 

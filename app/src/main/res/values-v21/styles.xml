@@ -9,7 +9,7 @@
     </style>
 
     <!-- SEEK BAR ===============================================================================-->
-    <style name="CustomSeekBar">
+    <style name="custom_seek_bar">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">wrap_content</item>

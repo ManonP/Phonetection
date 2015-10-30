@@ -1,18 +1,21 @@
-package adapter;
+package adapters;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.ihm15.project.phonetection.R;
 
-public class ImageAdapter extends BaseAdapter {
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class RandomImageAdapter extends BaseAdapter {
     private Context mContext;
 
-    public ImageAdapter(Context c) {
+    public RandomImageAdapter(Context c) {
         mContext = c;
     }
 
@@ -42,16 +45,24 @@ public class ImageAdapter extends BaseAdapter {
         }
 
         imageView.setImageResource(mThumbIds[position]);
+        imageView.setTag(mThumbIds[position]);
         return imageView;
     }
 
     // references to our images
-    private Integer[] mThumbIds = {
-            R.drawable.books, R.drawable.boussole,
-            R.drawable.camera, R.drawable.coffee,
-            R.drawable.deer, R.drawable.fauteuil,
-            R.drawable.guitar, R.drawable.hot_air_balloon,
-            R.drawable.istanbul, R.drawable.ney_york,
-            R.drawable.tramway, R.drawable.van_california
-    };
+    private Integer[] mThumbIds = randomThumbIds();
+
+    private Integer[] randomThumbIds(){
+        Integer[] mThumb = {
+                R.drawable.books, R.drawable.boussole,
+                R.drawable.camera, R.drawable.coffee,
+                R.drawable.deer, R.drawable.fauteuil,
+                R.drawable.guitar, R.drawable.hot_air_balloon,
+                R.drawable.istanbul, R.drawable.ney_york,
+                R.drawable.tramway, R.drawable.van_california
+        };
+        List<Integer> ci = Arrays.asList(mThumb);
+        Collections.shuffle(ci);
+        return (Integer[]) ci.toArray();
+    }
 }

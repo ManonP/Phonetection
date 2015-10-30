@@ -1,4 +1,4 @@
-package dialog;
+package dialogs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,25 +8,26 @@ import android.util.Log;
 
 import com.ihm15.project.phonetection.R;
 
-public class ConfirmPatternDialog extends AbstractPatternDialog {
+import adapters.ImageAdapter;
 
 
-    String newPattern;
+public class ConfirmImageDialog extends AbstractImageDialog {
+    String newImage;
 
-    public ConfirmPatternDialog(Context context, String newPattern){
+    public ConfirmImageDialog(Context context, String newImage){
         super(context, context.getString(R.string.new_pattern_confirm),
                 context.getString(R.string.confirm_button),
                 context.getString(R.string.cancel_button));
-        this.newPattern = newPattern;
+        this.newImage = newImage;
     }
 
     //SEEHEIM-NOYAU FONCTIONNEL/////////////////////////////////////////////////////////////////////
 
-    protected void savePattern() {
+    protected void saveImage() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
         sp.edit().putString(
                 getContext().getString(R.string.pref_key_pattern),
-                pattern);
+                image);
         sp.edit().commit();
     }
 
@@ -40,26 +41,21 @@ public class ConfirmPatternDialog extends AbstractPatternDialog {
                 Log.println(Log.ERROR, "",
                         "Positive button clicked error: state == IDLE -> FORBIDDEN");
                 break;
-            case UPDATING_PATTERN:
-                //FORBIDDEN
-                Log.println(Log.ERROR, "",
-                        "Positive button clicked error: state == UPDATING_PATTERN -> FORBIDDEN");
-                break;
-            case PATTERN_COMPLETE:
-                if (!pattern.equals(newPattern)){
-                    state = States.IDLE;
+            case IMAGE_SELECTED:
+                if (!image.equals(newImage)){
+                    state = AbstractImageDialog.States.IDLE;
 
                     disablePositiveButton();
-                    enableNeagtiveButton();
-                    showWrongPatternDialog();
+                    enableNegativeButton();
+                    showWrongImageDialog();
                     dismiss();
                 } else {
-                    state = States.IDLE;
+                    state = AbstractImageDialog.States.IDLE;
 
                     disablePositiveButton();
-                    enableNeagtiveButton();
+                    enableNegativeButton();
                     showSuccessDialog();
-                    savePattern();
+                    saveImage();
                     dismiss();
                 }
         }
@@ -69,16 +65,21 @@ public class ConfirmPatternDialog extends AbstractPatternDialog {
 
     protected void showSuccessDialog(){
         CustomMessageDialog cmd = new CustomMessageDialog(R.drawable.ic_done_indigo_36px,
-                getContext().getString(R.string.pattern_saved_dialog), null,
+                getContext().getString(R.string.image_saved_dialog), null,
                 getContext().getString(R.string.ok_button), null, null);
-        cmd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "pin_change_success");
+        cmd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "image_change_success");
     }
 
-    protected void showWrongPatternDialog(){
+    protected void showWrongImageDialog(){
         CustomMessageDialog cmd = new CustomMessageDialog(R.drawable.ic_error_outline_red_36px,
-                getContext().getString(R.string.different_pattern_dialog),
-                getContext().getString(R.string.different_pattern_dialog_message),
+                getContext().getString(R.string.different_image_dialog),
+                getContext().getString(R.string.different_image_dialog_message),
                 getContext().getString(R.string.ok_button), null, null);
-        cmd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "pattern_change_failure");
+        cmd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "image_change_failure");
+    }
+
+    @Override
+    protected void setGridViewAdapter() {
+        imagesGrid.setAdapter(new ImageAdapter(getContext()));
     }
 }

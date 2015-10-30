@@ -7,6 +7,8 @@
     <color name="primary_dark">#303F9F</color>
     <color name="accent">#2962FF</color>
 
+    <color name="orange">#FF5722</color>
+
     <!--Couleurs de text sombre-->
     <color name="primary_dark_text">#DD000000</color>
     <color name="secondary_dark_text">#8A000000</color>

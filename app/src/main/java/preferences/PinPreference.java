@@ -1,12 +1,17 @@
-package preference;
+package preferences;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
+import android.util.Log;
 
-import dialog.ChangePinDialog;
+import com.ihm15.project.phonetection.R;
+
+import dialogs.ChangePinDialog;
 
 public class PinPreference extends Preference {
     public PinPreference(Context context, AttributeSet attrs) {

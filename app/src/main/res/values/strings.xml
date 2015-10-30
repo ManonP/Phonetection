@@ -96,17 +96,21 @@
     <string name="pref_key_image">pref_key_image</string>
 
     <!--Valeurs des paramètres (values) -->
-    <string name="pref_grace_time_5">5000</string>
-    <string name="pref_grace_time_10">10000</string>
-    <string name="pref_grace_time_15">15000</string>
-    <string name="pref_grace_time_30">30000</string>
-    <string name="pref_grace_time_default">5000</string>
+    <integer name="pref_alarm_volume_max">100</integer>
+    <integer name="pref_alarm_volume_default">100</integer>
+    <bool name="pref_light_alarm_default">true</bool>
+    <integer name="pref_grace_time_5">5000</integer>
+    <integer name="pref_grace_time_10">10000</integer>
+    <integer name="pref_grace_time_15">15000</integer>
+    <integer name="pref_grace_time_30">30000</integer>
+    <integer name="pref_grace_time_default">5000</integer>
     <string name="pref_security_level_low">Low</string>
     <string name="pref_security_level_medium">Medium</string>
     <string name="pref_security_level_high">High</string>
     <string name="pref_security_level_default">Low</string>
-    <string name="pref_alarm_volume_max">100</string>
-    <string name="pref_alarm_volume_default">100</string>
+    <integer name="pref_pin_default">-1</integer>
+    <integer name="pref_pattern_default">-1</integer>
+    <string name="pref_image_default">null</string>
 
     <!-- DIALOGUES ==============================================================================-->
     <!--Noms des dialogues-->

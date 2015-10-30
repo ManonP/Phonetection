@@ -1,4 +1,4 @@
-package dialog;
+package dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -43,7 +43,7 @@ public abstract class AbstractPatternDialog extends DialogFragment
     protected States state;
     private int cellNb;
 
-    protected String pattern;
+    protected int pattern;
 
     public AbstractPatternDialog(Context context, String dialogTitleText,
                                  String positiveButtonText, String negativeButtonText) {
@@ -51,7 +51,6 @@ public abstract class AbstractPatternDialog extends DialogFragment
         this.dialogTitleText = dialogTitleText;
         this.positiveButtonText = positiveButtonText;
         this.negativeButtonText = negativeButtonText;
-        pattern = null;
     }
 
     @NonNull
@@ -73,7 +72,7 @@ public abstract class AbstractPatternDialog extends DialogFragment
 
         setDialogButtonTextColor();
 
-        Context c = new ContextThemeWrapper(getContext(), haibison.android.lockpattern.R.style.Alp_42447968_ThemeResources_Light);
+        Context c = new ContextThemeWrapper(context, haibison.android.lockpattern.R.style.Alp_42447968_ThemeResources_Light);
         lockPatternView = new LockPatternView(c);
         lockPatternView.setTactileFeedbackEnabled(true);
         LinearLayout ll = (LinearLayout) al.findViewById(R.id.pattern_container);
@@ -117,23 +116,23 @@ public abstract class AbstractPatternDialog extends DialogFragment
         }
     }
 
-    //SEEHEIME-NOYAU FONCTIONNEL////////////////////////////////////////////////////////////////////
-    public static String patternToString(List<LockPatternView.Cell> list){
-        String stringPattern = "";
-        for (LockPatternView.Cell aList : list) stringPattern += (aList).getId();
+    //SEEHEIM-NOYAU FONCTIONNEL/////////////////////////////////////////////////////////////////////
+    public static int patternToInteger(List<LockPatternView.Cell> list){
+        int intPattern = 0;
+        for (LockPatternView.Cell aList : list) intPattern = intPattern*10 + (aList).getId();
 
-        return stringPattern;
+        return intPattern;
     }
 
     //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////
 
     protected void init(){
         state = States.IDLE;
-        pattern = "";
+        pattern = 0;
         cellNb = 0;
 
         disablePositiveButton();
-        enableNeagtiveButton();
+        enableNegativeButton();
     }
 
     protected abstract void positiveButtonClicked();
@@ -145,20 +144,21 @@ public abstract class AbstractPatternDialog extends DialogFragment
 
 
                 disablePositiveButton();
-                enableNeagtiveButton();
+                enableNegativeButton();
                 dismiss();
                 break;
             case UPDATING_PATTERN:
                 state = States.IDLE;
 
                 disablePositiveButton();
-                enableNeagtiveButton();dismiss();
+                enableNegativeButton();
+                dismiss();
                 break;
             case PATTERN_COMPLETE:
                 state = States.IDLE;
 
                 disablePositiveButton();
-                enableNeagtiveButton();
+                enableNegativeButton();
                 dismiss();
                 break;
         }
@@ -171,7 +171,8 @@ public abstract class AbstractPatternDialog extends DialogFragment
                 break;
             case UPDATING_PATTERN:
                 //IMPOSSIBLE
-                Log.println(Log.ERROR, "", "IMPOSSIBLE_PATTERN_STARTED");
+                Log.println(Log.ERROR, "",
+                        "Pattern started error: state = UPDATING_PATTERN -> IMPOSSIBLE");
                 break;
             case PATTERN_COMPLETE:
                 state = States.UPDATING_PATTERN;
@@ -187,21 +188,21 @@ public abstract class AbstractPatternDialog extends DialogFragment
                 cellNb++;
 
                 disablePositiveButton();
-                enableNeagtiveButton();
+                enableNegativeButton();
                 break;
             case UPDATING_PATTERN:
                 state = States.UPDATING_PATTERN;
                 cellNb++;
 
                 disablePositiveButton();
-                enableNeagtiveButton();
+                enableNegativeButton();
                 break;
             case PATTERN_COMPLETE:
                 state = States.PATTERN_COMPLETE;
                 cellNb++;
 
                 disablePositiveButton();
-                enableNeagtiveButton();
+                enableNegativeButton();
                 break;
         }
     }
@@ -217,10 +218,10 @@ public abstract class AbstractPatternDialog extends DialogFragment
                     state = States.PATTERN_COMPLETE;
                     cellNb = 0;
 
-                    pattern = patternToString(detectedPattern);
-                    Log.println(Log.DEBUG, "", pattern);
+                    pattern = patternToInteger(detectedPattern);
+                    Log.println(Log.DEBUG, "", "" + pattern);
                     enablePositiveButton();
-                    enableNeagtiveButton();
+                    enableNegativeButton();
                 } else {
                     state = States.IDLE;
                     cellNb = 0;
@@ -228,7 +229,7 @@ public abstract class AbstractPatternDialog extends DialogFragment
                     lockPatternView.clearPattern();
 
                     disablePositiveButton();
-                    enableNeagtiveButton();
+                    enableNegativeButton();
                 }
                 break;
             case PATTERN_COMPLETE:
@@ -241,15 +242,15 @@ public abstract class AbstractPatternDialog extends DialogFragment
     //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
 
     protected void setDialogButtonTextColor (){
-        positiveButton.setTextColor(getContext().getResources().getColor(R.color.accent));
-        negativeButton.setTextColor(getContext().getResources().getColor(R.color.accent));
+        positiveButton.setTextColor(context.getResources().getColor(R.color.accent));
+        negativeButton.setTextColor(context.getResources().getColor(R.color.accent));
     }
 
     protected void enablePositiveButton(){ positiveButton.setEnabled(true); }
 
     protected void disablePositiveButton(){ positiveButton.setEnabled(false); }
 
-    protected void enableNeagtiveButton(){ negativeButton.setEnabled(true); }
+    protected void enableNegativeButton(){ negativeButton.setEnabled(true); }
 
     protected void disableNegativeButton(){ negativeButton.setEnabled(false); }
 }

@@ -23,7 +23,8 @@
 
         <SeekBar
             android:id="@+id/alarm_volume_seek_bar"
-            style="@style/CustomSeekBar" />
+            android:max="100"
+            style="@style/custom_seek_bar" />
 
         <ImageView
             android:layout_width="wrap_content"
