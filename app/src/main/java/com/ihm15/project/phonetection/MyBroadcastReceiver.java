@@ -17,15 +17,15 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
        // Toast.makeText(context, "Je suis le onReceive ! ", Toast.LENGTH_LONG).show();
         if (intent.getAction().equals("android.intent.action.ACTION_POWER_CONNECTED")) {
             //Toast.makeText(context, "Je suis connecté ! ", Toast.LENGTH_LONG).show();
-            CardViewActivity.CONNECTED = true;
+            Library.CONNECTED = true;
         } else if (intent.getAction().equals("android.intent.action.ACTION_POWER_DISCONNECTED")) {
             //Déclenchement de l'alarme si le mode est activé
-            if (CardViewActivity.CABLE_MODE) {
-                alarme.activeAlarame(context);
-                CardViewActivity.CONNECTED = false;
+            if (Library.CABLE_MODE) {
+                alarme.activeWarning(context);
+                Library.CONNECTED = false;
             }
             //Toast.makeText(context, "Je suis déconnecté ! ", Toast.LENGTH_LONG).show();
-            CardViewActivity.CONNECTED = false;
+            Library.CONNECTED = false;
         }
 
         //Intent intentStartActivity = new Intent(context, CardViewActivity.class);

@@ -34,11 +34,6 @@ import java.util.Set;
  */
 public class CardViewActivity extends AppCompatActivity implements SensorEventListener{
 
-    public static Boolean CONNECTED = false;
-    public static Boolean DETECTION_MODE;
-    public static Boolean CABLE_MODE;
-    public static Boolean SIM_MODE;
-
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -60,9 +55,12 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
 
         setSupportActionBar(toolbar);
 
-        DETECTION_MODE = false;
-        CABLE_MODE = false;
-        SIM_MODE = false;
+        //Initialisation de la synthèse vocale
+        Library.textToSpeak = new TextToSpeak(getBaseContext());
+
+        Library.DETECTION_MODE = false;
+        Library.CABLE_MODE = false;
+        Library.SIM_MODE = false;
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -91,12 +89,12 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
                 Log.i(LOG_TAG, "Clicked on Item " + position);
                 switch (position) {
                     case 0:
-                        if (DETECTION_MODE) {
-                            DETECTION_MODE = false;
+                        if (Library.DETECTION_MODE) {
+                            Library.DETECTION_MODE = false;
                             setDataMoveDisable();
                             Toast.makeText(getApplicationContext(), "Le mode détection de mouvement est maintenant désactivé", Toast.LENGTH_SHORT).show();
                         } else {
-                            DETECTION_MODE = true;
+                            Library.DETECTION_MODE = true;
                             setDataMoveEnable();
                             Toast.makeText(getApplicationContext(), "Le mode détection de mouvement est maintenant activé", Toast.LENGTH_SHORT).show();
 
@@ -104,13 +102,13 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
                         break;
 
                     case 1:
-                        if (CABLE_MODE) {
-                            CABLE_MODE = false;
+                        if (Library.CABLE_MODE) {
+                            Library.CABLE_MODE = false;
                             setDataCableDisable();
                             Toast.makeText(getApplicationContext(), "Le mode cable est maintenant désactivé", Toast.LENGTH_SHORT).show();
                         } else {
-                            if (CONNECTED) {
-                                CABLE_MODE = true;
+                            if (Library.CONNECTED) {
+                                Library.CABLE_MODE = true;
                                 setDataCableEnable();
                                 Toast.makeText(getApplicationContext(), "Le mode cable est maintenant activé", Toast.LENGTH_SHORT).show();
                             } else {
@@ -120,12 +118,12 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
                         }
                         break;
                     case 2:
-                        if (SIM_MODE) {
-                            SIM_MODE = false;
+                        if (Library.SIM_MODE) {
+                            Library.SIM_MODE = false;
                             setDataCableDisable();
                             Toast.makeText(getApplicationContext(), "Le mode SIM est maintenant désactivé", Toast.LENGTH_SHORT).show();
                         } else {
-                            SIM_MODE = true;
+                            Library.SIM_MODE = true;
                             setDataCableEnable();
                             Toast.makeText(getApplicationContext(), "Le mode SIM est maintenant activé", Toast.LENGTH_SHORT).show();
                         }
@@ -142,19 +140,19 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
     }
     private ArrayList<DataObject> getDataSet() {
         ArrayList results = new ArrayList<DataObject>();
-        if (DETECTION_MODE) {
+        if (Library.DETECTION_MODE) {
             results.add(0,setDataMoveEnable());
         } else {
             results.add(0,setDataMoveDisable());
         }
 
-        if (CABLE_MODE) {
+        if (Library.CABLE_MODE) {
             results.add(1, setDataCableEnable());
         } else {
             results.add(1, setDataCableDisable());
         }
 
-        if (SIM_MODE){
+        if (Library.SIM_MODE){
             results.add(2, setDataSimEnable());
         } else {
             results.add(2, setDataSimDisable());
@@ -226,9 +224,11 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
     public void onSensorChanged(SensorEvent event) {
         switch (event.sensor.getType()) {
             case Sensor.TYPE_ACCELEROMETER:
-                if (isInMotion(event) && DETECTION_MODE) {
+                if (isInMotion(event) && Library.DETECTION_MODE) {
                     Log.e(LOG_TAG, "Vous avez bougé !");
-                    alarme.activeAlarame(getApplicationContext());
+                    //alarme.activeAlarame(getApplicationContext());
+                    alarme.activeWarning(getApplicationContext());
+                    Library.DETECTION_MODE = false;
                 };
                 break;
         }
