@@ -1,9 +1,16 @@
 package com.ihm15.project.phonetection;
 
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +24,17 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by Manon on 17/10/2015.
  */
 public class CardViewActivity extends AppCompatActivity implements SensorEventListener{
 
+    public static Boolean CONNECTED = false;
     public static Boolean DETECTION_MODE;
     public static Boolean CABLE_MODE;
     public static Boolean SIM_MODE;
@@ -32,7 +44,7 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
     private RecyclerView.LayoutManager mLayoutManager;
     private static String LOG_TAG = "CardViewActivity";
 
-    private MediaPlayer player;
+    private Alarme alarme = new Alarme();
 
     float motion = (float)2; //Constante pour définir l'intensité du mouvmeent
     float x,y,z = 0;
@@ -78,30 +90,36 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
             public void onItemClick(int position, View v) {
                 Log.i(LOG_TAG, "Clicked on Item " + position);
                 switch (position) {
-                    case 0 :
+                    case 0:
                         if (DETECTION_MODE) {
                             DETECTION_MODE = false;
                             setDataMoveDisable();
-                            Toast.makeText(getApplicationContext(),"Le mode détection de mouvement est maintenant désactivé", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Le mode détection de mouvement est maintenant désactivé", Toast.LENGTH_SHORT).show();
                         } else {
                             DETECTION_MODE = true;
                             setDataMoveEnable();
-                            Toast.makeText(getApplicationContext(),"Le mode détection de mouvement est maintenant activé", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Le mode détection de mouvement est maintenant activé", Toast.LENGTH_SHORT).show();
+
                         }
                         break;
 
-                    case 1 :
+                    case 1:
                         if (CABLE_MODE) {
                             CABLE_MODE = false;
                             setDataCableDisable();
                             Toast.makeText(getApplicationContext(), "Le mode cable est maintenant désactivé", Toast.LENGTH_SHORT).show();
                         } else {
-                            CABLE_MODE = true;
-                            setDataCableEnable();
-                            Toast.makeText(getApplicationContext(), "Le mode cable est maintenant activé", Toast.LENGTH_SHORT).show();
+                            if (CONNECTED) {
+                                CABLE_MODE = true;
+                                setDataCableEnable();
+                                Toast.makeText(getApplicationContext(), "Le mode cable est maintenant activé", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Vous devez branché votre téléphone pour activer ce mode", Toast.LENGTH_SHORT).show();
+                                setDataCableDisable();
+                            }
                         }
                         break;
-                    case 2 :
+                    case 2:
                         if (SIM_MODE) {
                             SIM_MODE = false;
                             setDataCableDisable();
@@ -142,13 +160,6 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
             results.add(2, setDataSimDisable());
         }
 
-
-
-       /* for (int index = 0; index < 20; index ++) {
-            DataObject obj = new DataObject("Some Primary Text " + index,
-                    "Secondary " + index);
-            results.add(index,obj);
-        }*/
         return results;
     }
 
@@ -217,10 +228,7 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
             case Sensor.TYPE_ACCELEROMETER:
                 if (isInMotion(event) && DETECTION_MODE) {
                     Log.e(LOG_TAG, "Vous avez bougé !");
-                    player = MediaPlayer.create(getBaseContext(),R.raw.pompier);
-                    player.start();
-
-                    //Toast.makeText(getApplicationContext(), "Vous avez bougé !", Toast.LENGTH_LONG).show();
+                    alarme.activeAlarame(getApplicationContext());
                 };
                 break;
         }
@@ -246,4 +254,5 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+
 }
