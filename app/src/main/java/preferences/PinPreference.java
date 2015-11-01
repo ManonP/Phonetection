@@ -3,6 +3,7 @@ package preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
@@ -25,7 +26,8 @@ public class PinPreference extends Preference implements UnlockObject.UnlockedEv
         super(context, attrs);
     }
 
-    public String pin;
+    private String pin;
+    private MediaPlayer mp;
 
     @Override
     protected View onCreateView(ViewGroup parent) {
@@ -34,6 +36,7 @@ public class PinPreference extends Preference implements UnlockObject.UnlockedEv
         String defaultValue = getContext().getString(R.string.pref_pin_default);
         pin = sp.getString(getContext().getString(R.string.pref_key_pin), defaultValue);
         sp.registerOnSharedPreferenceChangeListener(this);
+        mp = MediaPlayer.create(getContext(), R.raw.wrong);
 
         if (!isPreferenceSettedBefore()){
             setSummary(getContext().getString(R.string.pin_not_set));
@@ -48,7 +51,6 @@ public class PinPreference extends Preference implements UnlockObject.UnlockedEv
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
         String defaultValue = getContext().getString(R.string.pref_pin_default);
         pin = sp.getString(getContext().getString(R.string.pref_key_pin), defaultValue);
-
         Log.println(Log.DEBUG, "", "PIN: " + pin + ", DEFAULT VALUE: " + defaultValue + " ["
         + isPreferenceSettedBefore() + "]");
         if (isPreferenceSettedBefore()){
@@ -77,6 +79,7 @@ public class PinPreference extends Preference implements UnlockObject.UnlockedEv
 
     @Override
     public void onWrongUnlocked(WrongUnlockObject.WrongUnlockedEvent ue) {
+        mp.start();
         Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
         // Vibrate for 500 milliseconds
         v.vibrate(500);

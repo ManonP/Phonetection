@@ -2,6 +2,8 @@ package preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.AudioAttributes;
+import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
@@ -24,7 +26,8 @@ public class ImagePreference extends Preference implements UnlockObject.Unlocked
         super(context, attrs);
     }
 
-    public String image;
+    private String image;
+    private MediaPlayer mp;
 
     @Override
     protected View onCreateView(ViewGroup parent) {
@@ -33,6 +36,7 @@ public class ImagePreference extends Preference implements UnlockObject.Unlocked
         String defaultValue = getContext().getString(R.string.pref_image_default);
         image = sp.getString(getContext().getString(R.string.pref_key_image), defaultValue);
         sp.registerOnSharedPreferenceChangeListener(this);
+        mp = MediaPlayer.create(getContext(), R.raw.wrong);
 
         if (!isPreferenceSettedBefore()){
             setSummary(getContext().getString(R.string.image_not_set));
@@ -75,6 +79,7 @@ public class ImagePreference extends Preference implements UnlockObject.Unlocked
 
     @Override
     public void onWrongUnlocked(WrongUnlockObject.WrongUnlockedEvent ue) {
+        mp.start();
         Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
         // Vibrate for 500 milliseconds
         v.vibrate(500);

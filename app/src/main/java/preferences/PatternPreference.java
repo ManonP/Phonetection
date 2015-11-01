@@ -2,6 +2,7 @@ package preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
@@ -24,7 +25,9 @@ public class PatternPreference extends Preference implements UnlockObject.Unlock
         super(context, attrs);
     }
 
-    public int pattern;
+    private int pattern;
+    private MediaPlayer mp;
+
 
     @Override
     protected View onCreateView(ViewGroup parent) {
@@ -33,6 +36,7 @@ public class PatternPreference extends Preference implements UnlockObject.Unlock
         int defaultValue = getContext().getResources().getInteger(R.integer.pref_pattern_default);
         pattern = sp.getInt(getContext().getString(R.string.pref_key_pattern), defaultValue);
         sp.registerOnSharedPreferenceChangeListener(this);
+        mp = MediaPlayer.create(getContext(), R.raw.wrong);
 
         if (!isPreferenceSettedBefore()){
             setSummary(getContext().getString(R.string.pattern_not_set));
@@ -75,6 +79,7 @@ public class PatternPreference extends Preference implements UnlockObject.Unlock
 
     @Override
     public void onWrongUnlocked(WrongUnlockObject.WrongUnlockedEvent ue) {
+        mp.start();
         Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
         // Vibrate for 500 milliseconds
         v.vibrate(500);
