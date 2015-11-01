@@ -17,12 +17,11 @@ import events.WrongUnlockObject;
 import interfaces.LightAlarmInterface;
 
 
-public class EnterPinDialog extends AbstractPinDialog implements LightAlarmInterface{
-
+public class EnterPatternDialog extends AbstractPatternDialog implements LightAlarmInterface {
     private UnlockObject unlockObject;
     private WrongUnlockObject wrongUnlockObject;
 
-    String rightPin;
+    int rightPattern;
 
     private Timer lightAlarmTimer;
 
@@ -34,21 +33,21 @@ public class EnterPinDialog extends AbstractPinDialog implements LightAlarmInter
 
     boolean hasCancelButton;
 
-    public EnterPinDialog(Context context, String cancelButtonText){
-        super(context, context.getString(R.string.enter_pin_dialog),
+    public EnterPatternDialog(Context context, String cancelButtonText){
+        super(context, context.getString(R.string.draw_pattern_dialog),
                 context.getString(R.string.validate_button),
                 cancelButtonText);
 
         hasCancelButton = (cancelButtonText != null);
 
-        unlockObject = new UnlockObject(this, UnlockObject.UnlockedEvent.PIN_UNLOCK);
-        wrongUnlockObject = new WrongUnlockObject(this, WrongUnlockObject.WrongUnlockedEvent.PIN_WRONG_UNLOCK);
+        unlockObject = new UnlockObject(this, UnlockObject.UnlockedEvent.PATTERN_UNLOCK);
+        wrongUnlockObject = new WrongUnlockObject(this, WrongUnlockObject.WrongUnlockedEvent.PATTERN_WRONG_UNLOCK);
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Log.println(Log.DEBUG, "","ON_CREATE_DIALOG");
+        Log.println(Log.DEBUG, "", "ON_CREATE_DIALOG");
 
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.show();
@@ -61,8 +60,8 @@ public class EnterPinDialog extends AbstractPinDialog implements LightAlarmInter
         return dialog;
     }
 
-    public void setRightPin(String rightPin){
-        this.rightPin = rightPin;
+    public void setRightPattern(int rightPattern){
+        this.rightPattern = rightPattern;
     }
 
     public void addUnlockedEventListener(UnlockObject.UnlockedEventListener uel){
@@ -91,35 +90,29 @@ public class EnterPinDialog extends AbstractPinDialog implements LightAlarmInter
                 Log.println(Log.ERROR, "",
                         "Positive button clicked error: state == IDLE -> FORBIDDEN");
                 break;
-            case UPDATING_PIN:
+            case UPDATING_PATTERN:
                 //FORBIDDEN
                 Log.println(Log.ERROR, "",
-                        "Positive button clicked error: state == UPDATING_PIN -> FORBIDDEN");
+                        "Positive button clicked error: state == UPDATING_PATTERN -> FORBIDDEN");
                 break;
-            case PIN_COMPLETE:
-                Log.println(Log.DEBUG, "", "PIN_COMPLETE: "+ pin + ", " + rightPin);
-                if (pin.equals(rightPin)){
-                    Log.println(Log.DEBUG, "", "PIN_CORRECT");
+            case PATTERN_COMPLETE:
+                Log.println(Log.DEBUG, "", "PATTERN_COMPLETE: "+ pattern + ", " + rightPattern);
+                if (pattern == rightPattern){
+                    Log.println(Log.DEBUG, "", "PATTERN_CORRECT");
                     state = States.IDLE;
-                    pin = "";
+                    pattern = 0;
 
-                    setPinText();
                     disablePositiveButton();
                     enableNegativeButton();
-                    disableClearButton();
-                    enablePinPad();
                     stopAllTimer();
                     unlockObject.fireUnlockedEvent();
                 } else {
-                    Log.println(Log.DEBUG, "", "PIN_INCORRECT");
+                    Log.println(Log.DEBUG, "", "PATTERN_INCORRECT");
                     state = States.IDLE;
-                    pin = "";
+                    pattern = 0;
 
-                    setPinText();
                     disablePositiveButton();
                     enableNegativeButton();
-                    disableClearButton();
-                    enablePinPad();
                     stopAllTimer();
                     wrongUnlockObject.fireWrongUnlockedEvent();
                 }
@@ -232,5 +225,4 @@ public class EnterPinDialog extends AbstractPinDialog implements LightAlarmInter
     public void lightAlarmOff() {
         stopAllTimer();
     }
-
 }

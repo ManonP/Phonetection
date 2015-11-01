@@ -42,20 +42,23 @@
             android:title="@string/pin_setting"
             android:icon="@drawable/ic_dialpad_indigo_36px"
             android:dialogTitle="@string/pin_setting"
-            android:dialogIcon="@drawable/ic_dialpad_indigo_36px"/>
+            android:dialogIcon="@drawable/ic_dialpad_indigo_36px"
+            android:defaultValue="@string/pref_pin_default"/>
         <preferences.PatternPreference
             android:id="@+id/pref_pattern"
             android:key="@string/pref_key_pattern"
             android:title="@string/pattern_setting"
             android:icon="@drawable/ic_apps_indigo_36px"
             android:dialogTitle="@string/pattern_setting"
-            android:dialogIcon="@drawable/ic_apps_indigo_36px"/>
+            android:dialogIcon="@drawable/ic_apps_indigo_36px"
+            android:defaultValue="@integer/pref_pattern_default"/>
         <preferences.ImagePreference
             android:id="@+id/pref_image"
             android:key="pref_image"
             android:title="@string/image_setting"
             android:icon="@drawable/ic_collections_indigo_36px"
             android:dialogTitle="@string/image_setting"
-            android:dialogIcon="@drawable/ic_collections_indigo_36px"/>
+            android:dialogIcon="@drawable/ic_collections_indigo_36px"
+            android:defaultValue="@string/pref_image_default"/>
     </PreferenceCategory>
 </PreferenceScreen>

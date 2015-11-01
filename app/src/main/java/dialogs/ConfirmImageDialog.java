@@ -24,11 +24,11 @@ public class ConfirmImageDialog extends AbstractImageDialog {
     //SEEHEIM-NOYAU FONCTIONNEL/////////////////////////////////////////////////////////////////////
 
     protected void saveImage() {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-        sp.edit().putString(
-                getContext().getString(R.string.pref_key_pattern),
-                image);
-        sp.edit().commit();
+        Log.println(Log.DEBUG, "", "SAVE IMAGE: " + image);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(getContext().getString(R.string.pref_key_image), image);
+        editor.commit();
     }
 
     //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////
@@ -42,6 +42,7 @@ public class ConfirmImageDialog extends AbstractImageDialog {
                         "Positive button clicked error: state == IDLE -> FORBIDDEN");
                 break;
             case IMAGE_SELECTED:
+                Log.println(Log.DEBUG, "", "IMAGE_SELECTED: " + image + ", " + newImage);
                 if (!image.equals(newImage)){
                     state = AbstractImageDialog.States.IDLE;
 
@@ -54,8 +55,8 @@ public class ConfirmImageDialog extends AbstractImageDialog {
 
                     disablePositiveButton();
                     enableNegativeButton();
-                    showSuccessDialog();
                     saveImage();
+                    showSuccessDialog();
                     dismiss();
                 }
         }

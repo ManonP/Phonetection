@@ -12,17 +12,17 @@ import com.ihm15.project.phonetection.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import adapters.RandomImageAdapter;
 import events.UnlockObject;
 import events.WrongUnlockObject;
 import interfaces.LightAlarmInterface;
 
 
-public class EnterPinDialog extends AbstractPinDialog implements LightAlarmInterface{
-
+public class EnterImageDialog extends AbstractImageDialog implements LightAlarmInterface {
     private UnlockObject unlockObject;
     private WrongUnlockObject wrongUnlockObject;
 
-    String rightPin;
+    String rightImage;
 
     private Timer lightAlarmTimer;
 
@@ -34,21 +34,21 @@ public class EnterPinDialog extends AbstractPinDialog implements LightAlarmInter
 
     boolean hasCancelButton;
 
-    public EnterPinDialog(Context context, String cancelButtonText){
-        super(context, context.getString(R.string.enter_pin_dialog),
+    public EnterImageDialog(Context context, String cancelButtonText){
+        super(context, context.getString(R.string.select_image_dialog),
                 context.getString(R.string.validate_button),
                 cancelButtonText);
 
         hasCancelButton = (cancelButtonText != null);
 
-        unlockObject = new UnlockObject(this, UnlockObject.UnlockedEvent.PIN_UNLOCK);
-        wrongUnlockObject = new WrongUnlockObject(this, WrongUnlockObject.WrongUnlockedEvent.PIN_WRONG_UNLOCK);
+        unlockObject = new UnlockObject(this, UnlockObject.UnlockedEvent.IMAGE_UNLOCK);
+        wrongUnlockObject = new WrongUnlockObject(this, WrongUnlockObject.WrongUnlockedEvent.IMAGE_WRONG_UNLOCK);
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Log.println(Log.DEBUG, "","ON_CREATE_DIALOG");
+        Log.println(Log.DEBUG, "", "ON_CREATE_DIALOG");
 
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.show();
@@ -61,8 +61,8 @@ public class EnterPinDialog extends AbstractPinDialog implements LightAlarmInter
         return dialog;
     }
 
-    public void setRightPin(String rightPin){
-        this.rightPin = rightPin;
+    public void setRightImage(String rightImage){
+        this.rightImage = rightImage;
     }
 
     public void addUnlockedEventListener(UnlockObject.UnlockedEventListener uel){
@@ -91,39 +91,33 @@ public class EnterPinDialog extends AbstractPinDialog implements LightAlarmInter
                 Log.println(Log.ERROR, "",
                         "Positive button clicked error: state == IDLE -> FORBIDDEN");
                 break;
-            case UPDATING_PIN:
-                //FORBIDDEN
-                Log.println(Log.ERROR, "",
-                        "Positive button clicked error: state == UPDATING_PIN -> FORBIDDEN");
-                break;
-            case PIN_COMPLETE:
-                Log.println(Log.DEBUG, "", "PIN_COMPLETE: "+ pin + ", " + rightPin);
-                if (pin.equals(rightPin)){
-                    Log.println(Log.DEBUG, "", "PIN_CORRECT");
+            case IMAGE_SELECTED:
+                Log.println(Log.DEBUG, "", "IMAGE_SELECTED: "+ image + ", " + rightImage);
+                if (image.equals(rightImage)){
+                    Log.println(Log.DEBUG, "", "IMAGE_CORRECT");
                     state = States.IDLE;
-                    pin = "";
+                    image = "";
 
-                    setPinText();
                     disablePositiveButton();
                     enableNegativeButton();
-                    disableClearButton();
-                    enablePinPad();
                     stopAllTimer();
                     unlockObject.fireUnlockedEvent();
                 } else {
-                    Log.println(Log.DEBUG, "", "PIN_INCORRECT");
+                    Log.println(Log.DEBUG, "", "IMAGE_INCORRECT");
                     state = States.IDLE;
-                    pin = "";
+                    image = "";
 
-                    setPinText();
                     disablePositiveButton();
                     enableNegativeButton();
-                    disableClearButton();
-                    enablePinPad();
                     stopAllTimer();
                     wrongUnlockObject.fireWrongUnlockedEvent();
                 }
         }
+    }
+
+    @Override
+    protected void setGridViewAdapter() {
+        imagesGrid.setAdapter(new RandomImageAdapter(getContext()));
     }
 
     public void initTimer(){
@@ -232,5 +226,4 @@ public class EnterPinDialog extends AbstractPinDialog implements LightAlarmInter
     public void lightAlarmOff() {
         stopAllTimer();
     }
-
 }

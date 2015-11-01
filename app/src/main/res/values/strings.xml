@@ -64,9 +64,7 @@
     <!--Description des paramètres-->
     <string name="light_alarm_setting_description">To get a more deterrent effect</string>
     <string name="grace_time_setting_description">Time before alarm start</string>
-    <string name="security_level_setting_description">
-        Number of steps to unlock the application
-    </string>
+    <string name="security_level_setting_description">Number of steps to unlock the application</string>
 
     <!--Titre des dialogues de changement de paramètre-->
     <string name="new_pin_choice">Choose a new pin</string>
@@ -84,6 +82,10 @@
     <string name="security_level_low">Low (1 step)</string>
     <string name="security_level_medium">Medium (2 steps)</string>
     <string name="security_level_high">High (3 steps)</string>
+    <string name="pin_not_set">Pin not set</string>
+    <string name="pattern_not_set">Pattern not set</string>
+    <string name="image_not_set">Image not set</string>
+
 
     <!--Clefs des paramètres (entrées) -->
     <string name="pref_key_alarm_tone">pref_key_alarm_tone</string>
@@ -108,7 +110,7 @@
     <string name="pref_security_level_medium">Medium</string>
     <string name="pref_security_level_high">High</string>
     <string name="pref_security_level_default">Low</string>
-    <integer name="pref_pin_default">-1</integer>
+    <string name="pref_pin_default">null</string>
     <integer name="pref_pattern_default">-1</integer>
     <string name="pref_image_default">null</string>
 

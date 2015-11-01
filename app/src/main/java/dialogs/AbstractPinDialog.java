@@ -55,6 +55,7 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
     protected String pin;
 
 
+
     public AbstractPinDialog(Context context, String dialogTitleText, String positiveButtonText,
                              String negativeButtonText){
         this.context = context;

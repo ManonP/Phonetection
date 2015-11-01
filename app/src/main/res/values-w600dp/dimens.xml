@@ -1,14 +1,14 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">20dp</dimen>
+    <dimen name="activity_vertical_margin">20dp</dimen>
     <dimen name="separator_height">1dp</dimen>
-    <dimen name="pin_text_size">40sp</dimen>
+    <dimen name="pin_text_size">60sp</dimen>
     <dimen name="dial_button_text_size">40sp</dimen>
     <dimen name="clear_button_text_size">25sp</dimen>
     <dimen name="dialog_description_text_size">18sp</dimen>
     <dimen name="dialog_radio_button_text_size">18sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="image_margin">5dp</dimen>
-    <dimen name="dialog_button_margin">3dp</dimen>
+    <dimen name="image_margin">10dp</dimen>
+    <dimen name="dialog_button_margin">5dp</dimen>
 </resources>

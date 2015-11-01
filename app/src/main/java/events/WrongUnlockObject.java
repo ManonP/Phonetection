@@ -27,7 +27,7 @@ public class WrongUnlockObject {
     }
 
     public interface WrongUnlockedEventListener extends EventListener {
-        public void onWrongUnlocked(WrongUnlockedEvent ue);
+        void onWrongUnlocked(WrongUnlockedEvent ue);
     }
 
 
@@ -40,11 +40,11 @@ public class WrongUnlockObject {
         this.type = type;
     }
 
-    public synchronized void addWrongUnlockedListener(WrongUnlockedEventListener l) {
+    public synchronized void addWrongUnlockedEventListener(WrongUnlockedEventListener l) {
         listeners.add(l);
     }
 
-    public synchronized void removeWrongUnlockedListener(WrongUnlockedEventListener l) {
+    public synchronized void removeWrongUnlockedEventListener(WrongUnlockedEventListener l) {
         listeners.remove(l);
     }
 

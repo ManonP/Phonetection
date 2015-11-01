@@ -23,7 +23,7 @@ public class ConfirmPinDialog extends AbstractPinDialog {
     protected void savePin(){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putInt(getContext().getString(R.string.pref_key_pin), Integer.parseInt(pin));
+        editor.putString(getContext().getString(R.string.pref_key_pin), pin);
         editor.commit();
     }
 
