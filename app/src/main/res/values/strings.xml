@@ -125,5 +125,9 @@
     </string>
     <string name="different_pin_dialog_message">You enter two different PIN</string>
 
+    <!-- NOTIFICATIONS ==============================================================================-->
 
+    <string name="notification">Activez l alarme !</string>
+    <string name="notification_title">Phonetection</string>
+    <string name="notification_desc">Détectez si le chargeur est déconnécté</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.ihm15.project.phonetection;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -14,6 +16,7 @@ import android.hardware.usb.UsbManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -41,7 +44,7 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
 
     private Alarme alarme = new Alarme();
 
-    float motion = (float)2; //Constante pour définir l'intensité du mouvmeent
+    float motion = (float)5; //Constante pour définir l'intensité du mouvmeent
     float x,y,z = 0;
     float lx,ly,lz = 0;
     float lastUpdate = -1;
@@ -77,6 +80,12 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
         if (!accelSupport) {
             sm.unregisterListener(this,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER));
         }
+
+        NotificationCompat.Builder mBuilder =
+                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.notification)
+                        .setContentTitle("My notification")
+                        .setContentText("Hello World!");
     }
 
     @Override
@@ -227,9 +236,13 @@ public class CardViewActivity extends AppCompatActivity implements SensorEventLi
                 if (isInMotion(event) && Library.DETECTION_MODE) {
                     Log.e(LOG_TAG, "Vous avez bougé !");
                     //alarme.activeAlarame(getApplicationContext());
-                    alarme.activeWarning(getApplicationContext());
-                    Library.DETECTION_MODE = false;
-                };
+                    alarme.activeWarningMovment(getApplicationContext());
+                    Library.WARNING_BY =1;
+                    //Library.DETECTION_MODE = false;
+                } else if (!isInMotion(event)) {
+                    //Toast.makeText(getApplicationContext(), "vous ne bougez plus l'alarme ne se délchancera pas", Toast.LENGTH_SHORT).show();
+                    alarme.cancelTimer();
+                }
                 break;
         }
     }
