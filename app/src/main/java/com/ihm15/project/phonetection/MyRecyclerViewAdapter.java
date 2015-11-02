@@ -24,15 +24,17 @@ public class MyRecyclerViewAdapter extends RecyclerView
             implements View
             .OnClickListener {
         TextView label;
-        TextView dateTime;
+        TextView description;
+        TextView activation;
         ImageView image;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
             label = (TextView) itemView.findViewById(R.id.textView);
-            dateTime = (TextView) itemView.findViewById(R.id.textView2);
+            description = (TextView) itemView.findViewById(R.id.textView2);
+            activation = (TextView) itemView.findViewById(R.id.activation);
             image = (ImageView) itemView.findViewById(R.id.imageView);
-            Log.i(LOG_TAG, "Adding Listener");
+            //Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
         }
 
@@ -63,7 +65,8 @@ public class MyRecyclerViewAdapter extends RecyclerView
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
         holder.label.setText(mDataset.get(position).getmText1());
-        holder.dateTime.setText(mDataset.get(position).getmText2());
+        holder.description.setText(mDataset.get(position).getmText2());
+        holder.activation.setText(mDataset.get(position).getmActivation());
         holder.image.setImageResource(mDataset.get(position).getmImage());
     }
 

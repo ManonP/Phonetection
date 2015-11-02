@@ -51,6 +51,12 @@ public class Alarme {
         mCountDownTImer.start();
     }
 
+    public void activeWarning(Context context) {
+        myContext = context;
+        Library.textToSpeak.speekInstruction(myContext.getResources().getString(R.string.dissuasive_dialog_message));
+        mCountDownTImer.start();
+    }
+
     CountDownTimer mCountDownTImer = new CountDownTimer(10000,1000) {
         @Override
         public void onTick(long millisUntilFinished) {

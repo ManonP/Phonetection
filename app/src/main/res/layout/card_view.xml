@@ -45,10 +45,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="italic"
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/textView2"
                     android:textColor="@color/secondary_dark_text"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/secondary_dark_text"
+                    android:id="@+id/activation" />
             </LinearLayout>
 
         </LinearLayout>

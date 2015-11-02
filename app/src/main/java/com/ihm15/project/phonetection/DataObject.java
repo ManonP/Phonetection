@@ -10,11 +10,13 @@ public class DataObject {
 
     private String mText1;
     private String mText2;
+    private String mActivation;
     private int mImage;
 
-    DataObject (String text1, String text2, int image) {
+    DataObject (String text1, String text2, String activation, int image) {
         mText1 = text1;
         mText2 = text2;
+        mActivation = activation;
         mImage = image;
     }
 
@@ -29,6 +31,8 @@ public class DataObject {
         return mText2;
     }
 
+    public String getmActivation() {return mActivation;}
+
     public int getmImage() {
         return mImage;
     }
@@ -41,6 +45,8 @@ public class DataObject {
     public void setmText2 (String mText2) {
         this.mText2 = mText2;
     }
+
+    public void setmActivation (String mActivation) { this.mActivation = mActivation;}
 
     public void setmImage(int mImage){
         this.mImage = mImage;

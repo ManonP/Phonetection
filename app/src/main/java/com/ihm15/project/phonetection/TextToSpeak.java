@@ -53,7 +53,8 @@ public class TextToSpeak implements TextToSpeech.OnInitListener {
         //Vérifie la disponibilité de la synthèse vocale
         if (status == TextToSpeech.SUCCESS) {
             //Choi de la langue
-            int result = textToSpeech.setLanguage(Locale.FRANCE);
+            //int result = textToSpeech.setLanguage(Locale.FRANCE);
+            int result = textToSpeech.setLanguage(Locale.ENGLISH);
             //Vérifie si la langue est supporté par le terminal
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 //Renovoie une erreur

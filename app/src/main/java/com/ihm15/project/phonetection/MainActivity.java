@@ -23,22 +23,6 @@ public class MainActivity extends AppCompatActivity {
         //boutonCards = (Button) findViewById(R.id.buttonCard);
 
         setSupportActionBar(toolbar);
-
-       /* boutonCards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CardViewActivity.class);
-                startActivity(intent);
-            }
-        });*/
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
     }
 
     @Override
