@@ -24,4 +24,6 @@
 
     <!--Boutons appuiés-->
     <color name="button_pressed_focused">#15000000</color>
+    <!--Couleurs cards-->
+    <color name="cards">#9FA8DA</color>
 </resources>
