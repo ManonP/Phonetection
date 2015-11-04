@@ -8,6 +8,7 @@
     <!-- MENUS ==================================================================================-->
     <!--Noms des options de menu-->
     <string name="action_settings">Settings</string>
+    <string name="action_info">Info</string>
 
     <!-- BOUTONS ================================================================================-->
     <!--Boutons d'activation/désactivation de mode-->
@@ -117,6 +118,7 @@
     <!-- DIALOGUES ==============================================================================-->
     <!--Noms des dialogues-->
     <string name="dissuasive_dialog">Beware !</string>
+    <string name="info_dialog">Infos</string>
     <string name="activate_charger_detection_mode_dialog">Activate charger detection mode?</string>
     <string name="activate_motion_detection_mode_dialog">Activate motion detection mode?</string>
     <string name="activate_sim_detection_mode_dialog">Activate SIM detection mode?</string>
@@ -129,9 +131,13 @@
     <string name="pattern_saved_dialog">New pattern saved</string>
     <string name="different_image_dialog">Wrong image</string>
     <string name="image_saved_dialog">New image saved</string>
+
     <!--Messages des dialogues-->
     <string name="dissuasive_dialog_message">
-
+        This phone is protected by an alarm. Warning, the alarm will go off in ten seconds
+    </string>
+    <string name="info_dialog_message">
+        Ponetection has been created by Manon Paquereau and Dimitri Drouet for a school project.
     </string>
     <string name="different_pin_dialog_message">You enter two different PIN</string>
     <string name="pin_saved_dialog_message">The PIN you entered, has been saved</string>
