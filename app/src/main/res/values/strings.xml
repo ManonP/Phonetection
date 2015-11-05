@@ -9,7 +9,7 @@
     <!--Noms des options de menu-->
     <string name="action_settings">Settings</string>
     <string name="action_info">Info</string>
-
+    <string name="action_mode_selector">Detection mode selector</string>
     <!-- BOUTONS ================================================================================-->
     <!--Boutons d'activation/désactivation de mode-->
     <string name="activate_button">Activate</string>

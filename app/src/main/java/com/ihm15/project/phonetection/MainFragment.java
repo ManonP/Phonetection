@@ -2,6 +2,7 @@ package com.ihm15.project.phonetection;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -19,25 +20,21 @@ import java.util.ArrayList;
 /**
  * Created by Dimitri on 03/11/2015.
  */
-public class MainFragment extends Fragment implements SensorEventListener {
+public class MainFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private static String LOG_TAG = "CardViewActivity";
 
     private Alarme alarme = new Alarme();
 
-    //Détection des mouvements
-    float motion = (float)5; //Constante pour définir l'intensité du mouvement
-    float x,y,z = 0;
-    float lx,ly,lz = 0;
-    float lastUpdate = -1;
-    long curtime = -1;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_card_view, container, false);
+
+        getActivity().startService(new Intent(getActivity(), MotionReceiver.class));
 
         //Initialisation de la synthèse vocale
         Library.textToSpeak = new TextToSpeak(getActivity());
@@ -52,15 +49,6 @@ public class MainFragment extends Fragment implements SensorEventListener {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new MyRecyclerViewAdapter(getDataSet());
         mRecyclerView.setAdapter(mAdapter);
-
-        //Gestionnaire de capteur
-        SensorManager sm = (SensorManager) getActivity().getSystemService(Activity.SENSOR_SERVICE);
-
-        //Enregistre un listener pour le gestionnaire de capteur
-        boolean accelSupport = sm.registerListener(this, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
-        if (!accelSupport) {
-            sm.unregisterListener(this,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER));
-        }
 
         /*NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
@@ -95,7 +83,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
                         if (Library.CABLE_MODE) {
                             Library.CABLE_MODE = false;
                             setDataCableDisable();
-                            Toast.makeText(getActivity(), getString(R.string.charger_detection_mode) +" is desactived", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), getString(R.string.charger_detection_mode) + " is desactived", Toast.LENGTH_SHORT).show();
                         } else {
                             if (Library.CONNECTED) {
                                 Library.CABLE_MODE = true;
@@ -197,44 +185,6 @@ public class MainFragment extends Fragment implements SensorEventListener {
                 getString(R.string.sim_detection_mode_description),
                 getString(R.string.deactivate_button), R.drawable.sim_mode);
         return obj;
-    }
-
-    //Detecte quand le téléphone bouge
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        switch (event.sensor.getType()) {
-            case Sensor.TYPE_ACCELEROMETER:
-                if (isInMotion(event) && Library.DETECTION_MODE) {
-                    //Log.e(LOG_TAG, "Vous avez bougé !");
-                    alarme.activeWarning(getActivity());
-                    Library.WARNING_BY =1;
-                    Library.DETECTION_MODE = false;
-                } /*else if (!isInMotion(event)) {
-                    alarme.cancelTimer();
-                }*/
-                break;
-        }
-    }
-
-    private boolean isInMotion(SensorEvent event) {
-        curtime = System.currentTimeMillis();
-        x = event.values[0];
-        y = event.values[1];
-        z = event.values[2];
-
-        if ((curtime-lastUpdate)>100) {
-            lx=x;
-            ly=y;
-            lz=z;
-            lastUpdate= curtime;
-        }
-
-        return ((Math.abs(lx-x)>motion) || (Math.abs(ly-y)>motion) || (Math.abs(lz-z)>motion));
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
     }
 
 }

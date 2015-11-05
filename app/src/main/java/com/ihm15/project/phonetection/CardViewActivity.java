@@ -1,7 +1,9 @@
 package com.ihm15.project.phonetection;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,16 +17,12 @@ public class CardViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new MainFragment())
-                .commit();
+        showsDetectionModeSelector();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        showDetectionModeSelectorMenu(menu);
         return true;
     }
 
@@ -33,22 +31,49 @@ public class CardViewActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            setContentView(R.layout.activity_main);
-            getFragmentManager().beginTransaction()
-                    .replace(android.R.id.content, new SettingsFragment())
-                    .commit();
-        }
-        if (id == R.id.action_info) {
-            CustomMessageDialog cmd = new CustomMessageDialog(null, getString(R.string.info_dialog),
-                    getString(R.string.info_dialog_message), getString(R.string.ok_button), null, null);
-            cmd.show(getSupportFragmentManager(), "info");
+        switch (item.getItemId()){
+            case R.id.action_info:
+                actionInfoClicked();
+                break;
+            case R.id.action_settings:
+                actionSettingsClicked();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////
+
+    public void actionInfoClicked(){
+        showInfoDialog();
+    }
+
+    public void actionSettingsClicked(){
+        showSettingsActivity();
+    }
+
+    //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
+    private void showsDetectionModeSelector(){
+        setContentView(R.layout.activity_main);
+        getFragmentManager().beginTransaction()
+                .replace(android.R.id.content, new MainFragment())
+                .commit();
+    }
+
+    private void showSettingsActivity(){
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    private void showInfoDialog(){
+        CustomMessageDialog cmd = new CustomMessageDialog(R.drawable.ic_info_black_36dp, getString(R.string.info_dialog),
+                getString(R.string.info_dialog_message), getString(R.string.ok_button), null, null);
+        cmd.show(getSupportFragmentManager(), "info");
+    }
+
+    private void showDetectionModeSelectorMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main, menu);
     }
 
 }

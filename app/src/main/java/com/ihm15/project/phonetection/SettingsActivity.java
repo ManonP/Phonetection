@@ -1,22 +1,21 @@
 package com.ihm15.project.phonetection;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import managers.AlertManager;
+import dialogs.CustomMessageDialog;
 
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_settings);
-        getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment())
-                .commit();
+        showsSettings();
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) ab.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -28,19 +27,43 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            getFragmentManager().beginTransaction()
-                    .replace(android.R.id.content, new AlertManager())
-                    .commit();
-            return true;
+        switch (item.getItemId()){
+            case R.id.action_info:
+                actionInfoClicked();
+                break;
+            case R.id.action_mode_selector:
+                actionDetectionModeSelectorClicked();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////
+
+    public void actionInfoClicked(){
+        showInfoDialog();
+    }
+
+    public void actionDetectionModeSelectorClicked(){
+        showCardViewActivity();
+    }
+
+    //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
+    private void showsSettings(){
+        setContentView(R.layout.activity_settings);
+        getFragmentManager().beginTransaction()
+                .replace(android.R.id.content, new SettingsFragment())
+                .commit();
+    }
+
+    private void showCardViewActivity(){
+        onBackPressed();
+    }
+
+    private void showInfoDialog(){
+        CustomMessageDialog cmd = new CustomMessageDialog(R.drawable.ic_info_black_36dp, getString(R.string.info_dialog),
+                getString(R.string.info_dialog_message), getString(R.string.ok_button), null, null);
+        cmd.show(getSupportFragmentManager(), "info");
     }
 }
