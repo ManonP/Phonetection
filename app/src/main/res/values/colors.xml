@@ -5,7 +5,7 @@
     <!--Couleurs de l'application-->
     <color name="primary">#607D8B</color>
     <color name="primary_dark">#455A64</color>
-    <color name="accent">#2962FF</color>
+    <color name="accent">#F50057</color>
 
     <color name="red">#F44336</color>
     <color name="blue">#2196F3</color>

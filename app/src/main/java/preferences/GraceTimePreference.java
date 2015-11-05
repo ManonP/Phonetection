@@ -28,7 +28,7 @@ public class GraceTimePreference extends DialogPreference implements View.OnClic
     public GraceTimePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        setDialogIcon(R.drawable.ic_query_builder_indigo_36px);
+        setDialogIcon(R.drawable.ic_timer_black_36dp);
         setDialogTitle(R.string.grace_time_setting);
         setDialogLayoutResource(R.layout.grace_time_layout);
         setPositiveButtonText(R.string.ok_button);

@@ -31,7 +31,7 @@ public class SecurityLevelPreference extends DialogPreference implements View.On
 
         setDialogLayoutResource(R.layout.security_level_layout);
         setNegativeButtonText(android.R.string.cancel);
-        setDialogIcon(R.drawable.ic_security_indigo_36px);
+        setDialogIcon(R.drawable.ic_security_black_36dp);
         setDialogTitle(R.string.security_level_setting);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

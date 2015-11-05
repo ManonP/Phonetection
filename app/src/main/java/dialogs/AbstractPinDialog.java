@@ -77,7 +77,7 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
 
         builder = new AlertDialog.Builder(context);
         builder.setView(inflater.inflate(R.layout.pin_layout, null));
-        builder.setIcon(R.drawable.ic_dialpad_indigo_36px);
+        builder.setIcon(R.drawable.ic_dialpad_black_36dp);
         builder.setTitle(dialogTitleText);
         builder.setPositiveButton(positiveButtonText, this);
         if (negativeButtonText != null)

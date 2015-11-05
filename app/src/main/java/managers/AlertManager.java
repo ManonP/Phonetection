@@ -34,7 +34,6 @@ public class AlertManager extends Fragment implements UnlockObject.UnlockedEvent
     private EnterPatternDialog enterPatternDialog;
     private EnterImageDialog enterImageDialog;
 
-    int alarmVolume;
     boolean lightAlarm;
     int graceTime;
     String securityLevel;
@@ -109,19 +108,12 @@ public class AlertManager extends Fragment implements UnlockObject.UnlockedEvent
     private void loadPreferences(){
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getActivity());
-        loadAlarmVolume(sharedPreferences);
         loadLightAlarm(sharedPreferences);
         loadGraceTime(sharedPreferences);
         loadSecurityLevel(sharedPreferences);
         loadPin(sharedPreferences);
         loadPattern(sharedPreferences);
         loadImage(sharedPreferences);
-    }
-
-    private void loadAlarmVolume(SharedPreferences sharedPreferences){
-        alarmVolume = sharedPreferences.getInt(
-                getActivity().getString(R.string.pref_key_alarm_volume),
-                getActivity().getResources().getInteger(R.integer.pref_alarm_volume_default));
     }
 
     private void loadLightAlarm(SharedPreferences sharedPreferences){

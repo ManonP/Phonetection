@@ -67,14 +67,14 @@ public class ConfirmPatternDialog extends AbstractPatternDialog {
     //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
 
     protected void showSuccessDialog(){
-        CustomMessageDialog cmd = new CustomMessageDialog(R.drawable.ic_done_indigo_36px,
+        CustomMessageDialog cmd = new CustomMessageDialog(R.drawable.ic_check_circle_black_36dp,
                 getContext().getString(R.string.pattern_saved_dialog), null,
                 getContext().getString(R.string.ok_button), null, null);
         cmd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "pin_change_success");
     }
 
     protected void showWrongPatternDialog(){
-        CustomMessageDialog cmd = new CustomMessageDialog(R.drawable.ic_error_outline_red_36px,
+        CustomMessageDialog cmd = new CustomMessageDialog(R.drawable.ic_error_white_36px,
                 getContext().getString(R.string.different_pattern_dialog),
                 getContext().getString(R.string.different_pattern_dialog_message),
                 getContext().getString(R.string.ok_button), null, null);

@@ -69,14 +69,14 @@ public class ConfirmPinDialog extends AbstractPinDialog {
     //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
 
     protected void showSuccessDialog(){
-        CustomMessageDialog cmd = new CustomMessageDialog(R.drawable.ic_done_indigo_36px,
+        CustomMessageDialog cmd = new CustomMessageDialog(R.drawable.ic_check_circle_black_36dp,
                 context.getString(R.string.pin_saved_dialog), null,
                 context.getString(R.string.ok_button), null, null);
         cmd.show(((FragmentActivity) context).getSupportFragmentManager(), "pin_change_success");
     }
 
     protected void showWrongPinDialog(){
-        CustomMessageDialog cmd = new CustomMessageDialog(R.drawable.ic_error_outline_red_36px,
+        CustomMessageDialog cmd = new CustomMessageDialog(R.drawable.ic_error_white_36px,
                 context.getString(R.string.different_pin_dialog),
                 context.getString(R.string.different_pin_dialog_message),
                 context.getString(R.string.ok_button), null, null);

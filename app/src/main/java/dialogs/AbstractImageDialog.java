@@ -60,7 +60,7 @@ public abstract class AbstractImageDialog extends DialogFragment
 
         builder = new AlertDialog.Builder(context);
         builder.setView(inflater.inflate(R.layout.image_layout, null));
-        builder.setIcon(R.drawable.ic_apps_indigo_36px);
+        builder.setIcon(R.drawable.ic_apps_black_36dp);
         builder.setTitle(dialogTitleText);
         builder.setPositiveButton(positiveButtonText, this);
         builder.setNegativeButton(negativeButtonText, this);
