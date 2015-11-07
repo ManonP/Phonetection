@@ -81,10 +81,4 @@ public class CableService extends Service {
         //context.startActivity(intentStartActivity);
     //}
 
-   /* @Override
-    protected void onHandleIntent(Intent intent) {
-        Intent message = new Intent("android.intent.action.ACTION_POWER_DISCONNECTED");
-        sendBroadcast(intent);
-
-    }*/
 }

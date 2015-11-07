@@ -34,11 +34,6 @@ public class MotionService extends Service implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor mAccelerometer;
 
-    /*public MotionService() {
-        super("MotionService");
-        alertManager = new AlertManager();
-        Log.e(LOG_TAG, "BANANA");
-    }*/
 
     @Override
     public void onCreate() {
@@ -70,9 +65,7 @@ public class MotionService extends Service implements SensorEventListener {
                 if (isInMotion(event) && Data.isMotionModeActivate()) {
                     Log.e(LOG_TAG, "Vous avez bougé !");
                     alertManager.startAlarm();
-                } //else if (!isInMotion(event)) {
-                  //  alarme.cancelTimer();
-                //}
+                }
                 break;
         }
     }
@@ -96,16 +89,4 @@ public class MotionService extends Service implements SensorEventListener {
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
-    /*@Override
-    protected void onHandleIntent(Intent intent) {
-        //Gestionnaire de capteur
-        SensorManager sm = (SensorManager) getSystemService(Activity.SENSOR_SERVICE);
-
-        //Enregistre un listener pour le gestionnaire de capteur
-        boolean accelSupport = sm.registerListener(this, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
-        if (!accelSupport) {
-            sm.unregisterListener(this, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER));
-        }
-        Log.e(LOG_TAG, "SPLIT");
-    }*/
 }

@@ -19,17 +19,10 @@ public class CableBroadcastReceiver extends BroadcastReceiver {
 
     private String LOG_TAG_BROADCAST_SERVICE = "CableBroadcastReceiver";
     private AlertManager alertManager;
-    private Context myContext;
-
     public CableBroadcastReceiver() {
         alertManager = new AlertManager();
 
     }
-   /* public CableBroadcastReceiver(Context context) {
-        alertManager = new AlertManager();
-        myContext = context;
-        Data.getInstance(myContext);
-    }*/
 
     @Override
     public void onReceive(Context context, Intent intent) {
