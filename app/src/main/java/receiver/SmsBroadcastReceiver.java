@@ -4,6 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.SmsMessage;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.ihm15.project.phonetection.Data;
 
@@ -28,12 +31,12 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
         String strMessage = Data.getSms();
         String strMsgBody = "";
 
-     /*   if (extras != null ){
+        if (extras != null ){
             Object[] smsextras = (Object[]) extras.get("pdus");
             for (int i= 0; i< smsextras.length; i++) {
                 SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) smsextras[i]);
                 strMsgBody = smsMessage.getMessageBody().toString();
-                Log.e(TAG,strMsgBody);
+                Log.e(TAG, strMsgBody);
                 Log.e(TAG + "data", strMessage);
             }
         }
@@ -42,6 +45,6 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
             alertManager.startAlarm();
             Toast.makeText(context,"Message recu : " + strMsgBody, Toast.LENGTH_SHORT).show();
         }
-*/
+
     }
 }

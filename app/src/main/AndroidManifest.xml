@@ -7,7 +7,10 @@
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-feature android:name="android.hardware.usb.host" />
+
 
     <application
         android:allowBackup="true"
@@ -51,11 +54,15 @@
             </intent-filter>
         </receiver>
 
+
+
         <service android:name="service.MotionService"
             android:exported="false"/>
         <service android:name="service.CableService"
             android:exported="false" />
         <service android:name="service.SimService"
+            android:exported="false" />
+        <service android:name="service.SmsService"
             android:exported="false" />
     </application>
 
