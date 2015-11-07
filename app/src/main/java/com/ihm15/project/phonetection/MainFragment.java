@@ -1,7 +1,10 @@
 package com.ihm15.project.phonetection;
 
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,18 +13,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import adapters.CardViewAdapter;
 import dialogs.ChangeImageDialogCardView;
 import dialogs.ChangePatternDialogCardView;
 import dialogs.ChangePinDialogCardView;
-import dialogs.ConfirmImageDialogCardView;
 import events.LockSetObject;
-import events.UnlockObject;
 import events.WrongLockSetObject;
-import events.WrongUnlockObject;
+import service.CableService;
+import service.MotionService;
 
 public class MainFragment extends Fragment implements View.OnClickListener,
         LockSetObject.LockSetEventListener, WrongLockSetObject.WrongLockSetEventListener{
@@ -38,13 +40,16 @@ public class MainFragment extends Fragment implements View.OnClickListener,
     private ModeStates chargerState;
     private ModeStates simState;
     private ModeStates smsState;
+    private Context myContext;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_card_view, container, false);
 
-        getActivity().startService(new Intent(getActivity(), MotionReceiver.class));
+        getActivity().startService(new Intent(getActivity(), MotionService.class));
+        getActivity().startService(new Intent(getActivity(), CableService.class));
+        //startService(new Intent(new Intent(this, MotionService.class)));
 
         Data.getInstance(getActivity());
 
@@ -57,6 +62,9 @@ public class MainFragment extends Fragment implements View.OnClickListener,
         mRecyclerView.setLayoutManager(mLayoutManager);
         cva = new CardViewAdapter(getActivity(), this);
         mRecyclerView.setAdapter(cva);
+
+        myContext = getActivity().getBaseContext();
+       // startBackgroundServiceCable();
 
         initModes();
 
@@ -459,5 +467,24 @@ public class MainFragment extends Fragment implements View.OnClickListener,
     public void simWrongLockSet(){}
 
     public void smsWrongLockSet(){}
+
+    BroadcastReceiver cableBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.i("cable receiver", "ACTION_POWER_DISCONNECTED");
+            Toast.makeText(myContext,"Power disconnected",Toast.LENGTH_SHORT).show();
+           // myContext = context;
+        }
+    };
+
+    void startBackgroundServiceCable() {
+        //Enregistrement du BroadcastReceiver
+        IntentFilter filter = new IntentFilter("android.intent.action.ACTION_POWER_DISCONNECTED");
+        myContext.registerReceiver(cableBroadcastReceiver, filter);
+
+        //Lancement du service
+        Intent intent = new Intent(myContext, CableService.class);
+        myContext.startService(intent);
+    }
 
 }

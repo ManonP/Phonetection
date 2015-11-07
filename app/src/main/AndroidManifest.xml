@@ -34,7 +34,7 @@
         </activity>
 
         <receiver
-            android:name=".CableReceiver"
+            android:name="receiver.CableBroadcastReceiver"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
@@ -43,15 +43,17 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".SimChangedReceiver"
+            android:name="receiver.SimChangedReceiver"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.SIM_STATE_CHANGED"/>
             </intent-filter>
         </receiver>
-        <service android:name=".MotionReceiver"
+        <service android:name="service.MotionService"
             android:exported="false"/>
+        <service android:name="service.CableService"
+            android:exported="false" />
     </application>
 
 </manifest>

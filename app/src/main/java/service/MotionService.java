@@ -1,18 +1,24 @@
-package com.ihm15.project.phonetection;
+package service;
 
-import android.app.Activity;
-import android.app.IntentService;
+import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.util.Log;
+
+import com.ihm15.project.phonetection.Data;
+
+import managers.AlertManager;
 
 /**
  * Created by Dimitri on 05/11/2015.
  */
-public class MotionReceiver extends IntentService implements SensorEventListener {
+public class MotionService extends Service implements SensorEventListener {
 
     private static String LOG_TAG = "CardViewActivity";
 
@@ -23,26 +29,52 @@ public class MotionReceiver extends IntentService implements SensorEventListener
     float lx,ly,lz = 0;
     float lastUpdate = -1;
     long curtime = -1;
+    AlertManager alertManager;
 
-    public MotionReceiver() {
-        super("MotionReceiver");
+    private SensorManager sensorManager;
+    private Sensor mAccelerometer;
+
+    /*public MotionService() {
+        super("MotionService");
+        alertManager = new AlertManager();
         Log.e(LOG_TAG, "BANANA");
+    }*/
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        sensorManager.registerListener(this,mAccelerometer,SensorManager.SENSOR_DELAY_NORMAL);
+        alertManager = new AlertManager();
+        Data.getInstance(getApplicationContext());
+
+    }
+
+    @Override
+    public void onDestroy() {
+        sensorManager.unregisterListener(this);
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        /*switch (event.sensor.getType()) {
+        switch (event.sensor.getType()) {
             case Sensor.TYPE_ACCELEROMETER:
-                if (isInMotion(event) && Library.DETECTION_MODE) {
+                if (isInMotion(event) && Data.isMotionModeActivate()) {
                     Log.e(LOG_TAG, "Vous avez bougé !");
-
-                    Library.WARNING_BY = 1;
-                    Library.DETECTION_MODE = false;
+                    alertManager.startAlarm();
                 } //else if (!isInMotion(event)) {
                   //  alarme.cancelTimer();
                 //}
                 break;
-        }*/
+        }
     }
 
     private boolean isInMotion(SensorEvent event) {
@@ -64,7 +96,7 @@ public class MotionReceiver extends IntentService implements SensorEventListener
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
-    @Override
+    /*@Override
     protected void onHandleIntent(Intent intent) {
         //Gestionnaire de capteur
         SensorManager sm = (SensorManager) getSystemService(Activity.SENSOR_SERVICE);
@@ -75,5 +107,5 @@ public class MotionReceiver extends IntentService implements SensorEventListener
             sm.unregisterListener(this, sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER));
         }
         Log.e(LOG_TAG, "SPLIT");
-    }
+    }*/
 }
