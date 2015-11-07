@@ -8,14 +8,10 @@
         <item name="android:navigationBarColor">@color/primary</item>
     </style>
 
-    <!-- SEEK BAR ===============================================================================-->
-    <style name="custom_seek_bar">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:progressTint">@color/accent</item>
-        <item name="android:thumbTint">@color/accent</item>
-        <item name="android:indeterminate">false</item>
+    <style name="AppTheme.Dialog.Alert" parent="android:Theme.DeviceDefault.Light.Dialog.MinWidth">
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:colorAccent">@color/accent</item>
     </style>
 
 </resources>

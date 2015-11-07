@@ -19,9 +19,6 @@
 
     </LinearLayout>
 
-    <View
-        style="@style/dialog_separator"/>
-
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,7 +30,7 @@
         <RadioButton
             style="@style/radio_button"
             android:text="@string/grace_time_5_seconds"
-            android:id="@+id/grace_time_5_seconds"/>
+            android:id="@+id/grace_time_5_seconds" />
 
         <RadioButton
             style="@style/radio_button"
@@ -50,8 +47,5 @@
             android:text="@string/grace_time_30_seconds"
             android:id="@+id/grace_time_30_seconds"/>
     </RadioGroup>
-
-    <View
-        style="@style/dialog_separator"/>
 
 </LinearLayout>

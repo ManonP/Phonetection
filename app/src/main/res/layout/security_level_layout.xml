@@ -19,9 +19,6 @@
 
     </LinearLayout>
 
-    <View
-        style="@style/dialog_separator"/>
-
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,8 +42,5 @@
             android:text="@string/security_level_high"
             android:id="@+id/security_level_high"/>
     </RadioGroup>
-
-    <View
-        style="@style/dialog_separator"/>
 
 </LinearLayout>

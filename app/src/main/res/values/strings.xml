@@ -41,11 +41,21 @@
     <string name="charger_detection_mode">Charger detection mode</string>
     <string name="motion_detection_mode">Motion detection mode</string>
     <string name="sim_detection_mode">SIM detection mode</string>
+    <string name="sms_detection_mode">SMS detection mode</string>
 
     <!--Description des différents modes de détection-->
-    <string name="charger_detection_mode_description">Detects if charger is disconnected</string>
-    <string name="motion_detection_mode_description">Detects if device is moved</string>
-    <string name="sim_detection_mode_description">Detects if SIM card is changed</string>
+    <string name="charger_detection_mode_description">
+        Start the alarm when the charger is disconnected
+    </string>
+    <string name="motion_detection_mode_description">
+        Start the alarm when the device is moved
+    </string>
+    <string name="sim_detection_mode_description">
+        Start the alarm when the SIM card is changed
+    </string>
+    <string name="sms_detection_mode_description">
+        Start the alarm when receiving an SMS
+    </string>
 
     <!-- PARAMETRES =============================================================================-->
     <!--Noms des sections de paramètres-->
@@ -53,10 +63,9 @@
     <string name="security_section">Security</string>
 
     <!--Noms des paramètres-->
-    <string name="alarm_volume_setting">Alarm volume</string>
-    <string name="alarm_tone_setting">Alarm tone</string>
     <string name="light_alarm_setting">Light alarm</string>
     <string name="grace_time_setting">Grace time</string>
+    <string name="sms_setting">Change alarm control SMS text</string>
     <string name="security_level_setting">Security level</string>
     <string name="pin_setting">Change Pin</string>
     <string name="pattern_setting">Change Pattern</string>
@@ -89,24 +98,29 @@
 
 
     <!--Clefs des paramètres (entrées) -->
-    <string name="pref_key_alarm_tone">pref_key_alarm_tone</string>
-    <string name="pref_key_alarm_volume">pref_key_alarm_volume</string>
+    <string name="pref_key_motion_mode">pref_key_motion_mode</string>
+    <string name="pref_key_cable_mode">pref_key_cable_mode</string>
+    <string name="pref_key_sim_mode">pref_key_sim_mode</string>
+    <string name="pref_key_sms_mode">pref_key_sms_mode</string>
     <string name="pref_key_light_alarm">pref_key_light_alarm</string>
     <string name="pref_key_grace_time">pref_key_grace_time</string>
     <string name="pref_key_security_level">pref_key_security_level</string>
     <string name="pref_key_pin">pref_key_pin</string>
     <string name="pref_key_pattern">pref_key_pattern</string>
     <string name="pref_key_image">pref_key_image</string>
+    <string name="pref_key_sms">pref_key_sms</string>
 
     <!--Valeurs des paramètres (values) -->
-    <integer name="pref_alarm_volume_max">100</integer>
-    <integer name="pref_alarm_volume_default">100</integer>
+    <bool name="pref_motion_mode_default">false</bool>
+    <bool name="pref_cable_mode_default">false</bool>
+    <bool name="pref_sim_mode_default">false</bool>
+    <bool name="pref_sms_mode_default">false</bool>
     <bool name="pref_light_alarm_default">true</bool>
+    <integer name="pref_grace_time_default">5000</integer>
     <integer name="pref_grace_time_5">5000</integer>
     <integer name="pref_grace_time_10">10000</integer>
     <integer name="pref_grace_time_15">15000</integer>
     <integer name="pref_grace_time_30">30000</integer>
-    <integer name="pref_grace_time_default">5000</integer>
     <string name="pref_security_level_low">Low</string>
     <string name="pref_security_level_medium">Medium</string>
     <string name="pref_security_level_high">High</string>
@@ -114,14 +128,12 @@
     <string name="pref_pin_default">null</string>
     <integer name="pref_pattern_default">-1</integer>
     <string name="pref_image_default">null</string>
+    <string name="pref_sms_default">null</string>
 
     <!-- DIALOGUES ==============================================================================-->
     <!--Noms des dialogues-->
     <string name="dissuasive_dialog">Beware !</string>
     <string name="info_dialog">Infos</string>
-    <string name="activate_charger_detection_mode_dialog">Activate charger detection mode?</string>
-    <string name="activate_motion_detection_mode_dialog">Activate motion detection mode?</string>
-    <string name="activate_sim_detection_mode_dialog">Activate SIM detection mode?</string>
     <string name="enter_pin_dialog">Enter your pin</string>
     <string name="draw_pattern_dialog">Draw your pattern</string>
     <string name="select_image_dialog">Select your image</string>

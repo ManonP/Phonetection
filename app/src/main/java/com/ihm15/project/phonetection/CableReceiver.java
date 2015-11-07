@@ -16,7 +16,7 @@ public class CableReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.i(TAG, "Received system broadcast");
-        if (intent.getAction().equals("android.intent.action.ACTION_POWER_CONNECTED")) {
+        /*if (intent.getAction().equals("android.intent.action.ACTION_POWER_CONNECTED")) {
             alarme.cancelTimer();
             Library.CONNECTED = true;
         } else if (intent.getAction().equals("android.intent.action.ACTION_POWER_DISCONNECTED")) {
@@ -25,7 +25,7 @@ public class CableReceiver extends BroadcastReceiver {
                 Library.WARNING_BY = 2;
             }
             Library.CONNECTED = false;
-        }
+        }*/
         //Intent intentStartActivity = new Intent(context, CardViewActivity.class);
         //intentStartActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //context.startActivity(intentStartActivity);

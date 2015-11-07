@@ -6,7 +6,7 @@ import android.widget.ImageView;
 /**
  * Created by Manon on 17/10/2015.
  */
-public class DataObject {
+public class CardViewObject {
 
     private int mColor;
     private String mTitle;
@@ -14,7 +14,7 @@ public class DataObject {
     private String mButtonText;
     private int mImage;
 
-    DataObject (int color, String title, String description, String buttonText, int image) {
+    public CardViewObject (int color, String title, String description, String buttonText, int image) {
         mColor = color;
         mTitle = title;
         mDescription = description;

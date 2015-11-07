@@ -58,15 +58,15 @@ public class AlertManager extends Fragment implements UnlockObject.UnlockedEvent
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.test_layout, container, false);
+        View v = inflater.inflate(R.layout.activity_main, container, false);
 
-        Button b = (Button) v.findViewById(R.id.button);
+        /*Button b = (Button) v.findViewById(R.id.button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlarmStart();
             }
-        });
+        });*/
         init();
 
         KeyguardManager keyguardManager = (KeyguardManager) getActivity().getSystemService(Activity.KEYGUARD_SERVICE);

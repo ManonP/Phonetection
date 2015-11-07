@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
+import com.ihm15.project.phonetection.Data;
 import com.ihm15.project.phonetection.R;
 
 public class GraceTimePreference extends DialogPreference implements View.OnClickListener,
@@ -34,10 +35,9 @@ public class GraceTimePreference extends DialogPreference implements View.OnClic
         setPositiveButtonText(R.string.ok_button);
         setNegativeButtonText(R.string.cancel_button);
 
+        Data.getInstance(context);
 
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        setGraceTimeSummary(sp.getInt(context.getString(R.string.pref_key_grace_time),
-                context.getResources().getInteger(R.integer.pref_grace_time_default)));
+        setGraceTimeSummary(Data.getGraceTime());
     }
 
     @Override

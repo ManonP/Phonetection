@@ -28,4 +28,6 @@
     <color name="motion_card">#F50057</color>
     <color name="charger_card">#FFAB00</color>
     <color name="SIM_card">#039BE5</color>
+    <color name="sms_card">#4CAF50</color>
+
 </resources>

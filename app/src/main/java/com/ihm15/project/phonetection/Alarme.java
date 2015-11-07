@@ -8,7 +8,7 @@ import android.os.CountDownTimer;
  * Created by Manon on 01/11/2015.
  */
 public class Alarme {
-    private MediaPlayer player = new MediaPlayer();
+    /*private MediaPlayer player = new MediaPlayer();
     private Context myContext;
     //MyCount counter = new MyCount(10000,1000);
 
@@ -69,7 +69,7 @@ public class Alarme {
             }
             Library.alarme.activeAlarame(myContext);
         }
-    };
+    };*/
 
     //public class MyCount extends CountDownTimer {
         /**

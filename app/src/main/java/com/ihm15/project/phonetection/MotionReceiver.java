@@ -31,18 +31,18 @@ public class MotionReceiver extends IntentService implements SensorEventListener
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        switch (event.sensor.getType()) {
+        /*switch (event.sensor.getType()) {
             case Sensor.TYPE_ACCELEROMETER:
                 if (isInMotion(event) && Library.DETECTION_MODE) {
                     Log.e(LOG_TAG, "Vous avez bougé !");
 
                     Library.WARNING_BY = 1;
                     Library.DETECTION_MODE = false;
-                } /*else if (!isInMotion(event)) {
-                    alarme.cancelTimer();
-                }*/
+                } //else if (!isInMotion(event)) {
+                  //  alarme.cancelTimer();
+                //}
                 break;
-        }
+        }*/
     }
 
     private boolean isInMotion(SensorEvent event) {
