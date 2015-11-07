@@ -41,11 +41,11 @@ public class CableBroadcastReceiver extends BroadcastReceiver {
         Data.getInstance(context);
         if (intent.getAction().equals("android.intent.action.ACTION_POWER_CONNECTED")) {
             Log.e(LOG_TAG_BROADCAST_SERVICE, "Je suis connecté ! ");
-            Toast.makeText(context, "Je suis connecté !", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Je suis connecté !", Toast.LENGTH_SHORT).show();
             activeNotification(context);
         }else if (intent.getAction().equals("android.intent.action.ACTION_POWER_DISCONNECTED")) {
             Log.e(LOG_TAG_BROADCAST_SERVICE,"Je suis déconnecté !");
-            Toast.makeText(context,"Je suis deconnecté ! ", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,"Je suis deconnecté ! ", Toast.LENGTH_SHORT).show();
             if (Data.isCableModeActivate()) {
                 alertManager.startAlarm();
             }

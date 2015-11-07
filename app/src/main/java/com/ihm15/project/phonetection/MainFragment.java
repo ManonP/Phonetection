@@ -24,6 +24,7 @@ import events.LockSetObject;
 import events.WrongLockSetObject;
 import service.CableService;
 import service.MotionService;
+import service.SmsService;
 
 public class MainFragment extends Fragment implements View.OnClickListener,
         LockSetObject.LockSetEventListener, WrongLockSetObject.WrongLockSetEventListener{
@@ -49,7 +50,7 @@ public class MainFragment extends Fragment implements View.OnClickListener,
 
         getActivity().startService(new Intent(getActivity(), MotionService.class));
         getActivity().startService(new Intent(getActivity(), CableService.class));
-        //startService(new Intent(new Intent(this, MotionService.class)));
+        getActivity().startService(new Intent(getActivity(), SmsService.class));
 
         Data.getInstance(getActivity());
 
