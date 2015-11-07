@@ -43,16 +43,19 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="receiver.SimChangedReceiver"
+            android:name="receiver.SimBroadcastReceiver"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.SIM_STATE_CHANGED"/>
             </intent-filter>
         </receiver>
+
         <service android:name="service.MotionService"
             android:exported="false"/>
         <service android:name="service.CableService"
+            android:exported="false" />
+        <service android:name="service.SimService"
             android:exported="false" />
     </application>
 
