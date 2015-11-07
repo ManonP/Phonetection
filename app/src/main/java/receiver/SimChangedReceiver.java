@@ -1,4 +1,4 @@
-package com.ihm15.project.phonetection;
+package receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
