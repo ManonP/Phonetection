@@ -1,0 +1,12 @@
+
+2015-07-16 21:10:47:861 000008a4 HeciServer: wWinMain: HeciServer winmain
+2015-07-16 21:10:47:861 000008a4 HeciServer: [INF] [N/A] HeciServer Version: 1.24.738.1
+2015-07-16 21:10:47:861 000008a4 HeciServer: [INF] [N/A] SetLaunchPermissions called.
+2015-07-16 21:10:47:861 000008a4 HeciServer: CHeciServerModule::SetLaunchPermissions: [INF] [N/A] HeciServer's AppID: {F6189E3E-8B57-4CC9-B6F6-2F1FF1D1D9D4}
+2015-07-16 21:10:47:861 000008a4 HeciServer: CHeciServerModule::SetLaunchPermissions: [INF] [N/A] Permissions set successfully.
+2015-07-16 21:10:47:861 000008a4 HeciServer: wWinMain: HeciServer: Launch permissions set: true
+2015-07-16 21:10:47:861 00000b64 HeciServer: [INF] [N/A] InitializeSecurity...
+2015-07-16 21:10:47:861 00000b64 HeciServer: [INF] [N/A] InitializeSecurity result=0
+2015-07-16 21:10:47:861 00000b64 HeciServer: [DBG] [N/A] OpenProcessToken ok
+2015-07-16 21:10:47:871 00000b64 HeciServer: [INF] [N/A] AdjustTokenPrivileges return status: success, error code = 1300
+2015-07-16 21:10:47:871 00000b64 HeciServer: [INF] [N/A] Dropping Privileges: Success
