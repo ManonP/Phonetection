@@ -58,7 +58,7 @@ public abstract class AbstractPatternDialog extends DialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        builder = new AlertDialog.Builder(context);
+        builder = new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.AppTheme_Dialog_Alert));
         builder.setView(inflater.inflate(R.layout.pattern_layout, null));
         builder.setIcon(R.drawable.ic_apps_black_36dp);
         builder.setTitle(dialogTitleText);
@@ -72,7 +72,7 @@ public abstract class AbstractPatternDialog extends DialogFragment
 
         setDialogButtonTextColor();
 
-        Context c = new ContextThemeWrapper(context, haibison.android.lockpattern.R.style.Alp_42447968_ThemeResources_Light);
+        Context c = new ContextThemeWrapper(context, R.style.lock_pattern_view);
         lockPatternView = new LockPatternView(c);
         lockPatternView.setTactileFeedbackEnabled(true);
         LinearLayout ll = (LinearLayout) al.findViewById(R.id.pattern_container);

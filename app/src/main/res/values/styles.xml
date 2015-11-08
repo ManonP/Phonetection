@@ -5,9 +5,13 @@
         <item name="android:actionBarStyle">@style/action_bar_style</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:dialogTheme">@style/AppTheme.Dialog.Alert</item>
+        <item name="android:alertDialogTheme">@style/AppTheme.Dialog.Alert</item>
     </style>
 
     <style name="AppTheme.Dialog.Alert" parent="android:Theme.DeviceDefault.Light.Dialog.MinWidth">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
@@ -110,8 +114,9 @@
     </style>
 
     <!-- LOCK PATTERN VIEW ======================================================================-->
-    <style name="lock_pattern_view" parent="Alp_42447968.Theme.Light">
-        <item name="android:color">@color/accent</item>
+    <style name="lock_pattern_view" parent="Alp_42447968.ThemeResources.Light">
+        <item name="alp_42447968_color_lock_pattern_view_success">@color/accent
+        </item>
     </style>
 
     <!-- CARD VIEW ==============================================================================-->

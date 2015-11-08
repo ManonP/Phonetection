@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.FragmentActivity;
@@ -46,7 +47,6 @@ public class MainFragment extends Fragment implements View.OnClickListener,
 
     private CardViewAdapter cva;
 
-    private DissuasiveDialog dissuasiveDialog;
     private EnterPinDialog enterPinDialog;
     private EnterPatternDialog enterPatternDialog;
     private EnterImageDialog enterImageDialog;
@@ -76,9 +76,15 @@ public class MainFragment extends Fragment implements View.OnClickListener,
     private boolean alarmOn;
     private List<Integer> modeWhichStartTheAlarm;
 
+    private MediaPlayer alarmMediaPlayer;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_card_view, container, false);
+
+        alarmMediaPlayer = MediaPlayer.create(getActivity(), R.raw.honk);
+        alarmMediaPlayer.setVolume(1.0f,1.0f);
+        alarmMediaPlayer.setLooping(true);
 
         getActivity().startService(new Intent(getActivity(), MotionService.class));
         getActivity().startService(new Intent(getActivity(), CableService.class));
@@ -500,7 +506,7 @@ public class MainFragment extends Fragment implements View.OnClickListener,
                     Log.d("", "DEBUG: SMS BUTTON CLICKED -> OTHER");
                     smsState = ModeStates.MODE_ACTIVATED;
 
-                    Data.setMotionMode(true);
+                    Data.setSmsMode(true);
 
                     cva.smsButtonActivated();
                 }
@@ -595,7 +601,7 @@ public class MainFragment extends Fragment implements View.OnClickListener,
                 mistakes = 0;
                 modeWhichStartTheAlarm.add(mode);
 
-                dissuasiveDialog = new DissuasiveDialog(
+                DissuasiveDialog dissuasiveDialog = new DissuasiveDialog(
                         getActivity().getString(R.string.dissuasive_dialog),
                         getActivity().getString(R.string.dissuasive_dialog_message),
                         getActivity().getString(R.string.skip_button));
@@ -639,7 +645,6 @@ public class MainFragment extends Fragment implements View.OnClickListener,
                 enterPinDialog.show(((FragmentActivity) getActivity()).getSupportFragmentManager(), "enter_pin_dialog");
 
                 startGraceTimeTimer();
-                startAlarm();
                 break;
             case ON_PIN_UNLOCK:
                 //FORBIDDEN
@@ -1035,10 +1040,12 @@ public class MainFragment extends Fragment implements View.OnClickListener,
     //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
     public void startAlarm(){
         Log.println(Log.DEBUG, "", "ALARM START");
+        alarmMediaPlayer.start();
     }
 
     public void stopAlarm(){
         Log.println(Log.DEBUG, "", "ALARM STOP");
+        alarmMediaPlayer.stop();
     }
 
     public void startGraceTimeTimer(){

@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -75,7 +76,7 @@ public abstract class AbstractPinDialog extends DialogFragment implements View.O
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        builder = new AlertDialog.Builder(context);
+        builder = new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.AppTheme_Dialog_Alert));
         builder.setView(inflater.inflate(R.layout.pin_layout, null));
         builder.setIcon(R.drawable.ic_dialpad_black_36dp);
         builder.setTitle(dialogTitleText);
