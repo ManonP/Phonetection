@@ -42,6 +42,7 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.putExtra(Data.EXTRA_WITH_ALARM, true);
             i.putExtra(Data.EXTRA_MODE, Data.CHARGER_MODE);
+            Data.setSmsMode(false);
             context.startActivity(i);
         }
 

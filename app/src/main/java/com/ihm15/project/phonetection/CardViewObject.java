@@ -11,14 +11,12 @@ public class CardViewObject {
     private int mColor;
     private String mTitle;
     private String mDescription;
-    private String mButtonText;
     private int mImage;
 
-    public CardViewObject (int color, String title, String description, String buttonText, int image) {
+    public CardViewObject (int color, String title, String description, int image) {
         mColor = color;
         mTitle = title;
         mDescription = description;
-        mButtonText = buttonText;
         mImage = image;
     }
 
@@ -36,8 +34,6 @@ public class CardViewObject {
     public String getmDescription() {
         return mDescription;
     }
-
-    public String getmButtonText() {return mButtonText;}
 
     public int getmImage() {
         return mImage;

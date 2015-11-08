@@ -108,20 +108,16 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
         ArrayList al = new ArrayList<>();
         al.add(new CardViewObject(mContext.getResources().getColor(R.color.motion_card),
                 mContext.getString(R.string.motion_detection_mode),
-                mContext.getString(R.string.motion_detection_mode_description),
-                mContext.getString(R.string.activate_button), R.drawable.moving_mode));
+                mContext.getString(R.string.motion_detection_mode_description), R.drawable.moving_mode));
         al.add(new CardViewObject(mContext.getResources().getColor(R.color.charger_card),
                 mContext.getString(R.string.charger_detection_mode),
-                mContext.getString(R.string.charger_detection_mode_description),
-                mContext.getString(R.string.activate_button), R.drawable.charger_mode));
+                mContext.getString(R.string.charger_detection_mode_description), R.drawable.charger_mode));
         al.add(new CardViewObject(mContext.getResources().getColor(R.color.SIM_card),
                 mContext.getString(R.string.sim_detection_mode),
-                mContext.getString(R.string.sim_detection_mode_description),
-                mContext.getString(R.string.activate_button), R.drawable.sim_mode));
+                mContext.getString(R.string.sim_detection_mode_description), R.drawable.sim_mode));
         al.add(new CardViewObject(mContext.getResources().getColor(R.color.sms_card),
                 mContext.getString(R.string.sms_detection_mode),
-                mContext.getString(R.string.sms_detection_mode_description),
-                mContext.getString(R.string.activate_button), R.drawable.sms_mode));
+                mContext.getString(R.string.sms_detection_mode_description), R.drawable.sms_mode));
         return al;
     }
 

@@ -573,7 +573,7 @@ public class MainFragment extends Fragment implements View.OnClickListener,
                 Log.d("", "DEBUG: SMS LOCK SET MODE DEACTIVATED");
                 smsState = ModeStates.MODE_ACTIVATED;
 
-                Data.setMotionMode(true);
+                Data.setSmsMode(true);
 
                 cva.smsButtonActivated();
                 break;

@@ -59,7 +59,14 @@ public class MotionService extends Service implements SensorEventListener {
         switch (event.sensor.getType()) {
             case Sensor.TYPE_ACCELEROMETER:
                 if (isInMotion(event) && Data.isMotionModeActivate()) {
-                    Log.e(LOG_TAG, "Vous avez bougé !");
+                    Intent i = new Intent();
+                    i.setClassName("com.ihm15.project.phonetection",
+                            "com.ihm15.project.phonetection.CardViewActivity");
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra(Data.EXTRA_WITH_ALARM, true);
+                    i.putExtra(Data.EXTRA_MODE, Data.CHARGER_MODE);
+                    Data.setMotionMode(false);
+                    getBaseContext().startActivity(i);
                 }
                 break;
         }
