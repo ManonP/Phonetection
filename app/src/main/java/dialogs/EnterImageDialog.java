@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 
+import com.ihm15.project.phonetection.Data;
 import com.ihm15.project.phonetection.R;
 
 import java.util.Timer;
@@ -41,8 +42,8 @@ public class EnterImageDialog extends AbstractImageDialog implements LightAlarmI
 
         hasCancelButton = (cancelButtonText != null);
 
-        unlockObject = new UnlockObject(this, UnlockObject.UnlockedEvent.IMAGE_UNLOCK);
-        wrongUnlockObject = new WrongUnlockObject(this, WrongUnlockObject.WrongUnlockedEvent.IMAGE_WRONG_UNLOCK);
+        unlockObject = new UnlockObject(this, Data.IMAGE_UNLOCK);
+        wrongUnlockObject = new WrongUnlockObject(this, Data.WRONG_IMAGE_UNLOCK);
     }
 
     @NonNull

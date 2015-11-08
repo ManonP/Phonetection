@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 
+import com.ihm15.project.phonetection.Data;
 import com.ihm15.project.phonetection.R;
 
 import java.util.Timer;
@@ -40,8 +41,8 @@ public class EnterPatternDialog extends AbstractPatternDialog implements LightAl
 
         hasCancelButton = (cancelButtonText != null);
 
-        unlockObject = new UnlockObject(this, UnlockObject.UnlockedEvent.PATTERN_UNLOCK);
-        wrongUnlockObject = new WrongUnlockObject(this, WrongUnlockObject.WrongUnlockedEvent.PATTERN_WRONG_UNLOCK);
+        unlockObject = new UnlockObject(this, Data.PATTERN_UNLOCK);
+        wrongUnlockObject = new WrongUnlockObject(this, Data.WRONG_PATTERN_UNLOCK);
     }
 
     @NonNull

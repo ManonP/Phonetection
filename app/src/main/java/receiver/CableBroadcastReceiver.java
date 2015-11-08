@@ -18,23 +18,14 @@ import com.ihm15.project.phonetection.Data;
 import com.ihm15.project.phonetection.R;
 
 
-import managers.AlertManager;
-
 /**
  * Created by Manon on 07/11/2015.
  */
 public class CableBroadcastReceiver extends BroadcastReceiver {
 
     private String LOG_TAG_BROADCAST_SERVICE = "CableBroadcastReceiver";
-    private AlertManager alertManager;
 
     public int ID_NOTIFICATION = 0;
-
-
-    public CableBroadcastReceiver() {
-        alertManager = new AlertManager();
-
-    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -47,7 +38,13 @@ public class CableBroadcastReceiver extends BroadcastReceiver {
             Log.e(LOG_TAG_BROADCAST_SERVICE,"Je suis déconnecté !");
             //Toast.makeText(context,"Je suis deconnecté ! ", Toast.LENGTH_SHORT).show();
             if (Data.isCableModeActivate()) {
-                alertManager.startAlarm();
+                Intent i = new Intent();
+                i.setClassName("com.ihm15.project.phonetection",
+                        "com.ihm15.project.phonetection.CardViewActivity");
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra(Data.EXTRA_WITH_ALARM, true);
+                i.putExtra(Data.EXTRA_MODE, Data.CHARGER_MODE);
+                context.startActivity(i);
             }
         }
     }

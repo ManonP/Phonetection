@@ -1,8 +1,6 @@
 package dialogs;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
@@ -10,9 +8,7 @@ import com.ihm15.project.phonetection.Data;
 import com.ihm15.project.phonetection.R;
 
 import events.LockSetObject;
-import events.UnlockObject;
 import events.WrongLockSetObject;
-import events.WrongUnlockObject;
 
 
 public class ConfirmPinDialogCardView extends AbstractPinDialog {

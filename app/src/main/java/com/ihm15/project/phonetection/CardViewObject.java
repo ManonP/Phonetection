@@ -42,24 +42,4 @@ public class CardViewObject {
     public int getmImage() {
         return mImage;
     }
-
-    /*-------------------------setter-------------------------*/
-
-    public void setmColor(int mColor){
-        this.mColor = mColor;
-    }
-
-    public void setmTitle(String mTitle) {
-        this.mTitle = mTitle;
-    }
-
-    public void setmDescription (String mDescription) {
-        this.mDescription = mDescription;
-    }
-
-    public void setmButtonText (String mButtonText) { this.mButtonText = mButtonText;}
-
-    public void setmImage(int mImage){
-        this.mImage = mImage;
-    }
 }

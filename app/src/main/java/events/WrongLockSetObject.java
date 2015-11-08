@@ -12,11 +12,6 @@ import java.util.List;
 public class WrongLockSetObject {
     public class WrongLockSetEvent extends EventObject {
 
-        public static final int MOTION_MODE = 0;
-        public static final int CHARGER_MODE = 1;
-        public static final int SIM_MODE = 2;
-        public static final int SMS_MODE = 3;
-
         private int type;
 
         public WrongLockSetEvent(Object source, int type) {

@@ -19,6 +19,7 @@
     <string name="clear_button">Clear</string>
     <string name="validate_button">OK</string>
     <string name="confirm_button">Confirm</string>
+    <string name="skip_button">Skip</string>
 
     <!--Boutons de confiramation ou d'annulation-->
     <string name="ok_button">OK</string>
@@ -128,7 +129,7 @@
     <string name="pref_pin_default">null</string>
     <integer name="pref_pattern_default">-1</integer>
     <string name="pref_image_default">null</string>
-    <string name="pref_sms_default">null</string>
+    <string name="pref_sms_default">PHONETECTION</string>
 
     <!-- DIALOGUES ==============================================================================-->
     <!--Noms des dialogues-->
@@ -146,10 +147,13 @@
 
     <!--Messages des dialogues-->
     <string name="dissuasive_dialog_message">
-        This phone is protected by an alarm. Warning, the alarm will go off in ten seconds
+        This phone is protected by an alarm.
+        You will have to unlock the device at the end of this message.
     </string>
     <string name="info_dialog_message">
-        Ponetection has been created by Manon Paquereau and Dimitri Drouet for a school project.
+        Phonetection has been created by Manon Paquereau and Dimitri Drouet for a school project.
+        The purpose of this application is to protect your device from robbery.
+        You can choose between several modes of detection.
     </string>
     <string name="different_pin_dialog_message">You enter two different PIN</string>
     <string name="pin_saved_dialog_message">The PIN you entered, has been saved</string>

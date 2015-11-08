@@ -19,11 +19,25 @@ import dialogs.CustomMessageDialog;
  */
 public class CardViewActivity extends AppCompatActivity {
 
+    public boolean withAlarm = false;
+    public int mode = -1;
 
+    public boolean isWithAlarm(){
+        return withAlarm;
+    }
+
+    public int getMode(){
+        return mode;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        Data.getInstance(this);
+
+        withAlarm = intent.getBooleanExtra(Data.EXTRA_WITH_ALARM, false);
+        mode = intent.getIntExtra(Data.EXTRA_MODE, -1);
         showsDetectionModeSelector();
     }
 
@@ -82,5 +96,4 @@ public class CardViewActivity extends AppCompatActivity {
     private void showDetectionModeSelectorMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_main, menu);
     }
-
 }

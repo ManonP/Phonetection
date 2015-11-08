@@ -13,12 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
+import com.ihm15.project.phonetection.Data;
 import com.ihm15.project.phonetection.R;
 
 public class SecurityLevelPreference extends DialogPreference implements View.OnClickListener,
         DialogInterface.OnClickListener{
 
-    SharedPreferences sharedPreferences;
     String initialValue;
     String valueToSave;
 
@@ -34,10 +34,8 @@ public class SecurityLevelPreference extends DialogPreference implements View.On
         setDialogIcon(R.drawable.ic_security_black_36dp);
         setDialogTitle(R.string.security_level_setting);
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        initialValue = sharedPreferences.getString(
-                context.getString(R.string.pref_key_security_level),
-                context.getString(R.string.pref_security_level_default));
+
+        initialValue = Data.getSecurityLevel();
         valueToSave = initialValue;
 
         setSecurityLevelSummary(initialValue);
@@ -48,13 +46,6 @@ public class SecurityLevelPreference extends DialogPreference implements View.On
         lowRadioButton = (RadioButton) view.findViewById(R.id.security_level_low);
         mediumRadioButton = (RadioButton) view.findViewById(R.id.security_level_medium);
         highRadioButton = (RadioButton) view.findViewById(R.id.security_level_high);
-
-
-
-        lowRadioButton.setHighlightColor(getContext().getResources().getColor(R.color.accent));
-        mediumRadioButton.setHighlightColor(getContext().getResources().getColor(R.color.accent));
-        highRadioButton.setHighlightColor(getContext().getResources().getColor(R.color.accent));
-
 
         lowRadioButton.setOnClickListener(this);
         mediumRadioButton.setOnClickListener(this);
@@ -83,10 +74,7 @@ public class SecurityLevelPreference extends DialogPreference implements View.On
     @Override
     protected void showDialog(Bundle state) {
         super.showDialog(state);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        initialValue = sharedPreferences.getString(
-                getContext().getString(R.string.pref_key_security_level),
-                getContext().getString(R.string.pref_security_level_default));
+        initialValue = Data.getSecurityLevel();
         valueToSave = initialValue;
 
         setSecurityLevelSummary(initialValue);
@@ -96,6 +84,7 @@ public class SecurityLevelPreference extends DialogPreference implements View.On
         b.setTextColor(getContext().getResources().getColor(R.color.accent));
         b = ((AlertDialog)getDialog()).getButton(AlertDialog.BUTTON_NEGATIVE);
         b.setTextColor(getContext().getResources().getColor(R.color.accent));
+        
     }
 
 
@@ -103,9 +92,7 @@ public class SecurityLevelPreference extends DialogPreference implements View.On
     @Override
     public void onClick(DialogInterface dialogInterface, int buttonClickedType){
         if (buttonClickedType == DialogInterface.BUTTON_POSITIVE){
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(getContext().getString(R.string.pref_key_security_level), valueToSave);
-            editor.commit();
+            Data.setSecurityLevel(valueToSave);
             setSecurityLevelSummary(valueToSave);
         } else if (buttonClickedType == DialogInterface.BUTTON_NEGATIVE){
             setCheckRadioButton(initialValue);

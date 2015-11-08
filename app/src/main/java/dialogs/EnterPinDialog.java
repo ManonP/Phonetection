@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 
+import com.ihm15.project.phonetection.Data;
 import com.ihm15.project.phonetection.R;
 
 import java.util.Timer;
@@ -41,8 +42,8 @@ public class EnterPinDialog extends AbstractPinDialog implements LightAlarmInter
 
         hasCancelButton = (cancelButtonText != null);
 
-        unlockObject = new UnlockObject(this, UnlockObject.UnlockedEvent.PIN_UNLOCK);
-        wrongUnlockObject = new WrongUnlockObject(this, WrongUnlockObject.WrongUnlockedEvent.PIN_WRONG_UNLOCK);
+        unlockObject = new UnlockObject(this, Data.PIN_UNLOCK);
+        wrongUnlockObject = new WrongUnlockObject(this, Data.WRONG_PIN_UNLOCK);
     }
 
     @NonNull

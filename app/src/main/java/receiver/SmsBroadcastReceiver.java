@@ -10,18 +10,11 @@ import android.widget.Toast;
 
 import com.ihm15.project.phonetection.Data;
 
-import managers.AlertManager;
-
 /**
  * Created by Manon on 07/11/2015.
  */
 public class SmsBroadcastReceiver extends BroadcastReceiver {
     private final String TAG = this.getClass().getSimpleName();
-    private AlertManager alertManager;
-
-    public SmsBroadcastReceiver(){
-        alertManager = new AlertManager();
-    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -41,9 +34,15 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
             }
         }
 
-        if (Data.isSimModeActivate() && strMsgBody.equals(strMessage)) {
-            alertManager.startAlarm();
+        if (Data.isSmsModeActivate() && strMsgBody.equals(strMessage)) {
             Toast.makeText(context,"Message recu : " + strMsgBody, Toast.LENGTH_SHORT).show();
+            Intent i = new Intent();
+            i.setClassName("com.ihm15.project.phonetection",
+                    "com.ihm15.project.phonetection.CardViewActivity");
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.putExtra(Data.EXTRA_WITH_ALARM, true);
+            i.putExtra(Data.EXTRA_MODE, Data.CHARGER_MODE);
+            context.startActivity(i);
         }
 
     }

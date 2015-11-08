@@ -62,7 +62,7 @@ public class ConfirmImageDialogCardView extends AbstractImageDialog {
                         "Positive button clicked error: state == IDLE -> FORBIDDEN");
                 break;
             case IMAGE_SELECTED:
-                if (image.equals(newImage)) {
+                if (!image.equals(newImage)) {
                     showWrongImageDialog();
                     dismiss();
                     wrongLockSetObject.fireWrongLockSetEvent();

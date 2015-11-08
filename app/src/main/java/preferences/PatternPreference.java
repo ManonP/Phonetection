@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ihm15.project.phonetection.Data;
 import com.ihm15.project.phonetection.R;
 
 import dialogs.ChangePatternDialog;
@@ -32,9 +33,9 @@ public class PatternPreference extends Preference implements UnlockObject.Unlock
     @Override
     protected View onCreateView(ViewGroup parent) {
         View view = super.onCreateView(parent);
+        Data.getInstance(getContext());
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-        int defaultValue = getContext().getResources().getInteger(R.integer.pref_pattern_default);
-        pattern = sp.getInt(getContext().getString(R.string.pref_key_pattern), defaultValue);
+        pattern = Data.getPattern();
         sp.registerOnSharedPreferenceChangeListener(this);
         mp = MediaPlayer.create(getContext(), R.raw.wrong);
 

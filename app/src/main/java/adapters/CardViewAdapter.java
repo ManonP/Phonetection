@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,7 +24,6 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     private static final int SIM_MODE_POSITION = 2;
     private static final int SMS_MODE_POSITION = 3;
 
-    private static String LOG_TAG = "MyRecyclerViewAdapter";
     private ArrayList<CardViewObject> mDataset;
     private Context mContext;
     private View.OnClickListener ocl;
@@ -35,9 +33,6 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     private Button simButton;
     private Button smsButton;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout background;
         public ImageView image;
@@ -75,24 +70,31 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
         holder.image.setImageResource(mDataset.get(position).getmImage());
         holder.title.setText(mDataset.get(position).getmTitle());
         holder.description.setText(mDataset.get(position).getmDescription());
-        holder.activateDeactivateButton.setText(mDataset.get(position).getmButtonText());
         holder.activateDeactivateButton.setOnClickListener(ocl);
         switch (position){
             case MOTION_MODE_POSITION:
                 holder.activateDeactivateButton.setTag(Data.MOTION_BUTTON_TAG);
                 motionButton = holder.activateDeactivateButton;
+                if (Data.isMotionModeActivate()) motionButtonActivated();
+                else motionButtonDeactivated();
                 break;
             case CHARGER_MODE_POSITION:
                 holder.activateDeactivateButton.setTag(Data.CHARGER_BUTTON_TAG);
                 chargerButton = holder.activateDeactivateButton;
+                if (Data.isCableModeActivate()) chargerButtonActivated();
+                else chargerButtonDeactivated();
                 break;
             case SIM_MODE_POSITION:
                 holder.activateDeactivateButton.setTag(Data.SIM_BUTTON_TAG);
                 simButton = holder.activateDeactivateButton;
+                if (Data.isSimModeActivate()) simButtonActivated();
+                else simButtonDeactivated();
                 break;
             case SMS_MODE_POSITION:
                 holder.activateDeactivateButton.setTag(Data.SMS_BUTTON_TAG);
                 smsButton = holder.activateDeactivateButton;
+                if (Data.isSmsModeActivate()) smsButtonActivated();
+                else smsButtonDeactivated();
                 break;
         }
     }
@@ -101,62 +103,6 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     public int getItemCount() {
         return mDataset.size();
     }
-
-    /*@Override
-    public int getCount() {
-        return mDataset.size();
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View v;
-        if (convertView == null){
-            v = ((LayoutInflater) mContext
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-                    .inflate(R.layout.card_view, parent, false);
-            v.findViewById(R.id.card_view_background)
-                    .setBackgroundColor((mDataset.get(position).getmColor()));
-            ((ImageView) v.findViewById(R.id.card_view_image))
-                    .setImageResource(mDataset.get(position).getmImage());
-            ((TextView) v.findViewById(R.id.card_view_title))
-                    .setText(mDataset.get(position).getmTitle());
-            ((TextView) v.findViewById(R.id.card_view_description))
-                    .setText(mDataset.get(position).getmDescription());
-            Button button = ((Button) v.findViewById(R.id.card_view_activate_deactivate_button));
-            button.setText(mDataset.get(position).getmButtonText());
-            button.setOnClickListener(ocl);
-
-            switch (position){
-                case MOTION_MODE_POSITION:
-                    motionButton = button;
-                    button.setTag(Data.MOTION_BUTTON_TAG);
-                    if (Data.isMotionModeActivate()) motionButtonActivated();
-                    else motionButtonDeactivated();
-                    break;
-                case CHARGER_MODE_POSITION:
-                    chargerButton = button;
-                    button.setTag(Data.CHARGER_BUTTON_TAG);
-                    if (Data.isCableModeActivate()) chargerButtonActivated();
-                    else chargerButtonDeactivated();
-                    break;
-                case SIM_MODE_POSITION:
-                    simButton = button;
-                    button.setTag(Data.SIM_BUTTON_TAG);
-                    if (Data.isSimModeActivate()) simButtonActivated();
-                    else simButtonDeactivated();
-                    break;
-                case SMS_MODE_POSITION:
-                    smsButton = button;
-                    button.setTag(Data.SMS_BUTTON_TAG);
-                    if (Data.isSmsModeActivate()) smsButtonActivated();
-                    else smsButtonDeactivated();
-                    break;
-            }
-        } else {
-            v = convertView;
-        }
-        return v;
-    }*/
 
     private ArrayList<CardViewObject> getDataSet() {
         ArrayList al = new ArrayList<>();
@@ -181,34 +127,42 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
 
     //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
     public void motionButtonActivated(){
+        Log.d("", "DEBUG: MOTION BUTTON ACTIVATED");
         motionButton.setText(mContext.getString(R.string.deactivate_button));
     }
 
     public void motionButtonDeactivated(){
+        Log.d("", "DEBUG: MOTION BUTTON DEACTIVATED");
         motionButton.setText(mContext.getString(R.string.activate_button));
     }
 
     public void chargerButtonActivated(){
+        Log.d("", "DEBUG: CHARGER BUTTON ACTIVATED");
         chargerButton.setText(mContext.getString(R.string.deactivate_button));
     }
 
     public void chargerButtonDeactivated(){
+        Log.d("", "DEBUG: CHARGER BUTTON DEACTIVATED");
         chargerButton.setText(mContext.getString(R.string.activate_button));
     }
 
     public void simButtonActivated(){
+        Log.d("", "DEBUG: SIM BUTTON ACTIVATED");
         simButton.setText(mContext.getString(R.string.deactivate_button));
     }
 
     public void simButtonDeactivated(){
+        Log.d("", "DEBUG: SIM BUTTON DEACTIVATED");
         simButton.setText(mContext.getString(R.string.activate_button));
     }
 
     public void smsButtonActivated(){
+        Log.d("", "DEBUG: SMS BUTTON ACTIVATED");
         smsButton.setText(mContext.getString(R.string.deactivate_button));
     }
 
     public void smsButtonDeactivated(){
+        Log.d("", "DEBUG: SMS BUTTON DEACTIVATED");
         smsButton.setText(mContext.getString(R.string.activate_button));
     }
 

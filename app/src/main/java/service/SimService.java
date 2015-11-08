@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 
 import com.ihm15.project.phonetection.Data;
 
-import managers.AlertManager;
 import receiver.SimBroadcastReceiver;
 
 /**
@@ -17,14 +16,12 @@ import receiver.SimBroadcastReceiver;
 public class SimService extends Service {
 
     private String TAG = "SimService";
-    private AlertManager alertManager;
     private boolean mReceiverRegistred = false;
     private SimBroadcastReceiver simBroadcastReceiver;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        alertManager = new AlertManager();
         Data.getInstance(getApplicationContext());
         simBroadcastReceiver = new SimBroadcastReceiver();
 

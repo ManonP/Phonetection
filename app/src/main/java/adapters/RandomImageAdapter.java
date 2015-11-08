@@ -19,27 +19,30 @@ public class RandomImageAdapter extends BaseAdapter {
         mContext = c;
     }
 
+    @Override
     public int getCount() {
         return mThumbIds.length;
     }
 
+    @Override
     public Object getItem(int position) {
         return null;
     }
 
+    @Override
     public long getItemId(int position) {
         return 0;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
         if (convertView == null) {
-            // if it's not recycled, initialize some attributes
+            int padding = Math.round(mContext.getResources().getDimension(R.dimen.image_margin));
             imageView = new ImageView(mContext);
             imageView.setAdjustViewBounds(true);
             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            imageView.setPadding(10,10,10,10);
+            imageView.setPadding(padding, padding, padding, padding);
         } else {
             imageView = (ImageView) convertView;
         }

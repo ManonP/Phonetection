@@ -9,10 +9,6 @@ import java.util.List;
 public class UnlockObject {
     public class UnlockedEvent extends EventObject {
 
-        public static final int PIN_UNLOCK = 1;
-        public static final int PATTERN_UNLOCK = 2;
-        public static final int IMAGE_UNLOCK = 3;
-
         private int type;
 
         public UnlockedEvent(Object source, int type) {
@@ -27,7 +23,7 @@ public class UnlockObject {
     }
 
     public interface UnlockedEventListener extends EventListener {
-        public void onUnlocked(UnlockedEvent ue);
+        void onUnlocked(UnlockedEvent ue);
     }
 
 

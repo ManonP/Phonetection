@@ -9,10 +9,25 @@ import android.preference.PreferenceManager;
  */
 public final class Data {
 
+    public static final String EXTRA_WITH_ALARM = "com.ihm15.project.phonetection.WITH_ALARM";
+    public static final String EXTRA_MODE = "com.ihm15.project.phonetection.MODE";
+
     public static final String MOTION_BUTTON_TAG = "motion_button";
     public static final String CHARGER_BUTTON_TAG = "charger_button";
     public static final String SIM_BUTTON_TAG = "sim_button";
     public static final String SMS_BUTTON_TAG = "sms_button";
+
+    public static final int MOTION_MODE = 0;
+    public static final int CHARGER_MODE = 1;
+    public static final int SIM_MODE = 2;
+    public static final int SMS_MODE = 3;
+
+    public static final int PIN_UNLOCK = 10;
+    public static final int PATTERN_UNLOCK = 11;
+    public static final int IMAGE_UNLOCK = 12;
+    public static final int WRONG_PIN_UNLOCK = 13;
+    public static final int WRONG_PATTERN_UNLOCK = 14;
+    public static final int WRONG_IMAGE_UNLOCK = 15;
 
     private static volatile Data instance = null;
     private static Context context;
@@ -52,7 +67,7 @@ public final class Data {
 
     public static String getSecurityLevel(){
         return sp.getString(context.getString(R.string.pref_key_security_level),
-                context.getResources().getString(R.string.pref_security_level_low));
+                context.getResources().getString(R.string.pref_security_level_default));
     }
 
     public static String getPin(){
@@ -66,8 +81,8 @@ public final class Data {
     }
 
     public static String getImage(){
-        return sp.getString(context.getString(R.string.pref_key_pin),
-                context.getResources().getString(R.string.pref_pin_default));
+        return sp.getString(context.getString(R.string.pref_key_image),
+                context.getResources().getString(R.string.pref_image_default));
     }
 
     public static boolean isMotionModeActivate(){
@@ -133,7 +148,7 @@ public final class Data {
 
     public static void setSecurityLevel(String securityLevel) {
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(context.getString(R.string.pref_key_sms_mode),
+        editor.putString(context.getString(R.string.pref_key_security_level),
                 securityLevel);
         editor.commit();
     }
@@ -159,6 +174,3 @@ public final class Data {
         editor.commit();
     }
 }
-
-
-

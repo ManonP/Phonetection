@@ -8,20 +8,17 @@ import android.support.annotation.Nullable;
 
 import com.ihm15.project.phonetection.Data;
 
-import managers.AlertManager;
 import receiver.CableBroadcastReceiver;
 
 public class CableService extends Service {
 
     private String TAG = "BroadcastReceiver";
     private boolean mReceiverRegistered = false;
-    private AlertManager alertManager;
     private CableBroadcastReceiver broadcastService;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        alertManager = new AlertManager();
         Data.getInstance(getApplicationContext());
         broadcastService = new CableBroadcastReceiver();
 

@@ -1,11 +1,10 @@
 package dialogs;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.ihm15.project.phonetection.Data;
 import com.ihm15.project.phonetection.R;
 
 public class ConfirmPatternDialog extends AbstractPatternDialog {
@@ -23,10 +22,8 @@ public class ConfirmPatternDialog extends AbstractPatternDialog {
     //SEEHEIM-NOYAU FONCTIONNEL/////////////////////////////////////////////////////////////////////
 
     protected void savePattern() {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putInt(getContext().getString(R.string.pref_key_pattern), pattern);
-        editor.commit();
+        Data.getInstance(getActivity());
+        Data.setPattern(pattern);
     }
 
     //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////

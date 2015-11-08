@@ -1,11 +1,10 @@
 package dialogs;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.ihm15.project.phonetection.Data;
 import com.ihm15.project.phonetection.R;
 
 import adapters.ImageAdapter;
@@ -25,10 +24,8 @@ public class ConfirmImageDialog extends AbstractImageDialog {
 
     protected void saveImage() {
         Log.println(Log.DEBUG, "", "SAVE IMAGE: " + image);
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString(getContext().getString(R.string.pref_key_image), image);
-        editor.commit();
+        Data.getInstance(getActivity());
+        Data.setImage(image);
     }
 
     //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////

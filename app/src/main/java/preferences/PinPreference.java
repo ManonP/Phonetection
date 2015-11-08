@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ihm15.project.phonetection.Data;
 import com.ihm15.project.phonetection.R;
 
 import dialogs.ChangePinDialog;
@@ -32,9 +33,9 @@ public class PinPreference extends Preference implements UnlockObject.UnlockedEv
     @Override
     protected View onCreateView(ViewGroup parent) {
         View view = super.onCreateView(parent);
+        Data.getInstance(getContext());
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String defaultValue = getContext().getString(R.string.pref_pin_default);
-        pin = sp.getString(getContext().getString(R.string.pref_key_pin), defaultValue);
+        pin = Data.getPin();
         sp.registerOnSharedPreferenceChangeListener(this);
         mp = MediaPlayer.create(getContext(), R.raw.wrong);
 

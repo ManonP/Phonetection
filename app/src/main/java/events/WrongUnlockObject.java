@@ -9,10 +9,6 @@ import java.util.List;
 public class WrongUnlockObject {
     public class WrongUnlockedEvent extends EventObject {
 
-        public static final int PIN_WRONG_UNLOCK = 1;
-        public static final int PATTERN_WRONG_UNLOCK = 2;
-        public static final int IMAGE_WRONG_UNLOCK = 3;
-
         private int type;
 
         public WrongUnlockedEvent(Object source, int type) {

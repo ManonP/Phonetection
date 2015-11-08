@@ -2,6 +2,7 @@ package com.ihm15.project.phonetection;
 
 import android.content.Context;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 
 import java.util.Locale;
@@ -18,8 +19,9 @@ public class TextToSpeak implements TextToSpeech.OnInitListener {
      * Constructeur
      * @param c, context
      */
-    public TextToSpeak(Context c) {
+    public TextToSpeak(Context c, TextToSpeech.OnUtteranceCompletedListener upl) {
         textToSpeech = new TextToSpeech(c,this);
+        textToSpeech.setOnUtteranceCompletedListener(upl);
     }
 
 
@@ -27,16 +29,19 @@ public class TextToSpeak implements TextToSpeech.OnInitListener {
      * Permet de dire une insctruction non enregistrée
      * @param instruction
      */
-    public static void speekInstruction(String instruction) {
+    public void speakInstruction(String instruction) {
         textToSpeech.speak(instruction, TextToSpeech.QUEUE_ADD, null);
 
+    }
+
+    public void stop(){
+        textToSpeech.stop();
     }
 
     /**
      * Destroy
      */
     public void destroy() {
-        textToSpeech.stop();
         textToSpeech.shutdown();
     }
 
