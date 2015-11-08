@@ -66,13 +66,14 @@
     <!--Noms des paramètres-->
     <string name="light_alarm_setting">Light alarm</string>
     <string name="grace_time_setting">Grace time</string>
-    <string name="sms_setting">Change alarm control SMS text</string>
+    <string name="sms_setting">Alarm control text message</string>
     <string name="security_level_setting">Security level</string>
-    <string name="pin_setting">Change Pin</string>
-    <string name="pattern_setting">Change Pattern</string>
-    <string name="image_setting">Change Image</string>
+    <string name="pin_setting">Pin</string>
+    <string name="pattern_setting">Pattern</string>
+    <string name="image_setting">Image</string>
 
     <!--Description des paramètres-->
+    <string name="sms_settings_description">The alarm will start every time you will receive this text message</string>
     <string name="light_alarm_setting_description">To get a more deterrent effect</string>
     <string name="grace_time_setting_description">Time before alarm start</string>
     <string name="security_level_setting_description">Number of steps to unlock the application</string>
@@ -153,7 +154,7 @@
     <string name="info_dialog_message">
         Phonetection has been created by Manon Paquereau and Dimitri Drouet for a school project.
         The purpose of this application is to protect your device from robbery.
-        You can choose between several modes of detection.
+        You can choose several modes of detection.
     </string>
     <string name="different_pin_dialog_message">You enter two different PIN</string>
     <string name="pin_saved_dialog_message">The PIN you entered, has been saved</string>

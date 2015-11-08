@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -83,7 +84,6 @@ public class MainFragment extends Fragment implements View.OnClickListener,
         View v = inflater.inflate(R.layout.activity_card_view, container, false);
 
         alarmMediaPlayer = MediaPlayer.create(getActivity(), R.raw.honk);
-        alarmMediaPlayer.setVolume(1.0f,1.0f);
         alarmMediaPlayer.setLooping(true);
 
         getActivity().startService(new Intent(getActivity(), MotionService.class));
@@ -1040,6 +1040,8 @@ public class MainFragment extends Fragment implements View.OnClickListener,
     //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
     public void startAlarm(){
         Log.println(Log.DEBUG, "", "ALARM START");
+
+        alarmMediaPlayer.setVolume(1.0f,1.0f);
         alarmMediaPlayer.start();
     }
 

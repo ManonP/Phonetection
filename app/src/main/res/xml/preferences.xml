@@ -17,7 +17,7 @@
             android:dialogTitle="@string/grace_time_setting"
             android:dialogIcon="@drawable/ic_timer_black_36dp"
             android:defaultValue="@integer/pref_grace_time_default"/>
-        <EditTextPreference
+        <preferences.SmsPreference
             android:id="@+id/pref_sms"
             android:key="@string/pref_key_sms"
             android:title="@string/sms_setting"

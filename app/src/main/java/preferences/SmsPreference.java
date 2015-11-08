@@ -13,12 +13,12 @@ import android.view.ViewGroup;
 import com.ihm15.project.phonetection.Data;
 import com.ihm15.project.phonetection.R;
 
-import dialogs.SecurityLevelDialog;
+import dialogs.SmsDialog;
 
-public class SecurityLevelPreference extends Preference implements
+public class SmsPreference extends Preference implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
-    public SecurityLevelPreference(Context context, AttributeSet attrs) {
+    public SmsPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -29,33 +29,28 @@ public class SecurityLevelPreference extends Preference implements
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
         sp.registerOnSharedPreferenceChangeListener(this);
 
-        setSecurityLevelSummary();
+        setSmsSummary();
 
         return view;
     }
 
     @Override
     protected void onClick() {
-        SecurityLevelDialog cpd = new SecurityLevelDialog();
-        cpd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "security_level");
+        SmsDialog cpd = new SmsDialog();
+        cpd.show(((FragmentActivity) getContext()).getSupportFragmentManager(), "sms");
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Log.println(Log.DEBUG, "", "BANANA :" + key);
-        if (key.equals(getContext().getString(R.string.pref_key_security_level))){
-            setSecurityLevelSummary();
+        if (key.equals(getContext().getString(R.string.pref_key_sms))){
+            setSmsSummary();
         }
     }
 
 
-    public void setSecurityLevelSummary(){
+    public void setSmsSummary(){
         Data.getInstance(getContext());
-        String sl = Data.getSecurityLevel();
-        if (sl == getContext().getString(R.string.pref_security_level_low))
-            setSummary(getContext().getString(R.string.security_level_low));
-        else if (sl == getContext().getString(R.string.pref_security_level_medium))
-            setSummary(getContext().getString(R.string.security_level_medium));
-        else setSummary(getContext().getString(R.string.security_level_high));
+        setSummary(Data.getSms());
     }
 }

@@ -144,6 +144,7 @@ public final class Data {
     public static void setSms(String sms) {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(context.getString(R.string.pref_key_sms), sms);
+        editor.commit();
     }
 
     public static void setSecurityLevel(String securityLevel) {
