@@ -21,15 +21,28 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/card_view_background"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal">
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/lock_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/card_view_horizontal_margin"
+                    android:layout_marginBottom="@dimen/card_view_horizontal_margin"
+                    android:layout_marginLeft="@dimen/card_view_horizontal_margin"
+                    android:layout_marginRight="@dimen/card_view_horizontal_margin"
+                    android:src="@drawable/ic_lock_black_36dp"/>
+
                 <ImageView
                     style="@style/card_view_image"
                     android:id="@+id/card_view_image" />
-            </LinearLayout>
+
+            </RelativeLayout>
 
 
             <LinearLayout

@@ -117,7 +117,7 @@ public class SecurityLevelDialog extends DialogFragment implements View.OnClickL
             rbl.setChecked(true);
         else if (sl == getContext().getString(R.string.pref_security_level_medium))
             rbm.setChecked(true);
-        else rbm.setChecked(true);
+        else rbh.setChecked(true);
     }
 
 

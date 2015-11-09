@@ -5,6 +5,9 @@
     <string name="title_activity_detection_mode_chooser">Phonetection</string>
     <string name="title_activity_settings">Settings</string>
 
+    <!-- NOTIFICATIONS ==========================================================================-->
+    <string name="notification_charger_mode">Activate charger mode?</string>
+
     <!-- MENUS ==================================================================================-->
     <!--Noms des options de menu-->
     <string name="action_settings">Settings</string>

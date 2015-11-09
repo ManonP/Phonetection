@@ -123,7 +123,9 @@
     <style name="card_view_image">
         <item name="android:layout_width">@dimen/card_view_image</item>
         <item name="android:layout_height">@dimen/card_view_image</item>
-        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <!--<item name="android:layout_gravity">center_horizontal</item>-->
     </style>
 
     <style name="card_view_title">

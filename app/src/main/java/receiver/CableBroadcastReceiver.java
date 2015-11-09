@@ -24,8 +24,9 @@ import com.ihm15.project.phonetection.R;
 public class CableBroadcastReceiver extends BroadcastReceiver {
 
     private String LOG_TAG_BROADCAST_SERVICE = "CableBroadcastReceiver";
+    public static final int CHARGER_NOTIFICATION_ID = 1;
 
-    public int ID_NOTIFICATION = 0;
+    //public int ID_NOTIFICATION = 0;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -58,7 +59,19 @@ public class CableBroadcastReceiver extends BroadcastReceiver {
         CharSequence text = "Remember to activate the alarm";
         CharSequence title = "Phonectection";
         long time = 30;
-        Notification notification = new Notification(icon, text, time);
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(context)
+                        .setSmallIcon(R.drawable.ic_phonelink_lock_white_36dp)
+                        .setContentTitle(context.getString(R.string.app_name))
+                        .setContentText(context.getString(R.string.notification_charger_mode));
+
+        NotificationManager mNotificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+// mId allows you to update the notification later on.
+        mNotificationManager.notify(CHARGER_NOTIFICATION_ID, mBuilder.build());
+// Creates an explicit intent for an Activity in your app
+
+        /*Notification notification = new Notification(icon, text, time);
         Intent notificationIntent = new Intent(context,CardViewActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(context,0,notificationIntent,0);
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -68,6 +81,6 @@ public class CableBroadcastReceiver extends BroadcastReceiver {
                 .setAutoCancel(false).setContentTitle(title)
                 .setContentText(text).build();
         notification.defaults |= Notification.DEFAULT_SOUND;
-        manager.notify(ID_NOTIFICATION, notification);
+        manager.notify(ID_NOTIFICATION, notification);*/
     }
 }
