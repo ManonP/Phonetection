@@ -1077,6 +1077,7 @@ public class MainFragment extends Fragment implements View.OnClickListener,
         for (Integer i : modeWhichStartTheAlarm){
             switch(i){
                 case Data.MOTION_MODE:
+                    Log.d("", "DEBUG : MOTION DEACTIVATE");
                     motionState = ModeStates.MODE_DEACTIVATED;
 
                     Data.setMotionMode(false);
@@ -1084,6 +1085,7 @@ public class MainFragment extends Fragment implements View.OnClickListener,
                     cva.motionButtonDeactivated();
                     break;
                 case Data.CHARGER_MODE:
+                    Log.d("", "DEBUG : CHARGER DEACTIVATE");
                     chargerState = ModeStates.MODE_DEACTIVATED;
 
                     Data.setCableMode(false);
@@ -1091,6 +1093,7 @@ public class MainFragment extends Fragment implements View.OnClickListener,
                     cva.chargerButtonDeactivated();
                     break;
                 case Data.SIM_MODE:
+                    Log.d("", "DEBUG : SIM DEACTIVATE");
                     simState = ModeStates.MODE_DEACTIVATED;
 
                     Data.setSimMode(false);
@@ -1098,6 +1101,7 @@ public class MainFragment extends Fragment implements View.OnClickListener,
                     cva.simButtonDeactivated();
                     break;
                 case Data.SMS_MODE:
+                    Log.d("", "DEBUG : SMS DEACTIVATE");
                     smsState = ModeStates.MODE_DEACTIVATED;
 
                     Data.setSmsMode(false);

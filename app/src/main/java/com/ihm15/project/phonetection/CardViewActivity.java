@@ -23,6 +23,7 @@ import dialogs.CustomMessageDialog;
  */
 public class CardViewActivity extends AppCompatActivity {
 
+    private static final String MAIN_FRAGMENT = "MAIN_FRAGMENT";
     public boolean withAlarm = false;
     public int mode = -1;
 
@@ -43,6 +44,21 @@ public class CardViewActivity extends AppCompatActivity {
         withAlarm = intent.getBooleanExtra(Data.EXTRA_WITH_ALARM, false);
         mode = intent.getIntExtra(Data.EXTRA_MODE, -1);
         showsDetectionModeSelector();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Data.getInstance(this);
+
+        mode = intent.getIntExtra(Data.EXTRA_MODE, -1);
+
+
+        MainFragment mf = (MainFragment) getFragmentManager().findFragmentByTag(MAIN_FRAGMENT);
+        if (mf != null){
+            mf.alarmTrigger(mode);
+        }
+
     }
 
     @Override
@@ -111,7 +127,7 @@ public class CardViewActivity extends AppCompatActivity {
     private void showsDetectionModeSelector(){
         setContentView(R.layout.activity_main);
         getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new MainFragment())
+                .replace(android.R.id.content, new MainFragment(), MAIN_FRAGMENT)
                 .commit();
     }
 

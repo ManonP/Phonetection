@@ -64,7 +64,7 @@ public class MotionService extends Service implements SensorEventListener {
                             "com.ihm15.project.phonetection.CardViewActivity");
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     i.putExtra(Data.EXTRA_WITH_ALARM, true);
-                    i.putExtra(Data.EXTRA_MODE, Data.CHARGER_MODE);
+                    i.putExtra(Data.EXTRA_MODE, Data.MOTION_MODE);
                     Data.setMotionMode(false);
                     getBaseContext().startActivity(i);
                 }

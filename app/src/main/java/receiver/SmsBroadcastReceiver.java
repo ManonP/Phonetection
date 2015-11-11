@@ -37,7 +37,7 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
                     "com.ihm15.project.phonetection.CardViewActivity");
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.putExtra(Data.EXTRA_WITH_ALARM, true);
-            i.putExtra(Data.EXTRA_MODE, Data.CHARGER_MODE);
+            i.putExtra(Data.EXTRA_MODE, Data.SMS_MODE);
             Data.setSmsMode(false);
             context.startActivity(i);
         }
