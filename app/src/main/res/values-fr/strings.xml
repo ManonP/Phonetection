@@ -1,0 +1,168 @@
+<resources>
+    <!-- GENERAL ================================================================================-->
+    <!--Nom de l'application et noms des fenêtres et fragments-->
+    <string name="app_name">Phonetection</string>
+    <string name="title_activity_detection_mode_chooser">Phonetection</string>
+    <string name="title_activity_settings">Paramètres</string>
+
+    <!-- NOTIFICATIONS ==========================================================================-->
+    <string name="notification_charger_mode">Activer le mode chargeur ?</string>
+
+    <!-- MENUS ==================================================================================-->
+    <!--Noms des options de menu-->
+    <string name="action_settings">Paramètres</string>
+    <string name="action_info">Informations</string>
+    <string name="action_mode_selector">Sélecteur de mode de détection</string>
+    <!-- BOUTONS ================================================================================-->
+    <!--Boutons d'activation/désactivation de mode-->
+    <string name="activate_button">Activation</string>
+    <string name="deactivate_button">Désactivation</string>
+
+    <!--Boutons de saisie de code ou de schéma-->
+    <string name="clear_button">Effacer</string>
+    <string name="validate_button">OK</string>
+    <string name="confirm_button">Valider</string>
+    <string name="skip_button">Passer</string>
+
+    <!--Boutons de confiramation ou d'annulation-->
+    <string name="ok_button">OK</string>
+    <string name="cancel_button">Annuler</string>
+
+    <!--Boutons de saisie de code-->
+    <string name="pin_0_button">0</string>
+    <string name="pin_1_button">1</string>
+    <string name="pin_2_button">2</string>
+    <string name="pin_3_button">3</string>
+    <string name="pin_4_button">4</string>
+    <string name="pin_5_button">5</string>
+    <string name="pin_6_button">6</string>
+    <string name="pin_7_button">7</string>
+    <string name="pin_8_button">8</string>
+    <string name="pin_9_button">9</string>
+
+    <!-- MODES DE DETECTIONS ====================================================================-->
+    <!--Nom des différents modes de détection-->
+    <string name="charger_detection_mode">Mode chargeur</string>
+    <string name="motion_detection_mode">Mode mouvement</string>
+    <string name="sim_detection_mode">Mode de detection SIM</string>
+    <string name="sms_detection_mode">Mode SMS</string>
+
+    <!--Description des différents modes de détection-->
+    <string name="charger_detection_mode_description">
+        Démarre l\'alarme lorsque le chargeur est déconnecté
+    </string>
+    <string name="motion_detection_mode_description">
+        Démarre l\'alarme lorsque le dispositif est déplacé
+    </string>
+    <string name="sim_detection_mode_description">
+        Démarre l\'alarme lorsque la carte SIM est changée
+    </string>
+    <string name="sms_detection_mode_description">
+        Démarre l\'alarme lors de la réception d\'un SMS
+    </string>
+
+    <!-- PARAMETRES =============================================================================-->
+    <!--Noms des sections de paramètres-->
+    <string name="alarm_and_grace_time_section">Alarme et temps de sursis</string>
+    <string name="security_section">Sécurité</string>
+
+    <!--Noms des paramètres-->
+    <string name="light_alarm_setting">Alarme lumineuse</string>
+    <string name="grace_time_setting">Temps de sursis</string>
+    <string name="sms_setting">Message d\'alarme</string>
+    <string name="security_level_setting">Niveau de sécurité</string>
+    <string name="pin_setting">Code</string>
+    <string name="pattern_setting">Schéma</string>
+    <string name="image_setting">Image</string>
+
+    <!--Description des paramètres-->
+    <string name="sms_settings_description">L\'alarme démarre à chaque fois que vous recevrez ce message</string>
+    <string name="light_alarm_setting_description">Pour obtenir un effet plus dissuasif</string>
+    <string name="grace_time_setting_description">Temps avant le début de l\'alarme</string>
+    <string name="security_level_setting_description">Nombre d\'étapes pour débloquer le téléphone</string>
+
+    <!--Titre des dialogues de changement de paramètre-->
+    <string name="new_pin_choice">Choisissez un nouveau code</string>
+    <string name="new_pin_confirm">Confirmez votre nouveau code</string>
+    <string name="new_pattern_choice">Dessinez un nouveau schéma</string>
+    <string name="new_pattern_confirm">Confirmez votre nouveau schéma</string>
+    <string name="new_image_choice">Choisissez une nouvelle image</string>
+    <string name="new_image_confirm">Confirmez votre nouvelle image</string>
+
+    <!--Option des paramètres-->
+    <string name="grace_time_5_seconds">5 secondes</string>
+    <string name="grace_time_10_seconds">10 secondes</string>
+    <string name="grace_time_15_seconds">15 secondes</string>
+    <string name="grace_time_30_seconds">30 secondes</string>
+    <string name="security_level_low">Failbe (1 étape)</string>
+    <string name="security_level_medium">Moyen (2 étapes)</string>
+    <string name="security_level_high">Élevé (3 étapes)</string>
+    <string name="pin_not_set">Code non définit</string>
+    <string name="pattern_not_set">Schéma non définit</string>
+    <string name="image_not_set">Image non définit</string>
+
+
+    <!--Clefs des paramètres (entrées) -->
+    <string name="pref_key_motion_mode">pref_key_motion_mode</string>
+    <string name="pref_key_cable_mode">pref_key_cable_mode</string>
+    <string name="pref_key_sim_mode">pref_key_sim_mode</string>
+    <string name="pref_key_sms_mode">pref_key_sms_mode</string>
+    <string name="pref_key_light_alarm">pref_key_light_alarm</string>
+    <string name="pref_key_grace_time">pref_key_grace_time</string>
+    <string name="pref_key_security_level">pref_key_security_level</string>
+    <string name="pref_key_pin">pref_key_pin</string>
+    <string name="pref_key_pattern">pref_key_pattern</string>
+    <string name="pref_key_image">pref_key_image</string>
+    <string name="pref_key_sms">pref_key_sms</string>
+
+    <!--Valeurs des paramètres (values) -->
+    <bool name="pref_motion_mode_default">false</bool>
+    <bool name="pref_cable_mode_default">false</bool>
+    <bool name="pref_sim_mode_default">false</bool>
+    <bool name="pref_sms_mode_default">false</bool>
+    <bool name="pref_light_alarm_default">true</bool>
+    <integer name="pref_grace_time_default">5000</integer>
+    <integer name="pref_grace_time_5">5000</integer>
+    <integer name="pref_grace_time_10">10000</integer>
+    <integer name="pref_grace_time_15">15000</integer>
+    <integer name="pref_grace_time_30">30000</integer>
+    <string name="pref_security_level_low">Low</string>
+    <string name="pref_security_level_medium">Medium</string>
+    <string name="pref_security_level_high">High</string>
+    <string name="pref_security_level_default">Low</string>
+    <string name="pref_pin_default">null</string>
+    <integer name="pref_pattern_default">-1</integer>
+    <string name="pref_image_default">null</string>
+    <string name="pref_sms_default">PHONETECTION</string>
+
+    <!-- DIALOGUES ==============================================================================-->
+    <!--Noms des dialogues-->
+    <string name="dissuasive_dialog">Attention !</string>
+    <string name="info_dialog">Informations</string>
+    <string name="enter_pin_dialog">Entrez votre code</string>
+    <string name="draw_pattern_dialog">Dessinez votre schéma</string>
+    <string name="select_image_dialog">Sélectionnez votre image</string>
+    <string name="different_pin_dialog">Mauvais code</string>
+    <string name="pin_saved_dialog">Nouveau code sauvegardé</string>
+    <string name="different_pattern_dialog">Mauvais schéma</string>
+    <string name="pattern_saved_dialog">Nouveau schéma sauvegardé</string>
+    <string name="different_image_dialog">Mauvaise image</string>
+    <string name="image_saved_dialog">Nouvelle image sauvegardée</string>
+
+    <!--Messages des dialogues-->
+    <string name="dissuasive_dialog_message">
+        Ce téléphone est protégé par une alarme.
+        Vous deverez déverouiller l\'appareil à la fin de ce message.
+    </string>
+    <string name="info_dialog_message">
+        Phonetection a été crée par Manon Paquereau et Dimitri Drouet pour un projet scolaire.
+        La but de cette application est de protéger votre appareil contre le vol.
+        Vous pouvez choisir plusieurs modes de détection.
+    </string>
+    <string name="different_pin_dialog_message">Vous avez entré deux codes différents</string>
+    <string name="pin_saved_dialog_message">Le code saisi a été sauvegardé</string>
+    <string name="different_pattern_dialog_message">Vous avez dessiné deux codes différents</string>
+    <string name="pattern_saved_dialog_message">Le schéma dessiné a été sauvegardé</string>
+    <string name="different_image_dialog_message">Vous avez choisi deux images différentes</string>
+    <string name="image_saved_dialog_message">L\'image que vous avez choisie a été sauvegardée</string>
+</resources>
