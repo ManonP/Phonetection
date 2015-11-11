@@ -29,13 +29,9 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
             for (int i= 0; i< smsextras.length; i++) {
                 SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) smsextras[i]);
                 strMsgBody = smsMessage.getMessageBody().toString();
-                Log.e(TAG, strMsgBody);
-                Log.e(TAG + "data", strMessage);
             }
         }
-
         if (Data.isSmsModeActivate() && strMsgBody.equals(strMessage)) {
-            Toast.makeText(context,"Message recu : " + strMsgBody, Toast.LENGTH_SHORT).show();
             Intent i = new Intent();
             i.setClassName("com.ihm15.project.phonetection",
                     "com.ihm15.project.phonetection.CardViewActivity");

@@ -26,8 +26,6 @@ public class CableBroadcastReceiver extends BroadcastReceiver {
     private String LOG_TAG_BROADCAST_SERVICE = "CableBroadcastReceiver";
     public static final int CHARGER_NOTIFICATION_ID = 1;
 
-    //public int ID_NOTIFICATION = 0;
-
     @Override
     public void onReceive(Context context, Intent intent) {
         Data.getInstance(context);
@@ -52,23 +50,26 @@ public class CableBroadcastReceiver extends BroadcastReceiver {
     }
 
     private void activeNotification(Context context) {
-        int icon = R.drawable.ic_phonelink_lock_white_36dp;
-        CharSequence tickerText = "Activate the alarm";
-        long when = System.currentTimeMillis();
-        int currentapiVersion = Build.VERSION.SDK_INT;
-        CharSequence text = "Remember to activate the alarm";
-        CharSequence title = "Phonectection";
-        long time = 30;
+
+        Intent showIntent = new Intent(context, CardViewActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(context,0, showIntent,0);
+
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.ic_phonelink_lock_white_36dp)
                         .setContentTitle(context.getString(R.string.app_name))
-                        .setContentText(context.getString(R.string.notification_charger_mode));
+                        .setContentText(context.getString(R.string.notification_charger_mode))
+                        .setContentIntent(contentIntent);
+
+        Notification notification = mBuilder.build();
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        notification.defaults |= Notification.DEFAULT_SOUND;
 
         NotificationManager mNotificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
 // mId allows you to update the notification later on.
-        mNotificationManager.notify(CHARGER_NOTIFICATION_ID, mBuilder.build());
+        mNotificationManager.notify(CHARGER_NOTIFICATION_ID, notification);
 // Creates an explicit intent for an Activity in your app
 
         /*Notification notification = new Notification(icon, text, time);
