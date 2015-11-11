@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import dialogs.CustomMessageDialog;
 
@@ -67,9 +70,33 @@ public class CardViewActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return false;
+       /* if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+            Toast.makeText(this,"Volume UP", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            Toast.makeText(this, "Volume Down", Toast.LENGTH_SHORT).show();
+            mgr.setStreamVolume(AudioManager.STREAM_MUSIC, 9, 0);
+            return true;
+        }*/
+        return super.onKeyDown(keyCode, event);
     }
 
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        boolean result;
+        switch (event.getKeyCode()) {
+            case KeyEvent.KEYCODE_VOLUME_DOWN :
+                result = true;
+                break;
+            case KeyEvent.KEYCODE_VOLUME_UP :
+                result = true;
+                break;
+            default:
+                result = super.dispatchKeyEvent(event);
+        }
+        return result;
+    }
     //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////
 
     public void actionInfoClicked(){

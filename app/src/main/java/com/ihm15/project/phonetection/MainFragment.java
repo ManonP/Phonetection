@@ -198,8 +198,7 @@ public class MainFragment extends Fragment implements View.OnClickListener,
                 break;
         }
     }
-
-
+    
 
     //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////
     private void init(){
