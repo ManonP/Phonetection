@@ -13,10 +13,10 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -200,6 +200,7 @@ public class MainFragment extends Fragment implements View.OnClickListener,
     }
 
 
+
     //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////
     private void init(){
         state = States.IDLE;
@@ -241,6 +242,8 @@ public class MainFragment extends Fragment implements View.OnClickListener,
             Log.d("", "DEBUG: SMS STATE DEACTIVATED");
         }
     }
+
+
 
     private void motionButtonClicked(){
         switch (motionState){
@@ -1038,10 +1041,15 @@ public class MainFragment extends Fragment implements View.OnClickListener,
     }
 
     //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
-    public void startAlarm(){
+    public void startAlarm() {
         Log.println(Log.DEBUG, "", "ALARM START");
 
-        alarmMediaPlayer.setVolume(1.0f,1.0f);
+        AudioManager mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+        int maxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, AudioManager.FLAG_PLAY_SOUND);
+        mAudioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+
+        alarmMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         alarmMediaPlayer.start();
     }
 

@@ -35,10 +35,10 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     private Button simButton;
     private Button smsButton;
 
-    private ImageView motionLockImage;
-    private ImageView chargerLockImage;
-    private ImageView simLockImage;
-    private ImageView smsLockImage;
+    //private ImageView motionLockImage;
+    //private ImageView chargerLockImage;
+    //private ImageView simLockImage;
+    //private ImageView smsLockImage;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public RelativeLayout background;
@@ -46,13 +46,13 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
         public TextView title;
         public TextView description;
         public Button activateDeactivateButton;
-        public ImageView lockImage;
+        //public ImageView lockImage;
 
         public ViewHolder(View v) {
             super(v);
             background = (RelativeLayout) v.findViewById(R.id.card_view_background);
             image = (ImageView) v.findViewById(R.id.card_view_image);
-            lockImage = (ImageView) v.findViewById(R.id.lock_image);
+            //lockImage = (ImageView) v.findViewById(R.id.lock_image);
             title = (TextView) v.findViewById(R.id.card_view_title);
             description = (TextView) v.findViewById(R.id.card_view_description);
             activateDeactivateButton = (Button) v.findViewById(R.id.card_view_activate_deactivate_button);
@@ -84,28 +84,28 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
             case MOTION_MODE_POSITION:
                 holder.activateDeactivateButton.setTag(Data.MOTION_BUTTON_TAG);
                 motionButton = holder.activateDeactivateButton;
-                motionLockImage = holder.lockImage;
+                //motionLockImage = holder.lockImage;
                 if (Data.isMotionModeActivate()) motionButtonActivated();
                 else motionButtonDeactivated();
                 break;
             case CHARGER_MODE_POSITION:
                 holder.activateDeactivateButton.setTag(Data.CHARGER_BUTTON_TAG);
                 chargerButton = holder.activateDeactivateButton;
-                chargerLockImage = holder.lockImage;
+                //chargerLockImage = holder.lockImage;
                 if (Data.isCableModeActivate()) chargerButtonActivated();
                 else chargerButtonDeactivated();
                 break;
             case SIM_MODE_POSITION:
                 holder.activateDeactivateButton.setTag(Data.SIM_BUTTON_TAG);
                 simButton = holder.activateDeactivateButton;
-                simLockImage = holder.lockImage;
+                //simLockImage = holder.lockImage;
                 if (Data.isSimModeActivate()) simButtonActivated();
                 else simButtonDeactivated();
                 break;
             case SMS_MODE_POSITION:
                 holder.activateDeactivateButton.setTag(Data.SMS_BUTTON_TAG);
                 smsButton = holder.activateDeactivateButton;
-                smsLockImage = holder.lockImage;
+                //smsLockImage = holder.lockImage;
                 if (Data.isSmsModeActivate()) smsButtonActivated();
                 else smsButtonDeactivated();
                 break;
@@ -138,49 +138,49 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
     public void motionButtonActivated(){
         Log.d("", "DEBUG: MOTION BUTTON ACTIVATED");
         motionButton.setText(mContext.getString(R.string.deactivate_button));
-        motionLockImage.setAlpha(1.f);
+        //motionLockImage.setAlpha(1.f);
     }
 
     public void motionButtonDeactivated(){
         Log.d("", "DEBUG: MOTION BUTTON DEACTIVATED");
         motionButton.setText(mContext.getString(R.string.activate_button));
-        motionLockImage.setAlpha(0.f);
+        //motionLockImage.setAlpha(0.f);
     }
 
     public void chargerButtonActivated(){
         Log.d("", "DEBUG: CHARGER BUTTON ACTIVATED");
         chargerButton.setText(mContext.getString(R.string.deactivate_button));
-        chargerLockImage.setAlpha(1.f);
+        //chargerLockImage.setAlpha(1.f);
     }
 
     public void chargerButtonDeactivated(){
         Log.d("", "DEBUG: CHARGER BUTTON DEACTIVATED");
         chargerButton.setText(mContext.getString(R.string.activate_button));
-        chargerLockImage.setAlpha(0.f);
+        //chargerLockImage.setAlpha(0.f);
     }
 
     public void simButtonActivated(){
         Log.d("", "DEBUG: SIM BUTTON ACTIVATED");
         simButton.setText(mContext.getString(R.string.deactivate_button));
-        simLockImage.setAlpha(1.f);
+        //simLockImage.setAlpha(1.f);
     }
 
     public void simButtonDeactivated(){
         Log.d("", "DEBUG: SIM BUTTON DEACTIVATED");
         simButton.setText(mContext.getString(R.string.activate_button));
-        simLockImage.setAlpha(0.f);
+        //simLockImage.setAlpha(0.f);
     }
 
     public void smsButtonActivated(){
         Log.d("", "DEBUG: SMS BUTTON ACTIVATED");
         smsButton.setText(mContext.getString(R.string.deactivate_button));
-        smsLockImage.setAlpha(1.f);
+        //smsLockImage.setAlpha(1.f);
     }
 
     public void smsButtonDeactivated(){
         Log.d("", "DEBUG: SMS BUTTON DEACTIVATED");
         smsButton.setText(mContext.getString(R.string.activate_button));
-        smsLockImage.setAlpha(0.f);
+        //smsLockImage.setAlpha(0.f);
     }
 
     public void enableChargerButton(){
