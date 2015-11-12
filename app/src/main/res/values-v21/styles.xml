@@ -17,4 +17,23 @@
         <item name="android:colorAccent">@color/accent</item>
     </style>
 
+    <style name="card_view_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textColor">@color/primary_dark_text</item>
+        <item name="android:textSize">@dimen/card_view_title_text_size</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="card_view_description">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textColor">@color/secondary_dark_text</item>
+        <item name="android:textSize">@dimen/card_view_description_text_size</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
 </resources>
