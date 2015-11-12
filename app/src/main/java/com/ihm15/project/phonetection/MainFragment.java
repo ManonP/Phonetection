@@ -83,9 +83,6 @@ public class MainFragment extends Fragment implements View.OnClickListener,
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_card_view, container, false);
 
-        alarmMediaPlayer = MediaPlayer.create(getActivity(), R.raw.honk);
-        alarmMediaPlayer.setLooping(true);
-
         getActivity().startService(new Intent(getActivity(), MotionService.class));
         getActivity().startService(new Intent(getActivity(), CableService.class));
         getActivity().startService(new Intent(getActivity(), SmsService.class));
@@ -1042,6 +1039,9 @@ public class MainFragment extends Fragment implements View.OnClickListener,
     //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
     public void startAlarm() {
         Log.println(Log.DEBUG, "", "ALARM START");
+
+        alarmMediaPlayer = MediaPlayer.create(getActivity(), R.raw.honk);
+        alarmMediaPlayer.setLooping(true);
 
         AudioManager mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         int maxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
