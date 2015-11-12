@@ -34,9 +34,9 @@ public class DissuasiveDialog extends CustomMessageDialog implements TextToSpeec
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tts = new TextToSpeak(getActivity(), this);
-        tts.onInit(TextToSpeech.SUCCESS);
-        tts.speakInstruction(getActivity().getString(R.string.dissuasive_dialog_message));
+        tts = new TextToSpeak(getActivity(),
+                getActivity().getString(R.string.dissuasive_dialog_message), this);
+        //tts.onInit(TextToSpeech.SUCCESS);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class DissuasiveDialog extends CustomMessageDialog implements TextToSpeec
     @Override
     protected void positiveButtonClicked() {
         ddso.fireDissuasiveDialogSkippedEvent();
-        if (tts.isSpeak()) tts.stop();
+        if (tts.isSpeaking()) tts.stop();
         tts.destroy();
         dismiss();
     }
