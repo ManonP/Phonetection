@@ -101,6 +101,7 @@ public class SecurityLevelDialog extends DialogFragment implements View.OnClickL
     //SEEHEIM-DIALOGUE//////////////////////////////////////////////////////////////////////////////
 
     protected void positiveButtonClicked(){
+        Data.getInstance(getContext());
         Data.setSecurityLevel(valueToSave);
         dismiss();
     }

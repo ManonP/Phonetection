@@ -82,7 +82,7 @@
     <string name="grace_time_10_seconds">10 secondes</string>
     <string name="grace_time_15_seconds">15 secondes</string>
     <string name="grace_time_30_seconds">30 secondes</string>
-    <string name="security_level_low">Failbe (1 étape)</string>
+    <string name="security_level_low">Faible (1 étape)</string>
     <string name="security_level_medium">Moyen (2 étapes)</string>
     <string name="security_level_high">Élevé (3 étapes)</string>
     <string name="pin_not_set">Code non défini</string>
