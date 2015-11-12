@@ -2,9 +2,11 @@ package dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.ihm15.project.phonetection.Data;
@@ -53,6 +55,18 @@ public class EnterPatternDialog extends AbstractPatternDialog implements LightAl
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.show();
         if (!hasCancelButton) {
+            dialog.setOnKeyListener(new Dialog.OnKeyListener() {
+
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                    if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+                    } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+                    } else if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    }
+
+                    return true;
+                }
+            });
             dialog.setCanceledOnTouchOutside(false);
             dialog.setCancelable(false);
             setCancelable(false);
