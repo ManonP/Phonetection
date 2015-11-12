@@ -3,7 +3,6 @@ package dialogs;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import com.ihm15.project.phonetection.R;

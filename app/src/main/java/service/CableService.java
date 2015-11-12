@@ -41,41 +41,4 @@ public class CableService extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
-/*
-    private final BroadcastReceiver cableReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals("android.intent.action.ACTION_POWER_CONNECTED")) {
-                Log.e(TAG, "Je suis connecté ! ");
-                Toast.makeText(getApplicationContext(),"Je suis connecté !",Toast.LENGTH_SHORT).show();
-            }else if (intent.getAction().equals("android.intent.action.ACTION_POWER_DISCONNECTED")) {
-                Log.e(TAG,"Je suis déconnecté !");
-                Toast.makeText(getApplicationContext(),"Je suis deconnecté ! ", Toast.LENGTH_SHORT).show();
-                if (Data.isCableModeActivate()) {
-                    alertManager.startAlarm();
-                }
-            }
-
-        }
-    };*/
-
-/*
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        Log.i(TAG, "Received system broadcast");*/
-        /*if (intent.getAction().equals("android.intent.action.ACTION_POWER_CONNECTED")) {
-            alarme.cancelTimer();
-            Library.CONNECTED = true;
-        } else if (intent.getAction().equals("android.intent.action.ACTION_POWER_DISCONNECTED")) {
-            if (Library.CABLE_MODE) {
-                alarme.activeWarning(context);
-                Library.WARNING_BY = 2;
-            }
-            Library.CONNECTED = false;
-        }*/
-        //Intent intentStartActivity = new Intent(context, CardViewActivity.class);
-        //intentStartActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        //context.startActivity(intentStartActivity);
-    //}
-
 }

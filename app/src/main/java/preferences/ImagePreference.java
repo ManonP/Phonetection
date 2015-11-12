@@ -2,7 +2,6 @@ package preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.preference.Preference;

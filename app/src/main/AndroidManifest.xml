@@ -55,8 +55,6 @@
             </intent-filter>
         </receiver>
 
-
-
         <service android:name="service.MotionService"
             android:exported="false"/>
         <service android:name="service.CableService"

@@ -1,8 +1,5 @@
 package com.ihm15.project.phonetection;
 
-import android.media.Image;
-import android.widget.ImageView;
-
 /**
  * Created by Manon on 17/10/2015.
  */

@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.ihm15.project.phonetection.Data;
 
