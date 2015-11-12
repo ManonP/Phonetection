@@ -6,7 +6,7 @@
     <string name="title_activity_settings">Paramètres</string>
 
     <!-- NOTIFICATIONS ==========================================================================-->
-    <string name="notification_charger_mode">Activer le mode chargeur ?</string>
+    <string name="notification_charger_mode">Accéder aux modes de détéction</string>
 
     <!-- MENUS ==================================================================================-->
     <!--Noms des options de menu-->

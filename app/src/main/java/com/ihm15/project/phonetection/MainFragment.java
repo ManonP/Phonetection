@@ -1015,27 +1015,6 @@ public class MainFragment extends Fragment implements View.OnClickListener,
         }
     }
 
-
-
-    BroadcastReceiver cableBroadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.i("cable receiver", "ACTION_POWER_DISCONNECTED");
-            Toast.makeText(myContext,"Power disconnected",Toast.LENGTH_SHORT).show();
-            // myContext = context;
-        }
-    };
-
-    void startBackgroundServiceCable() {
-        //Enregistrement du BroadcastReceiver
-        IntentFilter filter = new IntentFilter("android.intent.action.ACTION_POWER_DISCONNECTED");
-        myContext.registerReceiver(cableBroadcastReceiver, filter);
-
-        //Lancement du service
-        Intent intent = new Intent(myContext, CableService.class);
-        myContext.startService(intent);
-    }
-
     //SEEHEIM-PRESENTATION//////////////////////////////////////////////////////////////////////////
     public void startAlarm() {
         Log.println(Log.DEBUG, "", "ALARM START");
@@ -1054,7 +1033,7 @@ public class MainFragment extends Fragment implements View.OnClickListener,
 
     public void stopAlarm(){
         Log.println(Log.DEBUG, "", "ALARM STOP");
-        alarmMediaPlayer.stop();
+        if (alarmMediaPlayer != null) alarmMediaPlayer.stop();
     }
 
     public void startGraceTimeTimer(){
