@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 
 import com.ihm15.project.phonetection.R;
 import com.ihm15.project.phonetection.TextToSpeak;
@@ -61,6 +62,7 @@ public class DissuasiveDialog extends CustomMessageDialog implements TextToSpeec
 
     @Override
     public void onUtteranceCompleted(String utteranceId) {
+        Log.d("DD", "ON_UTTERANCE_COMPLETED");
         positiveButtonClicked();
     }
 }

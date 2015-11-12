@@ -4,6 +4,7 @@ import android.content.Context;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 /**
@@ -11,6 +12,7 @@ import java.util.Locale;
  */
 public class TextToSpeak implements TextToSpeech.OnInitListener {
 
+    public static final String END_ID = "END_ID";
     private static final String TAG = "tts";
     private TextToSpeech tts;
 
@@ -28,22 +30,26 @@ public class TextToSpeak implements TextToSpeech.OnInitListener {
 
     @Override
     public void onInit(int status) {
+        tts.setOnUtteranceCompletedListener(utteranceCompletedListener);
+        HashMap<String, String> params = new HashMap<String, String>();
+
+        params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, END_ID);
+
         switch (status){
             case TextToSpeech.ERROR:
                 Log.e(TAG, "ERROR ON_INIT: ERROR");
                 break;
             case TextToSpeech.SUCCESS:
-                tts.setOnUtteranceCompletedListener(utteranceCompletedListener);
                 int res = tts.setLanguage(Locale.getDefault());
                 switch (res){
                     case TextToSpeech.LANG_AVAILABLE:
-                        tts.speak(textToSpeech, TextToSpeech.QUEUE_FLUSH, null);
+                        tts.speak(textToSpeech, TextToSpeech.QUEUE_FLUSH, params);
                         break;
                     case TextToSpeech.LANG_COUNTRY_AVAILABLE:
-                        tts.speak(textToSpeech,TextToSpeech.QUEUE_FLUSH, null);
+                        tts.speak(textToSpeech,TextToSpeech.QUEUE_FLUSH, params);
                         break;
                     case TextToSpeech.LANG_COUNTRY_VAR_AVAILABLE:
-                        tts.speak(textToSpeech, TextToSpeech.QUEUE_FLUSH, null);
+                        tts.speak(textToSpeech, TextToSpeech.QUEUE_FLUSH, params);
                         break;
                     case TextToSpeech.LANG_MISSING_DATA:
                         Log.e(TAG, "ERROR ON_INIT: LANG_MISSING_DATA");
