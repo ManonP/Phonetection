@@ -11,8 +11,8 @@
     <!-- MENUS ==================================================================================-->
     <!--Noms des options de menu-->
     <string name="action_settings">Settings</string>
-    <string name="action_info">Info</string>
-    <string name="action_mode_selector">Detection mode selector</string>
+    <string name="action_info">Informations</string>
+    <string name="action_mode_selector">Detection modes</string>
     <!-- BOUTONS ================================================================================-->
     <!--Boutons d'activation/désactivation de mode-->
     <string name="activate_button">Activate</string>
